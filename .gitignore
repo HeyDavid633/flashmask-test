@@ -33,4 +33,6 @@ compared-candidate
 pytorch-build
 pytorch-vision-build
 
-flash-attention/
+/flash-attention/
+
+/fusion-SC25/
