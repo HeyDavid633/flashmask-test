@@ -33,4 +33,4 @@ compared-candidate
 pytorch-build
 pytorch-vision-build
 
-flash-attention
+flash-attention/
