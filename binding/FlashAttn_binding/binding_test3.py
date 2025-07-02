@@ -47,20 +47,6 @@ def attention_pytorch(q, k, v, dropout_p=0.0, causal=True, attn_bias=None):
 
 
 def _flash_attn_forward(
-    q, k, v, dropout_p, softmax_scale, causal, window_size, alibi_slopes, return_softmax
-):
-    maybe_contiguous = lambda x: x.contiguous() if x.stride(-1) != 1 else x
-    q, k, v = [maybe_contiguous(x) for x in (q, k, v)]
-    
-    # 相比于 binding_test2.py 的修改为： flash_attn_cuda.fwd --- flashattn_binding.forward
-    out, q, k, v, out_padded, softmax_lse, S_dmask, rng_state = flashattn_binding.forward(
-        q, k, v, None, alibi_slopes, dropout_p, softmax_scale, 
-        causal, window_size[0], window_size[1], return_softmax, None,)
-    
-    return out, q, k, v, out_padded, softmax_lse, S_dmask, rng_state
-
-
-def _flash_attn_forward(
     q: torch.Tensor, k: torch.Tensor, v: torch.Tensor,
     dropout_p: float,
     softmax_scale: float,
