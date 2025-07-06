@@ -109,7 +109,7 @@ if __name__ == "__main__":
             t2_start = time_stamp_cudasync()
         with sdpa_kernel(SDPBackend.FLASH_ATTENTION):
             FA2_out = torch.nn.functional.scaled_dot_product_attention(q1, k1, v1, is_causal=is_causal)
-        # FA2_out1 = FA2_out.permute(0, 2, 1, 3)
+        FA2_out1 = FA2_out.permute(0, 2, 1, 3)
     t2_end = time_stamp_cudasync()
     flashAttn2_time = (t2_end - t2_start) * 1000 / running_iters
     print(" bs:{} | seq:{} |  FlashAttn2  : {:.3f} ms / iter".format(batch_size, seqlen, flashAttn2_time)) 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
         if i == warmup_iters:    
             t3_start = time_stamp_cudasync()
         flex_output = compiled_flex_attention(q1, k1, v1, score_mod=score_mod, block_mask=block_mask)
-        # flex_output1 = flex_output.permute(0, 2, 1, 3)
+        flex_output1 = flex_output.permute(0, 2, 1, 3)
     t3_end = time_stamp_cudasync()
     flexattn_time = (t3_end - t3_start) * 1000 / running_iters
     print(" bs:{} | seq:{} |   FlexAttn   : {:.3f} ms / iter".format(batch_size, seqlen, flexattn_time)) 

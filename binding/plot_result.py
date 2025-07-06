@@ -57,12 +57,12 @@ def plot_results(speedups, output_path):
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
     fig.suptitle('Attention Mechanism Performance Comparison', fontsize=16)
     
-    # Define colors and methods
+    # Define colors and methods - adjusted colors
     colors = {
-        'Torch Naive': (1.0, 0.6, 0.2, 0.7),     # Orange
-        'FlashAttn2': (0.6, 0.2, 1.0, 0.7),       # Purple
-        'FlexAttn': (0.2, 0.6, 1.0, 0.7),         # Blue
-        'Bind Kernel': (1.0, 0.2, 0.2, 0.7)       # Red
+        'Torch Naive': (1.0, 0.5, 0.0, 0.7),     # Orange
+        'FlashAttn2': (0.6, 0.2, 0.8, 0.7),      # Purple
+        'FlexAttn': (0.2, 0.4, 1.0, 0.7),        # Blue
+        'Bind Kernel': (1.0, 0.2, 0.2, 0.7)      # Red
     }
     methods = ['Torch Naive', 'FlashAttn2', 'FlexAttn', 'Bind Kernel']
     
@@ -74,8 +74,18 @@ def plot_results(speedups, output_path):
         offsets = np.linspace(-1.5*width, 1.5*width, len(methods))
         
         for j, method in enumerate(methods):
+            # Explicitly get the color for this method
+            color = colors[method]
             values = [speedups[batch_size][seq][method] for seq in seq_lengths]
-            ax.bar(x + offsets[j], values, width, label=method, color=colors[method])
+            ax.bar(
+                x + offsets[j], 
+                values, 
+                width, 
+                label=method if i == 0 else "",  # Only label once in first subplot
+                color=color,
+                edgecolor='black',  # Add black border for clarity
+                linewidth=0.5
+            )
         
         # Customize the plot
         ax.set_title(f'Batch Size = {batch_size}', fontsize=12)
@@ -90,22 +100,32 @@ def plot_results(speedups, output_path):
         # Add horizontal line at y=1 for Torch Naive
         ax.axhline(y=1, color='gray', linestyle='--', linewidth=0.8)
     
-    # Add legend to the right of the plots
+    legend_handles = [
+        plt.Rectangle((0,0), 1, 1, fc=colors['Torch Naive'], ec='black', linewidth=0.5),
+        plt.Rectangle((0,0), 1, 1, fc=colors['FlashAttn2'], ec='black', linewidth=0.5),
+        plt.Rectangle((0,0), 1, 1, fc=colors['FlexAttn'], ec='black', linewidth=0.5),
+        plt.Rectangle((0,0), 1, 1, fc=colors['Bind Kernel'], ec='black', linewidth=0.5)
+    ]
+    
+    # Add legend with large font
     fig.legend(
-        methods, 
-        loc='upper right',
-        bbox_to_anchor=(0.98, 0.9),
-        ncol=1,
-        fontsize=10
+        legend_handles,
+        methods,
+        loc='upper center',
+        bbox_to_anchor=(0.5, 1.05),
+        ncol=4,
+        fontsize=14,  # Increased font size
+        frameon=True,  # 保持外边框可见
+        fancybox=True, # 使用圆角边框
+        shadow=True  # 添加阴影效果 
     )
     
     # Adjust layout
-    plt.tight_layout(rect=[0, 0, 0.85, 1])
+    plt.tight_layout()
     
     # Create output directory if needed
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
-    # Save the figure
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Plot saved to {output_path}")
@@ -117,7 +137,7 @@ def main():
     
     # Determine output path
     input_basename = os.path.basename(args.input_file)
-    output_filename = os.path.splitext(input_basename)[0] + '.pdf'
+    output_filename = os.path.splitext(input_basename)[0] + '.png'
     output_dir = os.path.join(os.getcwd(), 'plot_result')
     output_path = os.path.join(output_dir, output_filename)
     
