@@ -176,12 +176,7 @@ void set_params_alibi(Flash_fwd_params &params, std::optional<at::Tensor> &alibi
 #endif
 }
 
-// Find the number of splits that maximizes the occupancy. For example, if we have
-// batch * n_heads = 48 and we have 108 SMs, having 2 splits (efficiency = 0.89) is
-// better than having 3 splits (efficiency = 0.67). However, we also don't want too many
-// splits as that would incur more HBM reads/writes.
-// So we find the best efficiency, then find the smallest number of splits that gets 85%
-// of the best efficiency.
+
 inline int num_splits_heuristic(int batch_nheads_mblocks, int num_SMs, int num_n_blocks, int max_splits) {
     // If we have enough to almost fill the SMs, then just use 1 split
     if (batch_nheads_mblocks >= 0.8f * num_SMs) { return 1; }
@@ -252,7 +247,11 @@ std::tuple<at::Tensor, at::Tensor> set_params_splitkv(Flash_fwd_params &params, 
 }
 
 
-void run_mha_fwd(Flash_fwd_params &params, cudaStream_t stream, bool force_split_kernel=false) {
+void run_mha_fwd(Flash_fwd_params &params, cudaStream_t stream, 
+    const int* full_row_ptr, const int* full_col_idx,
+    const int* part_row_ptr, const int* part_col_idx, __half* part_block_mask,
+    const int* load_row_ptr, const int* load_col_idx) 
+{
     // std::cout << ">>> [DAVID INFO] Running mha_fwd with d=" << params.d 
     //           << ", causal=" << params.is_causal << std::endl;
 
@@ -265,9 +264,17 @@ void run_mha_fwd(Flash_fwd_params &params, cudaStream_t stream, bool force_split
     }
 
     if (params.is_causal) {
-        run_mha_fwd_<cutlass::half_t, 64, true>(params, stream);
+        run_mha_fwd_<cutlass::half_t, 64, true>(params, stream, 
+            full_row_ptr, full_col_idx, 
+            part_row_ptr, part_col_idx, part_block_mask,
+            load_row_ptr, load_col_idx
+        );
     } else {
-        run_mha_fwd_<cutlass::half_t, 64, false>(params, stream);
+        run_mha_fwd_<cutlass::half_t, 64, false>(params, stream, 
+            full_row_ptr, full_col_idx, 
+            part_row_ptr, part_col_idx, part_block_mask,
+            load_row_ptr, load_col_idx
+        );
     }
 }
 
@@ -277,7 +284,10 @@ flashattn_binding_gpu(
         at::Tensor &q,         // batch_size x seqlen_q x num_heads x round_multiple(head_size, 8)
         const at::Tensor &k,         // batch_size x seqlen_k x num_heads_k x round_multiple(head_size, 8)
         const at::Tensor &v,         // batch_size x seqlen_k x num_heads_k x round_multiple(head_size, 8)
-        std::optional<at::Tensor> &out_,             // batch_size x seqlen_q x num_heads x round_multiple(head_size, 8)
+        at::Tensor full_row_ptr, at::Tensor full_col_idx,
+        at::Tensor part_row_ptr, at::Tensor part_col_idx, at::Tensor part_block_mask,
+        at::Tensor load_row_ptr, at::Tensor load_col_idx,
+        std::optional<at::Tensor> &out_,          // batch_size x seqlen_q x num_heads x round_multiple(head_size, 8)
         std::optional<at::Tensor> &alibi_slopes_, // num_heads or batch_size x num_heads
         const float p_dropout,
         const float softmax_scale,
@@ -427,7 +437,15 @@ flashattn_binding_gpu(
 
     if (seqlen_k > 0) {
         auto stream = at::cuda::getCurrentCUDAStream().stream();
-        run_mha_fwd(params, stream);
+        run_mha_fwd(params, stream, 
+            full_row_ptr.data_ptr<int>(),
+            full_col_idx.data_ptr<int>(),
+            part_row_ptr.data_ptr<int>(),
+            part_col_idx.data_ptr<int>(),
+            reinterpret_cast< __half*>(part_block_mask.data_ptr<at::Half>()),
+            load_row_ptr.data_ptr<int>(),
+            load_col_idx.data_ptr<int>()
+        );
     } else {
         // If seqlen_k == 0, then we have an empty tensor. We need to set the output to 0.
         out.zero_();

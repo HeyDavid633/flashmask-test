@@ -35,6 +35,9 @@ block_attn_mask_func =  Block_Attn_Mask.apply
 
 def _binding_attn_forward(
     q: torch.Tensor, k: torch.Tensor, v: torch.Tensor,
+    full_row_ptr: torch.Tensor, full_col_idx: torch.Tensor, 
+    part_row_ptr: torch.Tensor, part_col_idx: torch.Tensor, part_block_mask: torch.Tensor,
+    load_row_ptr: torch.Tensor, load_col_idx: torch.Tensor,
     dropout_p: float,
     softmax_scale: float,
     causal: bool,
@@ -48,7 +51,11 @@ def _binding_attn_forward(
     q, k, v = [maybe_contiguous(x) for x in (q, k, v)]
     
     out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
-        q, k, v, None, alibi_slopes, dropout_p, softmax_scale, causal,
+        q, k, v,
+        full_row_ptr, full_col_idx, 
+        part_row_ptr, part_col_idx, part_block_mask,
+        load_row_ptr, load_col_idx,
+        None, alibi_slopes, dropout_p, softmax_scale, causal,
         window_size_left, window_size_right, softcap, return_softmax, None,
     )
     return out, softmax_lse, S_dmask, rng_state
@@ -57,6 +64,9 @@ class BindingAttnFunc(torch.autograd.Function):
     @staticmethod
     def forward(ctx,
         q: torch.Tensor, k: torch.Tensor, v: torch.Tensor,
+        full_row_ptr, full_col_idx, 
+        part_row_ptr, part_col_idx, part_block_mask,
+        load_row_ptr, load_col_idx,
         dropout_p,
         softmax_scale,
         causal,
@@ -79,6 +89,9 @@ class BindingAttnFunc(torch.autograd.Function):
             v = torch.nn.functional.pad(v, [0, 8 - head_size_og % 8])
         out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
             q, k, v,
+            full_row_ptr, full_col_idx, 
+            part_row_ptr, part_col_idx, part_block_mask,
+            load_row_ptr, load_col_idx,
             dropout_p,
             softmax_scale,
             causal=causal,
@@ -97,6 +110,9 @@ class BindingAttnFunc(torch.autograd.Function):
 #      out: (batch_size, seqlen, nheads, headdim)
 def binding_attn_func(
     q, k, v,
+    full_row_ptr, full_col_idx, 
+    part_row_ptr, part_col_idx, part_block_mask,
+    load_row_ptr, load_col_idx,
     dropout_p=0.0,
     softmax_scale=None,
     causal=False,
@@ -107,9 +123,10 @@ def binding_attn_func(
     return_attn_probs=False,
 ):
     return BindingAttnFunc.apply(
-        q,
-        k,
-        v,
+        q, k, v,
+        full_row_ptr, full_col_idx, 
+        part_row_ptr, part_col_idx, part_block_mask,
+        load_row_ptr, load_col_idx,
         dropout_p,
         softmax_scale,
         causal,

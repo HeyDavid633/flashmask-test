@@ -103,14 +103,22 @@ if __name__ == "__main__":
     # PyTorch Naive  ---------------------------------------
     pt_out = attention_pytorch(q, k, v, dropout_p=dropout_p, causal=is_causal)
 
-    # FlashAttn2   Note: Torch >= 2.2.0
-    with sdpa_kernel(SDPBackend.FLASH_ATTENTION):
-        FA2_out = torch.nn.functional.scaled_dot_product_attention(q1, k1, v1, is_causal=is_causal)
-    # print(f"pt_out.shape: {pt_out.shape},  FA2_out.shape: {FA2_out.shape}")
-    FA2_out1 = FA2_out.permute(0, 2, 1, 3)
-    max_diff, mean_diff = check_tensor(FA2_out1, pt_out)
+    # Torch FlashAttn2   Note: Torch >= 2.2.0 ---------------
+    # with sdpa_kernel(SDPBackend.FLASH_ATTENTION):
+    #     FA2_out = torch.nn.functional.scaled_dot_product_attention(q1, k1, v1, is_causal=is_causal)
+    # # print(f"pt_out.shape: {pt_out.shape},  FA2_out.shape: {FA2_out.shape}")
+    # FA2_out1 = FA2_out.permute(0, 2, 1, 3)
+    # max_diff, mean_diff = check_tensor(FA2_out1, pt_out)
+    # print(f"[CHECK]  FlashAttn2\t  max_diff:{max_diff:.4f}  mean_diff:{mean_diff:.4f}" )
+    
+    # Binding FlashAttn2  --------------------------------
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, os.path.join(current_dir, "FlashAttn_binding"))
+    from FlashAttn_binding.ops.package_op import flashattn_binding_func
+    FA_bind_out = flashattn_binding_func(q, k, v, dropout_p=dropout_p, causal=is_causal)
+    max_diff, mean_diff = check_tensor(FA_bind_out, pt_out)
     print(f"[CHECK]  FlashAttn2\t  max_diff:{max_diff:.4f}  mean_diff:{mean_diff:.4f}" )
-
+    
     # FlexAttn  ---------------------------------------
     compiled_flex_attention = torch.compile(flex_attention, mode="default", dynamic=False)
     block_mask = create_block_mask_cached(mask_mod, 1, 1, seqlen, seqlen, device=q.device)

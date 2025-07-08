@@ -1,6 +1,6 @@
-# 2025.6.27 
-# 初次尝试自己绑定FlashAttn
+# 2025.07.07  
 # 
+# 绑定自己改进的Attention 并提高编译速度
 # python setup.py 89
 # 编译标志中 sm 的型号可能需要依据平台而改变  A100:sm80 | 4080:sm89 | 3090:sm86
 import os
@@ -8,6 +8,9 @@ import sys
 import glob
 from setuptools import find_packages, setup
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension
+import multiprocessing
+
+current_path = os.getcwd()
 
 if len(sys.argv) > 1:
     cuda_arch = sys.argv.pop(1)  # 取出第一个参数
@@ -20,20 +23,24 @@ if len(sys.argv) > 1:
 else:
     cuda_arch = "80"  # 默认架构
 
-print(f" >>> [Binding INFO] Compiling for CUDA architecture: sm_{cuda_arch}\n")
+print(f" >>> [Binding INFO] Compiling for CUDA architecture: sm_{cuda_arch}")
 
-current_path = os.getcwd()
+# 并行编译设置
+num_cores = multiprocessing.cpu_count()
+max_jobs = min(32, num_cores * 2)  # 限制最大作业数避免内存溢出
+print(f" >>> [Binding INFO] Using parallel compilation with {max_jobs} jobs")
+
 extra_compile_args = {
     "nvcc" : ["-O3", "-w", 
     "-I/usr/local/cuda/include", 
     f"-I{str(current_path)}/ops/src/include/",                 # 添加自己的 依赖路径
     f"-I{str(current_path)}/ops/src/include/cutlass/include",  # 添加 cutlass 依赖
-    f"-gencode=arch=compute_{cuda_arch},code=sm_{cuda_arch}"]  # 此处gencode后面的等号不可以省
+    f"-gencode=arch=compute_{cuda_arch},code=sm_{cuda_arch}"],  # 此处gencode后面的等号不可以省
 }
 extra_link_args = []
 
-def get_extensions():
-    
+
+def get_extensions():    
     this_dir = os.path.dirname(os.path.curdir)
     extensions_dir = os.path.join(this_dir, "ops", "src")
     
@@ -75,5 +82,12 @@ setup(
     install_requires=["torch"],
     description="customed operator linked with cutlass implement",
     
-    cmdclass={'build_ext': BuildExtension}
+    # cmdclass={'build_ext': BuildExtension}
+    cmdclass={
+        'build_ext': BuildExtension.with_options(
+            use_ninja=True,  # 强制使用ninja
+            max_jobs=max_jobs,  # 并行任务数
+            no_python_abi_suffix=True  # 简化输出文件名
+        )
+    }
 )
