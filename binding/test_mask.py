@@ -240,19 +240,19 @@ if __name__ == "__main__":
 
     print(" query, key, value shape =", query.shape)
     
-    # result = block_attn_mask_func(query, key, value,
-    #                             full_row_ptr, full_col_idx, 
-    #                             part_row_ptr, part_col_idx, part_block_mask, 
-    #                             load_row_ptr, load_col_idx,
-    #                             BLOCK_M, BLOCK_N, num_warps)
-    # cuda_output = result
-    
-    result = binding_attn_func(q, k, v,
+    result = block_attn_mask_func(query, key, value,
                                 full_row_ptr, full_col_idx, 
                                 part_row_ptr, part_col_idx, part_block_mask, 
-                                load_row_ptr, load_col_idx, 
-                                dropout_p=dropout_p, causal=is_causal)
-    cuda_output = result.permute(0, 2, 1, 3)
+                                load_row_ptr, load_col_idx,
+                                BLOCK_M, BLOCK_N, num_warps)
+    cuda_output = result
+    
+    # result = binding_attn_func(q, k, v,
+    #                             full_row_ptr, full_col_idx, 
+    #                             part_row_ptr, part_col_idx, part_block_mask, 
+    #                             load_row_ptr, load_col_idx, 
+    #                             dropout_p=dropout_p, causal=is_causal)
+    # cuda_output = result.permute(0, 2, 1, 3)
 
     torch_output = torch_attn_std(query1, key, value, mask=mask)
     

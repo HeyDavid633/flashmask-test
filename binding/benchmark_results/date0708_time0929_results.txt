@@ -1,0 +1,33 @@
+=== Testing batch_size: 1 ===
+bs:1 | h_num:12 | seq:128
+Traceback (most recent call last):
+  File "/flashmask-test/binding/benchmark2.py", line 20, in <module>
+    from binding.ops.package_op import binding_attn_func  # Binded FA2
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'binding'
+ 
+bs:1 | h_num:12 | seq:256
+Traceback (most recent call last):
+  File "/flashmask-test/binding/benchmark2.py", line 20, in <module>
+    from binding.ops.package_op import binding_attn_func  # Binded FA2
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'binding'
+ 
+=== Testing batch_size: 8 ===
+bs:8 | h_num:12 | seq:128
+Traceback (most recent call last):
+  File "/flashmask-test/binding/benchmark2.py", line 20, in <module>
+    from binding.ops.package_op import binding_attn_func  # Binded FA2
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'binding'
+ 
+bs:8 | h_num:12 | seq:256
+Traceback (most recent call last):
+  File "/flashmask-test/binding/benchmark2.py", line 20, in <module>
+    from binding.ops.package_op import binding_attn_func  # Binded FA2
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'binding'
+ 
+
+Benchmark end at: Tue Jul  8 09:30:08 UTC 2025
+Total test duration: 10 seconds

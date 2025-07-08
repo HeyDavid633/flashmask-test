@@ -1,0 +1,168 @@
+=== Testing batch_size: 1 ===
+bs:1 | h_num:12 | seq:128
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:1 | seq:128 |  Torch Naive : 0.308 ms / iter
+ bs:1 | seq:128 |   FlexAttn   : 0.117 ms / iter
+ bs:1 | seq:128 |  Bind Kernel : 0.067 ms / iter
+ 
+bs:1 | h_num:12 | seq:256
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:1 | seq:256 |  Torch Naive : 0.311 ms / iter
+ bs:1 | seq:256 |   FlexAttn   : 0.118 ms / iter
+ bs:1 | seq:256 |  Bind Kernel : 0.068 ms / iter
+ 
+bs:1 | h_num:12 | seq:512
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:1 | seq:512 |  Torch Naive : 0.315 ms / iter
+ bs:1 | seq:512 |   FlexAttn   : 0.124 ms / iter
+ bs:1 | seq:512 |  Bind Kernel : 0.074 ms / iter
+ 
+bs:1 | h_num:12 | seq:1024
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:1 | seq:1024 |  Torch Naive : 0.304 ms / iter
+ bs:1 | seq:1024 |   FlexAttn   : 0.119 ms / iter
+ bs:1 | seq:1024 |  Bind Kernel : 0.076 ms / iter
+ 
+bs:1 | h_num:12 | seq:2048
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:1 | seq:2048 |  Torch Naive : 1.408 ms / iter
+ bs:1 | seq:2048 |   FlexAttn   : 0.125 ms / iter
+ bs:1 | seq:2048 |  Bind Kernel : 0.120 ms / iter
+ 
+bs:1 | h_num:12 | seq:4096
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:1 | seq:4096 |  Torch Naive : 5.066 ms / iter
+ bs:1 | seq:4096 |   FlexAttn   : 0.290 ms / iter
+ bs:1 | seq:4096 |  Bind Kernel : 0.260 ms / iter
+ 
+=== Testing batch_size: 8 ===
+bs:8 | h_num:12 | seq:128
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:8 | seq:128 |  Torch Naive : 0.363 ms / iter
+ bs:8 | seq:128 |   FlexAttn   : 0.139 ms / iter
+ bs:8 | seq:128 |  Bind Kernel : 0.084 ms / iter
+ 
+bs:8 | h_num:12 | seq:256
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:8 | seq:256 |  Torch Naive : 0.371 ms / iter
+ bs:8 | seq:256 |   FlexAttn   : 0.116 ms / iter
+ bs:8 | seq:256 |  Bind Kernel : 0.065 ms / iter
+ 
+bs:8 | h_num:12 | seq:512
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:8 | seq:512 |  Torch Naive : 0.476 ms / iter
+ bs:8 | seq:512 |   FlexAttn   : 0.123 ms / iter
+ bs:8 | seq:512 |  Bind Kernel : 0.069 ms / iter
+ 
+bs:8 | h_num:12 | seq:1024
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:8 | seq:1024 |  Torch Naive : 2.149 ms / iter
+ bs:8 | seq:1024 |   FlexAttn   : 0.136 ms / iter
+ bs:8 | seq:1024 |  Bind Kernel : 0.131 ms / iter
+ 
+bs:8 | h_num:12 | seq:2048
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:8 | seq:2048 |  Torch Naive : 11.212 ms / iter
+ bs:8 | seq:2048 |   FlexAttn   : 0.447 ms / iter
+ bs:8 | seq:2048 |  Bind Kernel : 0.435 ms / iter
+ 
+bs:8 | h_num:12 | seq:4096
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:8 | seq:4096 |  Torch Naive : 39.149 ms / iter
+ bs:8 | seq:4096 |   FlexAttn   : 1.530 ms / iter
+ bs:8 | seq:4096 |  Bind Kernel : 1.455 ms / iter
+ 
+=== Testing batch_size: 16 ===
+bs:16 | h_num:12 | seq:128
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:16 | seq:128 |  Torch Naive : 0.388 ms / iter
+ bs:16 | seq:128 |   FlexAttn   : 0.142 ms / iter
+ bs:16 | seq:128 |  Bind Kernel : 0.070 ms / iter
+ 
+bs:16 | h_num:12 | seq:256
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:16 | seq:256 |  Torch Naive : 0.377 ms / iter
+ bs:16 | seq:256 |   FlexAttn   : 0.117 ms / iter
+ bs:16 | seq:256 |  Bind Kernel : 0.067 ms / iter
+ 
+bs:16 | h_num:12 | seq:512
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:16 | seq:512 |  Torch Naive : 1.141 ms / iter
+ bs:16 | seq:512 |   FlexAttn   : 0.117 ms / iter
+ bs:16 | seq:512 |  Bind Kernel : 0.072 ms / iter
+ 
+bs:16 | h_num:12 | seq:1024
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:16 | seq:1024 |  Torch Naive : 4.245 ms / iter
+ bs:16 | seq:1024 |   FlexAttn   : 0.248 ms / iter
+ bs:16 | seq:1024 |  Bind Kernel : 0.230 ms / iter
+ 
+bs:16 | h_num:12 | seq:2048
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:16 | seq:2048 |  Torch Naive : 22.323 ms / iter
+ bs:16 | seq:2048 |   FlexAttn   : 0.819 ms / iter
+ bs:16 | seq:2048 |  Bind Kernel : 0.801 ms / iter
+ 
+bs:16 | h_num:12 | seq:4096
+ PyTorch version: 2.6.0a0+df5bbc09d1.nv24.12
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ bs:16 | seq:4096 |  Torch Naive : 78.085 ms / iter
+ bs:16 | seq:4096 |   FlexAttn   : 2.904 ms / iter
+ bs:16 | seq:4096 |  Bind Kernel : 2.788 ms / iter
+ 
+
+Benchmark end at: Tue Jul  8 11:44:18 UTC 2025
+Total test duration: 228 seconds

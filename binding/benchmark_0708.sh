@@ -34,7 +34,7 @@ for bs in "${batch_sizes[@]}"; do
         echo "Running test: bs=$bs, seq=$seq"
         
         # 执行测试并捕获输出
-        result=$(python benchmark1.py --batch_size $bs --seq_len $seq 2>&1)
+        result=$(python benchmark2.py --batch_size $bs --seq_len $seq 2>&1)
         
         # 将结果写入文件
         {

@@ -57,7 +57,7 @@ inline __device__ void compute_mask_attn(const Params &params,
     const int bidh = blockIdx.z;         // The block index for the head.
     const int tidx = threadIdx.x;
     
-    if ( (tidx + bidb + bidh + m_block) == 0) { printf("[CUDA INFO]  Enter the bind_fwd_kernel.h \n"); }
+    // if ( (tidx + bidb + bidh + m_block) == 0) { printf("[CUDA INFO]  Enter the bind_fwd_kernel.h \n"); }
 
 
     using Element = typename Kernel_traits::Element;           // cutlass::half_t 来自于 kernel_traits.h

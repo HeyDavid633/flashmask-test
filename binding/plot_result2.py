@@ -1,8 +1,8 @@
-# 7.04
+# 7.08
 # 
-# 做图程序 需要读取文件
+# 读取文件做图，但是FlashAttn2的结果不需要，用基准数据 benchmark_results/FlashAttn2_baseline.txt
 # python plot_result.py benchmark_results/date0703_time1354_results.txt
-
+# 
 import re
 import os
 import argparse
@@ -10,7 +10,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import MultipleLocator
 
+def parse_flash_attn_data(file_path):
+    """Parse FlashAttn2 baseline data from separate file"""
+    data = {}
+    with open(file_path, 'r') as f:
+        for line in f:
+            match = re.match(r'bs:(\d+) \| seq:(\d+) \| FlashAttn2: ([\d.]+) ms/iter', line)
+            if match:
+                bs = int(match.group(1))
+                seq = int(match.group(2))
+                time = float(match.group(3))
+                if bs not in data:
+                    data[bs] = {}
+                data[bs][seq] = time
+    return data
+
 def parse_performance_data(file_path):
+    """Parse main performance data (without FlashAttn2)"""
     data = {}
     current_batch = None
     
@@ -32,7 +48,7 @@ def parse_performance_data(file_path):
                 
             # Match performance data
             perf_match = re.match(
-                r' bs:\d+ \| seq:\d+ \|  (.+?) : ([\d.]+) ms / iter(?: \|  Speedup/FA2: ([\d.]+))?', 
+                r' bs:\d+ \| seq:\d+ \|  (.+?) : ([\d.]+) ms / iter', 
                 line
             )
             if perf_match and current_batch and current_seq:
@@ -41,6 +57,18 @@ def parse_performance_data(file_path):
                 data[current_batch][current_seq][method] = time
                 
     return data
+
+def combine_data(main_data, flash_attn_data):
+    """Combine data from both sources"""
+    combined = {}
+    for batch_size, seq_data in main_data.items():
+        combined[batch_size] = {}
+        for seq_len, methods in seq_data.items():
+            combined[batch_size][seq_len] = methods.copy()
+            # Add FlashAttn2 data if available
+            if batch_size in flash_attn_data and seq_len in flash_attn_data[batch_size]:
+                combined[batch_size][seq_len]['FlashAttn2'] = flash_attn_data[batch_size][seq_len]
+    return combined
 
 def calculate_speedups(data):
     speedups = {}
@@ -60,7 +88,8 @@ def plot_results(speedups, output_path):
     
     # Set up the figure and subplots
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    fig.suptitle('Attention Mechanism Performance Comparison', fontsize=16)
+    fig.suptitle('(Block 64, 64 T T) Attention Mechanism Performance Comparison', fontsize=16)
+    # (QK_in_SMEM | Q_in_regs)
     
     # Define colors and methods - adjusted colors
     colors = {
@@ -79,9 +108,12 @@ def plot_results(speedups, output_path):
         offsets = np.linspace(-1.5*width, 1.5*width, len(methods))
         
         for j, method in enumerate(methods):
-            # Explicitly get the color for this method
+            # Skip if method not present in data
+            if method not in next(iter(speedups[batch_size].values())):
+                continue
+                
             color = colors[method]
-            values = [speedups[batch_size][seq][method] for seq in seq_lengths]
+            values = [speedups[batch_size][seq].get(method, 0) for seq in seq_lengths]
             ax.bar(
                 x + offsets[j], 
                 values, 
@@ -105,11 +137,10 @@ def plot_results(speedups, output_path):
         # Add horizontal line at y=1 for Torch Naive
         ax.axhline(y=1, color='gray', linestyle='--', linewidth=0.8)
     
+    # Create legend handles for all methods
     legend_handles = [
-        plt.Rectangle((0,0), 1, 1, fc=colors['Torch Naive'], ec='black', linewidth=0.5),
-        plt.Rectangle((0,0), 1, 1, fc=colors['FlashAttn2'], ec='black', linewidth=0.5),
-        plt.Rectangle((0,0), 1, 1, fc=colors['FlexAttn'], ec='black', linewidth=0.5),
-        plt.Rectangle((0,0), 1, 1, fc=colors['Bind Kernel'], ec='black', linewidth=0.5)
+        plt.Rectangle((0,0), 1, 1, fc=colors[method], ec='black', linewidth=0.5)
+        for method in methods
     ]
     
     # Add legend with large font
@@ -117,12 +148,12 @@ def plot_results(speedups, output_path):
         legend_handles,
         methods,
         loc='upper center',
-        bbox_to_anchor=(0.5, 1.05),
+        bbox_to_anchor=(0.5, 1.1),
         ncol=4,
         fontsize=14,  # Increased font size
-        frameon=True,  # 保持外边框可见
-        fancybox=True, # 使用圆角边框
-        shadow=True  # 添加阴影效果 
+        frameon=True,
+        fancybox=True,
+        shadow=True
     )
     
     # Adjust layout
@@ -137,7 +168,9 @@ def plot_results(speedups, output_path):
 
 def main():
     parser = argparse.ArgumentParser(description='Plot attention mechanism performance results.')
-    parser.add_argument('input_file', help='Path to the performance results text file')
+    parser.add_argument('input_file', help='Path to the main performance results text file')
+    parser.add_argument('--flash_attn_file', default='benchmark_results/FlashAttn2_baseline.txt',
+                      help='Path to the FlashAttn2 baseline data file')
     args = parser.parse_args()
     
     # Determine output path
@@ -146,9 +179,13 @@ def main():
     output_dir = os.path.join(os.getcwd(), 'plot_result')
     output_path = os.path.join(output_dir, output_filename)
     
-    # Process data and plot
-    data = parse_performance_data(args.input_file)
-    speedups = calculate_speedups(data)
+    # Process data from both files
+    main_data = parse_performance_data(args.input_file)
+    flash_attn_data = parse_flash_attn_data(args.flash_attn_file)
+    combined_data = combine_data(main_data, flash_attn_data)
+    
+    # Calculate speedups and plot
+    speedups = calculate_speedups(combined_data)
     plot_results(speedups, output_path)
 
 if __name__ == '__main__':

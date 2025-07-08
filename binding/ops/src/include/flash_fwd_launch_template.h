@@ -118,14 +118,54 @@ void run_mha_fwd_hdim64(Flash_fwd_params &params, cudaStream_t stream,
 
     // dwh: 对应关系为 <kHeadDim_, kBlockM_, kBlockN_, kNWarps_, Is_Q_in_regs_=false, bool Share_Q_K_smem_=false, typename elem_type=cutlass::half_t>. 
     // dwh: 其中 Is_Q_in_regs_ 决定是否让 Q矩阵保留在寄存器减少共享内存访问
-    run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, false, false, T>, Is_dropout, Is_causal>(
+    // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, false, false, T>, Is_dropout, Is_causal>(
+    //     params, stream, 
+    //     full_row_ptr, full_col_idx, 
+    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     load_row_ptr, load_col_idx);
+    // dwh: 注意这个参数设置 需要对应到  kernel_traits.h 的 Line51 来看
+    // dwh: 得知了 其 blocksize 的设置几乎总是 4 warp = 128
+
+
+    // 同时启用  Is_Q_in_regs_ 和 Share_Q_K_smem_
+    // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, true, true, T>, Is_dropout, Is_causal>(
+    //     params, stream, 
+    //     full_row_ptr, full_col_idx, 
+    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     load_row_ptr, load_col_idx);
+
+    // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 64, 4, true, true, T>, Is_dropout, Is_causal>(
+    //     params, stream, 
+    //     full_row_ptr, full_col_idx, 
+    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     load_row_ptr, load_col_idx);
+
+    // 性能测试时 最好的配置
+    run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 64, 64, 4, true, true, T>, Is_dropout, Is_causal>(
         params, stream, 
         full_row_ptr, full_col_idx, 
         part_row_ptr, part_col_idx, part_block_mask,
         load_row_ptr, load_col_idx);
-    // dwh: 注意这个参数设置 需要对应到  kernel_traits.h 的 Line51 来看
-    // dwh: 得知了 其 blocksize 的设置几乎总是 4 warp = 128
 
+    
+    // // 只开启用  Is_Q_in_regs_ 
+    // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, true, false, T>, Is_dropout, Is_causal>(
+    //     params, stream, 
+    //     full_row_ptr, full_col_idx, 
+    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     load_row_ptr, load_col_idx);
+
+
+    
+    // // 只开启  Share_Q_K_smem_
+    // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, false, true, T>, Is_dropout, Is_causal>(
+    //     params, stream, 
+    //     full_row_ptr, full_col_idx, 
+    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     load_row_ptr, load_col_idx);
+
+    // 原始的推荐 开启符号 / block 尺寸信息
+    // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, false, false, T>, Is_dropout, Is_causal>(params, stream);
     // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 64, 4, true, false, T>, Is_dropout, Is_causal>(params, stream);
     // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 64, 4, true, true, T>, Is_dropout, Is_causal>(params, stream);
     
