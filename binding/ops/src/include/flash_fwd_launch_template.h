@@ -42,20 +42,20 @@ DEFINE_FLASH_FORWARD_KERNEL(flash_fwd_kernel, bool Is_dropout, bool Is_causal, b
 template<typename Kernel_traits, bool Is_dropout, bool Is_causal, bool Is_local, bool Has_alibi, bool Is_even_MN, bool Is_even_K, bool Is_softcap, bool Return_softmax>
 __global__ void bind_fwd_kernel(const Flash_fwd_params params,
     const int* full_row_ptr, const int* full_col_idx,
-    const int* part_row_ptr, const int* part_col_idx, __half* part_block_mask,
+    const int* part_row_ptr, const int* part_col_idx, uint64_t* inner_bitmaps,
     const int* load_row_ptr, const int* load_col_idx) {
 
     static_assert(!(Is_causal && Is_local)); // Enforce constraints
     FLASH_NAMESPACE::compute_mask_attn<Kernel_traits, Is_dropout, Is_causal, Is_local, Has_alibi, Is_even_MN, Is_even_K, Is_softcap, Return_softmax>(params,
     full_row_ptr, full_col_idx, 
-    part_row_ptr, part_col_idx, part_block_mask,
+    part_row_ptr, part_col_idx, inner_bitmaps,
     load_row_ptr, load_col_idx);
 }
 
 template<typename Kernel_traits, bool Is_dropout, bool Is_causal>
 void run_flash_fwd(Flash_fwd_params &params, cudaStream_t stream,
     const int* full_row_ptr, const int* full_col_idx,
-    const int* part_row_ptr, const int* part_col_idx, __half* part_block_mask,
+    const int* part_row_ptr, const int* part_col_idx, uint64_t* inner_bitmaps,
     const int* load_row_ptr, const int* load_col_idx) {
     constexpr size_t smem_size = Kernel_traits::kSmemSize;
     // printf("smem_size = %d\n", smem_size);
@@ -91,7 +91,7 @@ void run_flash_fwd(Flash_fwd_params &params, cudaStream_t stream,
                             kernel<<<grid, Kernel_traits::kNThreads, smem_size, stream>>>(
                                 params, 
                                 full_row_ptr, full_col_idx, 
-                                part_row_ptr, part_col_idx, part_block_mask,
+                                part_row_ptr, part_col_idx, inner_bitmaps,
                                 load_row_ptr, load_col_idx);
                             C10_CUDA_KERNEL_LAUNCH_CHECK();
                         });
@@ -107,7 +107,7 @@ void run_flash_fwd(Flash_fwd_params &params, cudaStream_t stream,
 template<typename T, bool Is_causal>
 void run_mha_fwd_hdim64(Flash_fwd_params &params, cudaStream_t stream, 
     const int* full_row_ptr, const int* full_col_idx,
-    const int* part_row_ptr, const int* part_col_idx, __half* part_block_mask,
+    const int* part_row_ptr, const int* part_col_idx, uint64_t* inner_bitmaps,
     const int* load_row_ptr, const int* load_col_idx) {
     constexpr static int Headdim = 64;
 
@@ -121,7 +121,7 @@ void run_mha_fwd_hdim64(Flash_fwd_params &params, cudaStream_t stream,
     // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, false, false, T>, Is_dropout, Is_causal>(
     //     params, stream, 
     //     full_row_ptr, full_col_idx, 
-    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     part_row_ptr, part_col_idx, inner_bitmaps,
     //     load_row_ptr, load_col_idx);
     // dwh: 注意这个参数设置 需要对应到  kernel_traits.h 的 Line51 来看
     // dwh: 得知了 其 blocksize 的设置几乎总是 4 warp = 128
@@ -131,20 +131,20 @@ void run_mha_fwd_hdim64(Flash_fwd_params &params, cudaStream_t stream,
     // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, true, true, T>, Is_dropout, Is_causal>(
     //     params, stream, 
     //     full_row_ptr, full_col_idx, 
-    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     part_row_ptr, part_col_idx, inner_bitmaps,
     //     load_row_ptr, load_col_idx);
 
     // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 64, 4, true, true, T>, Is_dropout, Is_causal>(
     //     params, stream, 
     //     full_row_ptr, full_col_idx, 
-    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     part_row_ptr, part_col_idx, inner_bitmaps,
     //     load_row_ptr, load_col_idx);
 
     // 性能测试时 最好的配置
     run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 64, 64, 4, true, true, T>, Is_dropout, Is_causal>(
         params, stream, 
         full_row_ptr, full_col_idx, 
-        part_row_ptr, part_col_idx, part_block_mask,
+        part_row_ptr, part_col_idx, inner_bitmaps,
         load_row_ptr, load_col_idx);
 
     
@@ -152,7 +152,7 @@ void run_mha_fwd_hdim64(Flash_fwd_params &params, cudaStream_t stream,
     // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, true, false, T>, Is_dropout, Is_causal>(
     //     params, stream, 
     //     full_row_ptr, full_col_idx, 
-    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     part_row_ptr, part_col_idx, inner_bitmaps,
     //     load_row_ptr, load_col_idx);
 
 
@@ -161,7 +161,7 @@ void run_mha_fwd_hdim64(Flash_fwd_params &params, cudaStream_t stream,
     // run_flash_fwd<Flash_fwd_kernel_traits<Headdim, 128, 128, 4, false, true, T>, Is_dropout, Is_causal>(
     //     params, stream, 
     //     full_row_ptr, full_col_idx, 
-    //     part_row_ptr, part_col_idx, part_block_mask,
+    //     part_row_ptr, part_col_idx, inner_bitmaps,
     //     load_row_ptr, load_col_idx);
 
     // 原始的推荐 开启符号 / block 尺寸信息

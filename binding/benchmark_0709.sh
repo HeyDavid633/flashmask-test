@@ -4,6 +4,7 @@
 batch_sizes=(1 8 16)
 seq_lengths=(128 256 512 1024 2048 4096)
 
+
 # batch_sizes=(1 8)
 # seq_lengths=(128 256)
 
@@ -34,7 +35,7 @@ for bs in "${batch_sizes[@]}"; do
         echo "Running test: bs=$bs, seq=$seq"
         
         # 执行测试并捕获输出
-        result=$(python benchmark2.py --batch_size $bs --seq_len $seq 2>&1)
+        result=$(python benchmark3.py --mask_id 3 --batch_size $bs --seq_len $seq 2>&1)
         
         # 将结果写入文件
         {

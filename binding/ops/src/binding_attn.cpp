@@ -249,7 +249,7 @@ std::tuple<at::Tensor, at::Tensor> set_params_splitkv(Flash_fwd_params &params, 
 
 void run_mha_fwd(Flash_fwd_params &params, cudaStream_t stream, 
     const int* full_row_ptr, const int* full_col_idx,
-    const int* part_row_ptr, const int* part_col_idx, __half* part_block_mask,
+    const int* part_row_ptr, const int* part_col_idx, uint64_t* inner_bitmaps,
     const int* load_row_ptr, const int* load_col_idx) 
 {
     // std::cout << ">>> [DAVID INFO] Running mha_fwd with d=" << params.d 
@@ -266,13 +266,13 @@ void run_mha_fwd(Flash_fwd_params &params, cudaStream_t stream,
     if (params.is_causal) {
         run_mha_fwd_<cutlass::half_t, 64, true>(params, stream, 
             full_row_ptr, full_col_idx, 
-            part_row_ptr, part_col_idx, part_block_mask,
+            part_row_ptr, part_col_idx, inner_bitmaps,
             load_row_ptr, load_col_idx
         );
     } else {
         run_mha_fwd_<cutlass::half_t, 64, false>(params, stream, 
             full_row_ptr, full_col_idx, 
-            part_row_ptr, part_col_idx, part_block_mask,
+            part_row_ptr, part_col_idx, inner_bitmaps,
             load_row_ptr, load_col_idx
         );
     }
@@ -285,7 +285,7 @@ flashattn_binding_gpu(
         const at::Tensor &k,         // batch_size x seqlen_k x num_heads_k x round_multiple(head_size, 8)
         const at::Tensor &v,         // batch_size x seqlen_k x num_heads_k x round_multiple(head_size, 8)
         at::Tensor full_row_ptr, at::Tensor full_col_idx,
-        at::Tensor part_row_ptr, at::Tensor part_col_idx, at::Tensor part_block_mask,
+        at::Tensor part_row_ptr, at::Tensor part_col_idx, at::Tensor inner_bitmaps,
         at::Tensor load_row_ptr, at::Tensor load_col_idx,
         std::optional<at::Tensor> &out_,          // batch_size x seqlen_q x num_heads x round_multiple(head_size, 8)
         std::optional<at::Tensor> &alibi_slopes_, // num_heads or batch_size x num_heads
@@ -442,7 +442,9 @@ flashattn_binding_gpu(
             full_col_idx.data_ptr<int>(),
             part_row_ptr.data_ptr<int>(),
             part_col_idx.data_ptr<int>(),
-            reinterpret_cast< __half*>(part_block_mask.data_ptr<at::Half>()),
+            // reinterpret_cast< __half*>(part_block_mask.data_ptr<at::Half>()),
+            // reinterpret_cast<uint64_t*>(inner_bitmaps.data_ptr<int64_t>()),
+            reinterpret_cast<uint64_t*>(inner_bitmaps.data_ptr()),
             load_row_ptr.data_ptr<int>(),
             load_col_idx.data_ptr<int>()
         );

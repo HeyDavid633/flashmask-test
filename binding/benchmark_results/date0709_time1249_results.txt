@@ -1,0 +1,33 @@
+=== Testing batch_size: 1 ===
+bs:1 | h_num:12 | seq:128
+Testing Mask Name: Sliding_Mask
+ bs:1 | seq:128 |  Torch Naive : 0.308 ms / iter
+ bs:1 | seq:128 |  FlashAttn2  : 0.062 ms / iter
+ bs:1 | seq:128 |   FlexAttn   : 0.125 ms / iter
+ bs:1 | seq:128 |  Bind Kernel : 0.071 ms / iter
+ 
+bs:1 | h_num:12 | seq:256
+Testing Mask Name: Sliding_Mask
+ bs:1 | seq:256 |  Torch Naive : 0.306 ms / iter
+ bs:1 | seq:256 |  FlashAttn2  : 0.060 ms / iter
+ bs:1 | seq:256 |   FlexAttn   : 0.122 ms / iter
+ bs:1 | seq:256 |  Bind Kernel : 0.068 ms / iter
+ 
+=== Testing batch_size: 8 ===
+bs:8 | h_num:12 | seq:128
+Testing Mask Name: Sliding_Mask
+ bs:8 | seq:128 |  Torch Naive : 0.372 ms / iter
+ bs:8 | seq:128 |  FlashAttn2  : 0.062 ms / iter
+ bs:8 | seq:128 |   FlexAttn   : 0.120 ms / iter
+ bs:8 | seq:128 |  Bind Kernel : 0.068 ms / iter
+ 
+bs:8 | h_num:12 | seq:256
+Testing Mask Name: Sliding_Mask
+ bs:8 | seq:256 |  Torch Naive : 0.379 ms / iter
+ bs:8 | seq:256 |  FlashAttn2  : 0.061 ms / iter
+ bs:8 | seq:256 |   FlexAttn   : 0.143 ms / iter
+ bs:8 | seq:256 |  Bind Kernel : 0.086 ms / iter
+ 
+
+Benchmark end at: Wed Jul  9 12:50:42 UTC 2025
+Total test duration: 48 seconds

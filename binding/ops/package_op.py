@@ -36,7 +36,7 @@ block_attn_mask_func =  Block_Attn_Mask.apply
 def _binding_attn_forward(
     q: torch.Tensor, k: torch.Tensor, v: torch.Tensor,
     full_row_ptr: torch.Tensor, full_col_idx: torch.Tensor, 
-    part_row_ptr: torch.Tensor, part_col_idx: torch.Tensor, part_block_mask: torch.Tensor,
+    part_row_ptr: torch.Tensor, part_col_idx: torch.Tensor, inner_bitmaps: torch.Tensor,
     load_row_ptr: torch.Tensor, load_col_idx: torch.Tensor,
     dropout_p: float,
     softmax_scale: float,
@@ -53,7 +53,7 @@ def _binding_attn_forward(
     out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
         q, k, v,
         full_row_ptr, full_col_idx, 
-        part_row_ptr, part_col_idx, part_block_mask,
+        part_row_ptr, part_col_idx, inner_bitmaps,
         load_row_ptr, load_col_idx,
         None, alibi_slopes, dropout_p, softmax_scale, causal,
         window_size_left, window_size_right, softcap, return_softmax, None,
@@ -65,7 +65,7 @@ class BindingAttnFunc(torch.autograd.Function):
     def forward(ctx,
         q: torch.Tensor, k: torch.Tensor, v: torch.Tensor,
         full_row_ptr, full_col_idx, 
-        part_row_ptr, part_col_idx, part_block_mask,
+        part_row_ptr, part_col_idx, inner_bitmaps,
         load_row_ptr, load_col_idx,
         dropout_p,
         softmax_scale,
@@ -90,7 +90,7 @@ class BindingAttnFunc(torch.autograd.Function):
         out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
             q, k, v,
             full_row_ptr, full_col_idx, 
-            part_row_ptr, part_col_idx, part_block_mask,
+            part_row_ptr, part_col_idx, inner_bitmaps,
             load_row_ptr, load_col_idx,
             dropout_p,
             softmax_scale,
@@ -111,7 +111,7 @@ class BindingAttnFunc(torch.autograd.Function):
 def binding_attn_func(
     q, k, v,
     full_row_ptr, full_col_idx, 
-    part_row_ptr, part_col_idx, part_block_mask,
+    part_row_ptr, part_col_idx, inner_bitmaps,
     load_row_ptr, load_col_idx,
     dropout_p=0.0,
     softmax_scale=None,
@@ -125,7 +125,7 @@ def binding_attn_func(
     return BindingAttnFunc.apply(
         q, k, v,
         full_row_ptr, full_col_idx, 
-        part_row_ptr, part_col_idx, part_block_mask,
+        part_row_ptr, part_col_idx, inner_bitmaps,
         load_row_ptr, load_col_idx,
         dropout_p,
         softmax_scale,

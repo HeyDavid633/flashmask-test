@@ -49,7 +49,7 @@ __forceinline__ __device__ auto bind_get_lse_tile(const Params &params, const in
 template<typename Kernel_traits, bool Is_dropout, bool Is_causal, bool Is_local, bool Has_alibi, bool Is_even_MN, bool Is_even_K, bool Is_softcap, bool Return_softmax, typename Params>
 inline __device__ void compute_mask_attn(const Params &params, 
     const int* full_row_ptr, const int* full_col_idx,
-    const int* part_row_ptr, const int* part_col_idx, __half* part_block_mask,
+    const int* part_row_ptr, const int* part_col_idx, uint64_t* inner_bitmaps,
     const int* load_row_ptr, const int* load_col_idx) {
 
     const int m_block = blockIdx.x;
@@ -59,6 +59,12 @@ inline __device__ void compute_mask_attn(const Params &params,
     
     // if ( (tidx + bidb + bidh + m_block) == 0) { printf("[CUDA INFO]  Enter the bind_fwd_kernel.h \n"); }
 
+    const int full_num = full_row_ptr[m_block + 1] - full_row_ptr[m_block];
+    const int part_num = part_row_ptr[m_block + 1] - part_row_ptr[m_block];
+
+    // if ((bidb + bidh + tidx) == 0) { 
+    //     printf(">>> [CUDA INFO]  m_block = %d,  part_num = %d\n");
+    // }
 
     using Element = typename Kernel_traits::Element;           // cutlass::half_t 来自于 kernel_traits.h
     using ElementAccum = typename Kernel_traits::ElementAccum; // float
@@ -72,55 +78,12 @@ inline __device__ void compute_mask_attn(const Params &params,
     constexpr int kNWarps = Kernel_traits::kNWarps;   // 持续设置为 4
 
 
-    const BlockInfo</*Varlen=*/!Is_even_MN> binfo(params, bidb);      // 在解析 blockinfo的信息，但还是来源于 params
-    if (m_block * kBlockM >= binfo.actual_seqlen_q) return;
+    const BlockInfo</*Varlen=*/!Is_even_MN> binfo(params, bidb);  // 在解析 blockinfo的信息
+     
+    int n_block_min = load_col_idx[load_row_ptr[m_block]];
+    int n_block_max = load_col_idx[load_row_ptr[m_block + 1] - 1]; // 但是中间可能跳一下
+    // 之前是 [n_block_min, n_block_max) 前闭后开
 
-    // n_block_min 和 n_block_max 来确定 K 方向上需要计算的 最小块号 和 最大块号 --- 
-    const int n_block_min = !Is_local ? 0 : std::max(0, (m_block * kBlockM + binfo.actual_seqlen_k - binfo.actual_seqlen_q - params.window_size_left) / kBlockN);
-    int n_block_max = cute::ceil_div(binfo.actual_seqlen_k, kBlockN); 
-    
-    // 最后需要计算的范围是  [n_block_min, n_block_max)   前闭后开。
-    if (Is_causal || Is_local) {
-        n_block_max = std::min(n_block_max,
-                               cute::ceil_div((m_block + 1) * kBlockM + binfo.actual_seqlen_k - binfo.actual_seqlen_q + params.window_size_right, kBlockN));
-    }
-
-    //  exit early ----------------------------------------------------------
-    // 这里在因果、local-attention和MN维度非整除的三种情况下 存在不需要计算的可能，即 n_block_max <= n_block_min
-    // 直接设置为0后即可返回，这里使用了封装了cute::copy的flash::copy，从 register 复制到 global memory。
-    if ((Is_causal || Is_local || !Is_even_MN) && n_block_max <= n_block_min) {
-        // q的计算偏移量计算，尺寸为 (batch_size, seqlen, nheads, headdim) --- 最后返回的O
-        Tensor mO = make_tensor(make_gmem_ptr(reinterpret_cast<Element*>(params.o_ptr)
-                                              + binfo.q_offset(params.o_batch_stride, params.o_row_stride, bidb)),
-                                make_shape(binfo.actual_seqlen_q, params.h, params.d),
-                                make_stride(params.o_row_stride, params.o_head_stride, _1{}));
-
-        // 将output组织为cute::Tensor, shape是（BlockM, headDim）
-        Tensor gO = local_tile(mO(_, bidh, _), Shape<Int<kBlockM>, Int<kHeadDim>>{}, make_coord(m_block, 0));  // (kBlockM, kHeadDim)
-        Tensor gLSE = bind_get_lse_tile<ElementAccum, Params, kBlockM, Is_even_MN>(params, bidb, bidh, m_block, binfo);
-
-        typename Kernel_traits::GmemTiledCopyO gmem_tiled_copy_O;
-        auto gmem_thr_copy_O = gmem_tiled_copy_O.get_thread_slice(tidx);
-        Tensor tOgO = gmem_thr_copy_O.partition_D(gO);
-        Tensor tOrO = make_tensor<Element>(shape(tOgO));
-        clear(tOrO);
-
-        Tensor cO = make_identity_tensor(make_shape(size<0>(gO), size<1>(gO)));    // (BLK_M,BLK_K) -> (blk_m,blk_k)
-        Tensor tOcO = gmem_thr_copy_O.partition_D(cO);
-        Tensor tOpO = make_tensor<bool>(make_shape(size<2>(tOgO))); 
-        FLASH_NAMESPACE::copy<Is_even_MN, Is_even_K, /*Clear_OOB_MN=*/false, /*Clear_OOB_K=*/false>(
-            gmem_tiled_copy_O, tOrO, tOgO, tOcO, tOpO, binfo.actual_seqlen_q - m_block * kBlockM
-        );
-
-       
-        #pragma unroll
-        for (int m = 0; m < size<1>(tOgO); ++m) {
-            const int row = get<0>(tOcO(0, m, 0));
-            if (row < binfo.actual_seqlen_q - m_block * kBlockM && get<1>(tOcO(0, m, 0)) == 0) { gLSE(row) = INFINITY; }
-        }
-        return;
-    }
-    // if (tidx == 0) { printf("m_block = %d, n_block_min = %d, n_block_max = %d\n", m_block, n_block_min, n_block_max); }
 
 
     const index_t row_offset_p = ((bidb * params.h + bidh) * params.seqlen_q_rounded
@@ -207,7 +170,6 @@ inline __device__ void compute_mask_attn(const Params &params,
                                        binfo.actual_seqlen_q - m_block * kBlockM);
     if (Kernel_traits::Is_Q_in_regs) { cute::cp_async_fence(); }
 
-
     if (Kernel_traits::Share_Q_K_smem) {
         FLASH_NAMESPACE::cp_async_wait<0>();
         __syncthreads();
@@ -217,9 +179,9 @@ inline __device__ void compute_mask_attn(const Params &params,
         __syncthreads();
     }
 
-    int n_block = n_block_max - 1;
-    FLASH_NAMESPACE::copy<Is_even_MN, Is_even_K>(gmem_tiled_copy_QKV, tKgK(_, _, _, n_block), tKsK, tKVcKV, tKVpKV,
-                                       binfo.actual_seqlen_k - n_block * kBlockN);
+    // 如果中间没空格 n_block 也就是 full_num + part_num
+    int n_block = n_block_max;
+    FLASH_NAMESPACE::copy<Is_even_MN, Is_even_K>(gmem_tiled_copy_QKV, tKgK(_, _, _, n_block), tKsK, tKVcKV, tKVpKV, binfo.actual_seqlen_k - n_block * kBlockN);
     cute::cp_async_fence();
 
     if (Kernel_traits::Is_Q_in_regs && !Kernel_traits::Share_Q_K_smem) {
@@ -240,22 +202,26 @@ inline __device__ void compute_mask_attn(const Params &params,
     const float alibi_slope = !Has_alibi || params.alibi_slopes_ptr == nullptr ? 0.0f : reinterpret_cast<float *>(params.alibi_slopes_ptr)[bidb * params.alibi_slopes_batch_stride + bidh] / params.scale_softmax;
     FLASH_NAMESPACE::Mask<Is_causal, Is_local, Has_alibi> mask(binfo.actual_seqlen_k, binfo.actual_seqlen_q, params.window_size_left, params.window_size_right, alibi_slope);
 
-  
-    constexpr int n_masking_steps = (!Is_causal && !Is_local)
-        ? 1
-        : ((Is_even_MN && Is_causal) ? cute::ceil_div(kBlockM, kBlockN) : cute::ceil_div(kBlockM, kBlockN) + 1);
     
-    // 带 mask 的主体计算   part 块
+    // ---------------------------------------------------------------------
+    // 带 mask 的主体计算   part 块 --------------------
+    // 注意这里的 block 从后往前进行的迭代
+    // #pragma unroll
+    // for (int masking_step = 0; masking_step < n_masking_steps; ++masking_step, --n_block) 
+
     #pragma unroll
-    for (int masking_step = 0; masking_step < n_masking_steps; ++masking_step, --n_block) {
-        Tensor acc_s = partition_fragment_C(tiled_mma, Shape<Int<kBlockM>, Int<kBlockN>>{});  // (MMA=4, MMA_M, MMA_N)
+    for (int part_num_id = part_num - 1; part_num_id > -1; part_num_id--){
+
+        n_block = part_col_idx[part_row_ptr[m_block] + part_num_id];
+
+        Tensor acc_s = partition_fragment_C(tiled_mma, Shape<Int<kBlockM>, Int<kBlockN>>{}); 
         clear(acc_s);
 
         // 异步流水线，等待上一轮copy完成
         FLASH_NAMESPACE::cp_async_wait<0>();
         __syncthreads();
 
-        if (masking_step > 0) {
+        if (part_num_id != part_num - 1) {
             FLASH_NAMESPACE::copy</*Is_even_MN=*/true, Is_even_K>(gmem_tiled_copy_QKV, tVgV(_, _, _, n_block), tVsV, tKVcKV, tKVpKV);
         } else {
             FLASH_NAMESPACE::copy<Is_even_MN, Is_even_K, /*Clear_OOB_MN=*/true>(
@@ -264,16 +230,13 @@ inline __device__ void compute_mask_attn(const Params &params,
         }
         cute::cp_async_fence();   
 
+        // Q * K 进行 GEMM 
         FLASH_NAMESPACE::gemm</*A_in_regs=*/Kernel_traits::Is_Q_in_regs>(
             acc_s, tSrQ, tSrK, tSsQ, tSsK, tiled_mma, smem_tiled_copy_Q, smem_tiled_copy_K,
             smem_thr_copy_Q, smem_thr_copy_K
         );
-        if constexpr (Is_softcap){
-            FLASH_NAMESPACE::apply_softcap(acc_s, params.softcap);
-        }
 
-        
-        // ------------------------------------------------------------------------------------
+        // -----------------------------------------------------
         // 对S应用Mask  我们的应用 mask 是否应该在这个位置进行大幅度修改？
         // 仅对当前线程关联的位置mask进行赋值改变acc_s   
         mask.template apply_mask<Is_causal, Is_even_MN>(
@@ -287,22 +250,19 @@ inline __device__ void compute_mask_attn(const Params &params,
             cute::cp_async_fence();
         }
 
-        masking_step == 0
-            ? softmax.template softmax_rescale_o</*Is_first=*/true,  /*Check_inf=*/Is_causal || Is_local>(acc_s, acc_o, params.scale_softmax_log2)
-            : softmax.template softmax_rescale_o</*Is_first=*/false, /*Check_inf=*/Is_causal || Is_local>(acc_s, acc_o, params.scale_softmax_log2);
+        part_num_id == (part_num - 1)
+            ? softmax.template softmax_rescale_o</*Is_first=*/false, /*Check_inf=*/Is_causal || Is_local>(acc_s, acc_o, params.scale_softmax_log2)
+            : softmax.template softmax_rescale_o</*Is_first=*/true,  /*Check_inf=*/Is_causal || Is_local>(acc_s, acc_o, params.scale_softmax_log2);
 
         // Convert acc_s from fp32 to fp16/bf16
         Tensor rP = FLASH_NAMESPACE::convert_type<Element>(acc_s);
         int block_row_idx = m_block * (kBlockM / 16) + tidx / 32;
         int block_col_idx = n_block * (kBlockN / 32);
 
+        // P * V 进行 GEMM
         Tensor tOrP = make_tensor(rP.data(), FLASH_NAMESPACE::convert_layout_acc_Aregs<typename Kernel_traits::TiledMma>(rP.layout()));
         FLASH_NAMESPACE::gemm_rs(acc_o, tOrP, tOrVt, tOsVt, tiled_mma, smem_tiled_copy_V, smem_thr_copy_V);
        
-        if (n_masking_steps > 1 && n_block <= n_block_min) {
-            --n_block;
-            break;
-        }
     }
 
 
@@ -312,8 +272,13 @@ inline __device__ void compute_mask_attn(const Params &params,
          Softmax     softmax_rescale_o
         （PV）gemm   FLASH_NAMESPACE::gemm_rs
     */
-    for (; n_block >= n_block_min; --n_block) {
-        Tensor acc_s = partition_fragment_C(tiled_mma, Shape<Int<kBlockM>, Int<kBlockN>>{});  // (MMA=4, MMA_M, MMA_N)
+
+    //    for (; n_block >= n_block_min; --n_block)
+    for (int full_num_id = full_num - 1; full_num_id > -1; full_num_id--){
+
+        n_block = full_col_idx[full_row_ptr[m_block] + full_num_id];
+
+        Tensor acc_s = partition_fragment_C(tiled_mma, Shape<Int<kBlockM>, Int<kBlockN>>{}); 
         clear(acc_s);
         FLASH_NAMESPACE::cp_async_wait<0>();
         __syncthreads();

@@ -189,7 +189,7 @@ struct Flash_bwd_params : public Flash_fwd_params {
 template<typename T, int Headdim, bool Is_causal> void run_mha_fwd_(
     Flash_fwd_params &params, cudaStream_t stream, 
     const int* full_row_ptr, const int* full_col_idx,
-    const int* part_row_ptr, const int* part_col_idx, __half* part_block_mask,
+    const int* part_row_ptr, const int* part_col_idx, uint64_t* inner_bitmaps,
     const int* load_row_ptr, const int* load_col_idx);
 template<typename T, int Headdim, bool Is_causal> void run_mha_fwd_splitkv_dispatch(Flash_fwd_params &params, cudaStream_t stream);
 template<typename T, int Headdim, bool Is_causal> void run_mha_bwd_(Flash_bwd_params &params, cudaStream_t stream);

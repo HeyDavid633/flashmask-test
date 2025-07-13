@@ -2,7 +2,6 @@
 # 
 # 做图程序 需要读取文件
 # python plot_result.py benchmark_results/date0703_time1354_results.txt
-
 import re
 import os
 import argparse
@@ -13,6 +12,7 @@ from matplotlib.ticker import MultipleLocator
 def parse_performance_data(file_path):
     data = {}
     current_batch = None
+    mask_name = None  # 新增：用于存储mask名称
     
     with open(file_path, 'r') as f:
         for line in f:
@@ -30,6 +30,12 @@ def parse_performance_data(file_path):
                 data[current_batch][current_seq] = {}
                 continue
                 
+            # Match mask name line
+            mask_match = re.match(r'Testing Mask Name: (.+)', line)
+            if mask_match:
+                mask_name = mask_match.group(1).strip()
+                continue
+                
             # Match performance data
             perf_match = re.match(
                 r' bs:\d+ \| seq:\d+ \|  (.+?) : ([\d.]+) ms / iter(?: \|  Speedup/FA2: ([\d.]+))?', 
@@ -40,7 +46,7 @@ def parse_performance_data(file_path):
                 time = float(perf_match.group(2))
                 data[current_batch][current_seq][method] = time
                 
-    return data
+    return data, mask_name  # 返回数据和mask名称
 
 def calculate_speedups(data):
     speedups = {}
@@ -54,13 +60,18 @@ def calculate_speedups(data):
             }
     return speedups
 
-def plot_results(speedups, output_path):
+def plot_results(speedups, mask_name, output_path):
     batch_sizes = sorted(speedups.keys())
     seq_lengths = sorted(next(iter(speedups.values())).keys())
     
     # Set up the figure and subplots
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    fig.suptitle('Attention Mechanism Performance Comparison', fontsize=16)
+    
+    # 修改标题以包含mask名称
+    if mask_name:
+        fig.suptitle(f'({mask_name}) Attention Mechanism Performance Comparison', fontsize=16)
+    else:
+        fig.suptitle('Attention Mechanism Performance Comparison', fontsize=16)
     
     # Define colors and methods - adjusted colors
     colors = {
@@ -117,7 +128,7 @@ def plot_results(speedups, output_path):
         legend_handles,
         methods,
         loc='upper center',
-        bbox_to_anchor=(0.5, 1.05),
+        bbox_to_anchor=(0.5, 1.10),
         ncol=4,
         fontsize=14,  # Increased font size
         frameon=True,  # 保持外边框可见
@@ -147,9 +158,9 @@ def main():
     output_path = os.path.join(output_dir, output_filename)
     
     # Process data and plot
-    data = parse_performance_data(args.input_file)
+    data, mask_name = parse_performance_data(args.input_file)  # 现在返回mask_name
     speedups = calculate_speedups(data)
-    plot_results(speedups, output_path)
+    plot_results(speedups, mask_name, output_path)  # 传递mask_name给绘图函数
 
 if __name__ == '__main__':
     main()
