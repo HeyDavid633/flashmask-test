@@ -1,0 +1,78 @@
+=== Testing batch_size: 1 ===
+bs:1 | h_num:12 | seq:128
+Testing Mask Name: Full_Mask
+ bs:1 | seq:128 |  FlashAttn2: 0.094 ms / iter
+ 
+bs:1 | h_num:12 | seq:256
+Testing Mask Name: Full_Mask
+ bs:1 | seq:256 |  FlashAttn2: 0.077 ms / iter
+ 
+bs:1 | h_num:12 | seq:512
+Testing Mask Name: Full_Mask
+ bs:1 | seq:512 |  FlashAttn2: 0.100 ms / iter
+ 
+bs:1 | h_num:12 | seq:1024
+Testing Mask Name: Full_Mask
+ bs:1 | seq:1024 |  FlashAttn2: 0.079 ms / iter
+ 
+bs:1 | h_num:12 | seq:2048
+Testing Mask Name: Full_Mask
+ bs:1 | seq:2048 |  FlashAttn2: 0.096 ms / iter
+ 
+bs:1 | h_num:12 | seq:4096
+Testing Mask Name: Full_Mask
+ bs:1 | seq:4096 |  FlashAttn2: 0.340 ms / iter
+ 
+=== Testing batch_size: 8 ===
+bs:8 | h_num:12 | seq:128
+Testing Mask Name: Full_Mask
+ bs:8 | seq:128 |  FlashAttn2: 0.078 ms / iter
+ 
+bs:8 | h_num:12 | seq:256
+Testing Mask Name: Full_Mask
+ bs:8 | seq:256 |  FlashAttn2: 0.075 ms / iter
+ 
+bs:8 | h_num:12 | seq:512
+Testing Mask Name: Full_Mask
+ bs:8 | seq:512 |  FlashAttn2: 0.077 ms / iter
+ 
+bs:8 | h_num:12 | seq:1024
+Testing Mask Name: Full_Mask
+ bs:8 | seq:1024 |  FlashAttn2: 0.175 ms / iter
+ 
+bs:8 | h_num:12 | seq:2048
+Testing Mask Name: Full_Mask
+ bs:8 | seq:2048 |  FlashAttn2: 0.698 ms / iter
+ 
+bs:8 | h_num:12 | seq:4096
+Testing Mask Name: Full_Mask
+ bs:8 | seq:4096 |  FlashAttn2: 2.707 ms / iter
+ 
+=== Testing batch_size: 16 ===
+bs:16 | h_num:12 | seq:128
+Testing Mask Name: Full_Mask
+ bs:16 | seq:128 |  FlashAttn2: 0.080 ms / iter
+ 
+bs:16 | h_num:12 | seq:256
+Testing Mask Name: Full_Mask
+ bs:16 | seq:256 |  FlashAttn2: 0.074 ms / iter
+ 
+bs:16 | h_num:12 | seq:512
+Testing Mask Name: Full_Mask
+ bs:16 | seq:512 |  FlashAttn2: 0.091 ms / iter
+ 
+bs:16 | h_num:12 | seq:1024
+Testing Mask Name: Full_Mask
+ bs:16 | seq:1024 |  FlashAttn2: 0.344 ms / iter
+ 
+bs:16 | h_num:12 | seq:2048
+Testing Mask Name: Full_Mask
+ bs:16 | seq:2048 |  FlashAttn2: 1.380 ms / iter
+ 
+bs:16 | h_num:12 | seq:4096
+Testing Mask Name: Full_Mask
+ bs:16 | seq:4096 |  FlashAttn2: 5.417 ms / iter
+ 
+
+Benchmark end at: Sun Jul 13 20:05:34 CST 2025
+Total test duration: 117 seconds

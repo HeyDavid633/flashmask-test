@@ -1,8 +1,8 @@
 import re
 
 # 输入和输出文件名
-input_file = 'date0708_time0937_results.txt'
-output_file = 'FlashAttn2_baseline.txt'
+input_file = 'date0713_time1714_results.txt'
+output_file = 'FlashAttn2_full_baseline.txt'
 
 # 正则表达式模式，用于匹配Bind Kernel行并提取相关信息
 pattern = re.compile(r'bs:(\d+)\s+\|\s+seq:(\d+)\s+\|\s+Bind Kernel\s+:\s+([\d.]+)\s+ms\s+/')

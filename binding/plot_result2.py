@@ -32,6 +32,12 @@ def parse_performance_data(file_path):
     
     with open(file_path, 'r') as f:
         for line in f:
+            # Match mask name line
+            mask_match = re.match(r'Testing Mask Name: (.+)', line)
+            if mask_match:
+                mask_name = mask_match.group(1).strip()
+                continue
+            
             # Match batch size line
             batch_match = re.match(r'=== Testing batch_size: (\d+) ===', line)
             if batch_match:
@@ -56,7 +62,7 @@ def parse_performance_data(file_path):
                 time = float(perf_match.group(2))
                 data[current_batch][current_seq][method] = time
                 
-    return data
+    return data, mask_name
 
 def combine_data(main_data, flash_attn_data):
     """Combine data from both sources"""
@@ -82,15 +88,19 @@ def calculate_speedups(data):
             }
     return speedups
 
-def plot_results(speedups, output_path):
+
+def plot_results(speedups, mask_name, output_path):
     batch_sizes = sorted(speedups.keys())
     seq_lengths = sorted(next(iter(speedups.values())).keys())
     
     # Set up the figure and subplots
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    fig.suptitle('(Block 64, 64 T T) Attention Mechanism Performance Comparison', fontsize=16)
-    # (QK_in_SMEM | Q_in_regs)
     
+    # 修改标题以包含mask名称
+    if mask_name:
+        fig.suptitle(f'({mask_name}) Attention Mechanism Performance Comparison', fontsize=16)
+    else:
+        fig.suptitle('Attention Mechanism Performance Comparison', fontsize=16)
     # Define colors and methods - adjusted colors
     colors = {
         'Torch Naive': (1.0, 0.5, 0.0, 0.7),     # Orange
@@ -169,24 +179,24 @@ def plot_results(speedups, output_path):
 def main():
     parser = argparse.ArgumentParser(description='Plot attention mechanism performance results.')
     parser.add_argument('input_file', help='Path to the main performance results text file')
-    parser.add_argument('--flash_attn_file', default='benchmark_results/FlashAttn2_baseline.txt',
+    parser.add_argument('--flash_attn_file', default='benchmark_results/FlashAttn2_full_baseline.txt',
                       help='Path to the FlashAttn2 baseline data file')
     args = parser.parse_args()
-    
-    # Determine output path
-    input_basename = os.path.basename(args.input_file)
-    output_filename = os.path.splitext(input_basename)[0] + '.png'
-    output_dir = os.path.join(os.getcwd(), 'plot_result')
-    output_path = os.path.join(output_dir, output_filename)
-    
+        
     # Process data from both files
-    main_data = parse_performance_data(args.input_file)
+    main_data, mask_name = parse_performance_data(args.input_file)
     flash_attn_data = parse_flash_attn_data(args.flash_attn_file)
     combined_data = combine_data(main_data, flash_attn_data)
     
+    # Determine output path
+    input_basename = os.path.basename(args.input_file)
+    output_filename = os.path.splitext(input_basename)[0] + mask_name + '.png'
+    output_dir = os.path.join(os.getcwd(), 'plot_result')
+    output_path = os.path.join(output_dir, output_filename)
+    
     # Calculate speedups and plot
     speedups = calculate_speedups(combined_data)
-    plot_results(speedups, output_path)
+    plot_results(speedups, mask_name, output_path)  # 传递mask_name给绘图函数
 
 if __name__ == '__main__':
     main()

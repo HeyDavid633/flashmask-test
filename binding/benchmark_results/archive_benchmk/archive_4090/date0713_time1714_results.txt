@@ -1,0 +1,96 @@
+=== Testing batch_size: 1 ===
+bs:1 | h_num:12 | seq:128
+Testing Mask Name: Full_Mask
+ bs:1 | seq:128 |  Torch Naive : 0.225 ms / iter
+ bs:1 | seq:128 |  Bind Kernel : 0.068 ms / iter
+ 
+bs:1 | h_num:12 | seq:256
+Testing Mask Name: Full_Mask
+ bs:1 | seq:256 |  Torch Naive : 0.283 ms / iter
+ bs:1 | seq:256 |  Bind Kernel : 0.090 ms / iter
+ 
+bs:1 | h_num:12 | seq:512
+Testing Mask Name: Full_Mask
+ bs:1 | seq:512 |  Torch Naive : 0.225 ms / iter
+ bs:1 | seq:512 |  Bind Kernel : 0.075 ms / iter
+ 
+bs:1 | h_num:12 | seq:1024
+Testing Mask Name: Full_Mask
+ bs:1 | seq:1024 |  Torch Naive : 0.219 ms / iter
+ bs:1 | seq:1024 |  Bind Kernel : 0.075 ms / iter
+ 
+bs:1 | h_num:12 | seq:2048
+Testing Mask Name: Full_Mask
+ bs:1 | seq:2048 |  Torch Naive : 0.855 ms / iter
+ bs:1 | seq:2048 |  Bind Kernel : 0.091 ms / iter
+ 
+bs:1 | h_num:12 | seq:4096
+Testing Mask Name: Full_Mask
+ bs:1 | seq:4096 |  Torch Naive : 3.079 ms / iter
+ bs:1 | seq:4096 |  Bind Kernel : 0.338 ms / iter
+ 
+=== Testing batch_size: 8 ===
+bs:8 | h_num:12 | seq:128
+Testing Mask Name: Full_Mask
+ bs:8 | seq:128 |  Torch Naive : 0.294 ms / iter
+ bs:8 | seq:128 |  Bind Kernel : 0.073 ms / iter
+ 
+bs:8 | h_num:12 | seq:256
+Testing Mask Name: Full_Mask
+ bs:8 | seq:256 |  Torch Naive : 0.283 ms / iter
+ bs:8 | seq:256 |  Bind Kernel : 0.068 ms / iter
+ 
+bs:8 | h_num:12 | seq:512
+Testing Mask Name: Full_Mask
+ bs:8 | seq:512 |  Torch Naive : 0.333 ms / iter
+ bs:8 | seq:512 |  Bind Kernel : 0.069 ms / iter
+ 
+bs:8 | h_num:12 | seq:1024
+Testing Mask Name: Full_Mask
+ bs:8 | seq:1024 |  Torch Naive : 1.701 ms / iter
+ bs:8 | seq:1024 |  Bind Kernel : 0.170 ms / iter
+ 
+bs:8 | h_num:12 | seq:2048
+Testing Mask Name: Full_Mask
+ bs:8 | seq:2048 |  Torch Naive : 7.349 ms / iter
+ bs:8 | seq:2048 |  Bind Kernel : 0.687 ms / iter
+ 
+bs:8 | h_num:12 | seq:4096
+Testing Mask Name: Full_Mask
+ bs:8 | seq:4096 |  Torch Naive : 25.039 ms / iter
+ bs:8 | seq:4096 |  Bind Kernel : 2.726 ms / iter
+ 
+=== Testing batch_size: 16 ===
+bs:16 | h_num:12 | seq:128
+Testing Mask Name: Full_Mask
+ bs:16 | seq:128 |  Torch Naive : 0.300 ms / iter
+ bs:16 | seq:128 |  Bind Kernel : 0.068 ms / iter
+ 
+bs:16 | h_num:12 | seq:256
+Testing Mask Name: Full_Mask
+ bs:16 | seq:256 |  Torch Naive : 0.370 ms / iter
+ bs:16 | seq:256 |  Bind Kernel : 0.091 ms / iter
+ 
+bs:16 | h_num:12 | seq:512
+Testing Mask Name: Full_Mask
+ bs:16 | seq:512 |  Torch Naive : 0.917 ms / iter
+ bs:16 | seq:512 |  Bind Kernel : 0.089 ms / iter
+ 
+bs:16 | h_num:12 | seq:1024
+Testing Mask Name: Full_Mask
+ bs:16 | seq:1024 |  Torch Naive : 3.380 ms / iter
+ bs:16 | seq:1024 |  Bind Kernel : 0.343 ms / iter
+ 
+bs:16 | h_num:12 | seq:2048
+Testing Mask Name: Full_Mask
+ bs:16 | seq:2048 |  Torch Naive : 14.612 ms / iter
+ bs:16 | seq:2048 |  Bind Kernel : 1.378 ms / iter
+ 
+bs:16 | h_num:12 | seq:4096
+Testing Mask Name: Full_Mask
+ bs:16 | seq:4096 |  Torch Naive : 50.096 ms / iter
+ bs:16 | seq:4096 |  Bind Kernel : 5.461 ms / iter
+ 
+
+Benchmark end at: Sun Jul 13 17:16:33 CST 2025
+Total test duration: 129 seconds

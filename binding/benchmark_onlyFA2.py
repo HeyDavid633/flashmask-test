@@ -1,9 +1,9 @@
 # 2025.7.13 Sun.
 #  
-# 在 FlashAttn 中绑定了自己的 数据结构
-# 通过 part_row_ptr, part_col_idx 等结构体实现了跳过
-# 
-# 如果需要获取 causal/full 的基准性能： 则只运行我的 binding 版，然后抽取
+# 为了获取基准性能 
+# 以我binding版的FlashAttn2为基准:
+# 对于 cuasal ｜ sliding 以 is_causal = True 为准
+# 对于 full ｜ bigbird ｜ longformer 以 is_causal = False 为准
 
 
 import sys
@@ -259,22 +259,6 @@ if __name__ == "__main__":
         mask_mod = flex_causal_mask
         mask = generate_causal_mask(attr_mask).cuda()
     elif(mask_id == 1):
-        mask_name = 'Sliding_Mask'
-        mask_mod = flex_sliding_window_mask
-        mask = generate_sliding_mask(attr_mask, bandwidth=BLOCK_M, is_cauasl=True).cuda()
-    elif(mask_id == 2):
-        mask_name = 'Longformer_Mask'
-        mask_mod = flex_longformer_mask
-        mask = generate_longformer_mask(attr_mask, globalwidth=BLOCK_M, bandwidth=BLOCK_M, is_cauasl=False).cuda()
-    elif(mask_id == 3):
-        mask_name = 'BigBird_Mask'
-        mask_mod = flex_bigbird_mask
-        mask = generate_bigbird_mask(attr_mask, globalwidth=BLOCK_M, bandwidth=BLOCK_M, fill_rate=fill_rate, is_cauasl=False).cuda()
-    elif(mask_id == 4):
-        mask_name = 'dilated_Mask'
-        mask_mod = flex_sliding_window_mask
-        mask = generate_dilated_mask(attr_mask, bandwidth=BLOCK_M - 1, dilation_rate=1, is_cauasl=True).cuda()
-    elif(mask_id == 5):
         mask_name = 'Full_Mask'
         mask = generate_full_mask(attr_mask).cuda()
         
@@ -292,28 +276,6 @@ if __name__ == "__main__":
     
     
     # PyTorch Naive  ---------------------------------------
-    for i in range(warmup_iters + running_iters):
-        if i == warmup_iters:    
-            t0_start = time_stamp_cudasync()
-        pt_out = attention_pytorch(q, k, v, dropout_p=dropout_p, causal=is_causal)
-    t0_end = time_stamp_cudasync()
-    base_time = (t0_end - t0_start) * 1000 / running_iters
-    print(" bs:{} | seq:{} |  Torch Naive : {:.3f} ms / iter".format(batch_size, seqlen, base_time)) 
-
-
-    # FlexAttn  ---------------------------------------
-    compiled_flex_attention = torch.compile(flex_attention, mode="default", dynamic=False)
-    block_mask = create_block_mask_cached(mask_mod, 1, 1, seqlen, seqlen, device=q.device)
-    for i in range(warmup_iters + running_iters):
-        if i == warmup_iters:    
-            t3_start = time_stamp_cudasync()
-        flex_output = compiled_flex_attention(q1, k1, v1, score_mod=score_mod, block_mask=block_mask)
-        flex_output1 = flex_output.permute(0, 2, 1, 3)
-    t3_end = time_stamp_cudasync()
-    flexattn_time = (t3_end - t3_start) * 1000 / running_iters
-    print(" bs:{} | seq:{} |   FlexAttn   : {:.3f} ms / iter".format(batch_size, seqlen, flexattn_time)) 
-    
-    
     # Binding Attn -------------------------------------
     for i in range(warmup_iters + running_iters):
         if i == warmup_iters:    
@@ -326,7 +288,7 @@ if __name__ == "__main__":
     t_end = time_stamp_cudasync()
     ourkernel_time = (t_end - t_start) * 1000 / running_iters
     # print(" bs:{} | seq:{} |  Bind Kernel : {:.3f} ms / iter |  Speedup/FA2: {:.3f}".format(batch_size, seqlen, ourkernel_time, flashAttn2_time/ourkernel_time)) 
-    print(" bs:{} | seq:{} |  Bind Kernel : {:.3f} ms / iter".format(batch_size, seqlen, ourkernel_time)) 
+    print(" bs:{} | seq:{} |  FlashAttn2: {:.3f} ms / iter".format(batch_size, seqlen, ourkernel_time)) 
     
 
         

@@ -32,7 +32,7 @@ Testing Mask Name: BigBird_Mask
  bs:1 | seq:2048 |  Torch Naive : 1.257 ms / iter
  bs:1 | seq:2048 |  FlashAttn2  : 0.121 ms / iter
  bs:1 | seq:2048 |   FlexAttn   : 0.131 ms / iter
- bs:1 | seq:2048 |  Bind Kernel : 0.094 ms / iter
+ bs:1 | seq:2048 |  Bind Kernel : 0.090 ms / iter
  
 bs:1 | h_num:12 | seq:4096
 Testing Mask Name: BigBird_Mask

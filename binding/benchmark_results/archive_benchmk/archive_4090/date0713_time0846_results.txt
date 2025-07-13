@@ -1,0 +1,96 @@
+=== Testing batch_size: 1 ===
+bs:1 | h_num:12 | seq:128
+Testing Mask Name: BigBird_Mask
+ bs:1 | seq:128 |  Torch Naive : 0.227 ms / iter
+ bs:1 | seq:128 |  Bind Kernel : 0.074 ms / iter
+ 
+bs:1 | h_num:12 | seq:256
+Testing Mask Name: BigBird_Mask
+ bs:1 | seq:256 |  Torch Naive : 0.225 ms / iter
+ bs:1 | seq:256 |  Bind Kernel : 0.069 ms / iter
+ 
+bs:1 | h_num:12 | seq:512
+Testing Mask Name: BigBird_Mask
+ bs:1 | seq:512 |  Torch Naive : 0.232 ms / iter
+ bs:1 | seq:512 |  Bind Kernel : 0.078 ms / iter
+ 
+bs:1 | h_num:12 | seq:1024
+Testing Mask Name: BigBird_Mask
+ bs:1 | seq:1024 |  Torch Naive : 0.222 ms / iter
+ bs:1 | seq:1024 |  Bind Kernel : 0.074 ms / iter
+ 
+bs:1 | h_num:12 | seq:2048
+Testing Mask Name: BigBird_Mask
+ bs:1 | seq:2048 |  Torch Naive : 0.865 ms / iter
+ bs:1 | seq:2048 |  Bind Kernel : 0.094 ms / iter
+ 
+bs:1 | h_num:12 | seq:4096
+Testing Mask Name: BigBird_Mask
+ bs:1 | seq:4096 |  Torch Naive : 3.080 ms / iter
+ bs:1 | seq:4096 |  Bind Kernel : 0.101 ms / iter
+ 
+=== Testing batch_size: 8 ===
+bs:8 | h_num:12 | seq:128
+Testing Mask Name: BigBird_Mask
+ bs:8 | seq:128 |  Torch Naive : 0.307 ms / iter
+ bs:8 | seq:128 |  Bind Kernel : 0.074 ms / iter
+ 
+bs:8 | h_num:12 | seq:256
+Testing Mask Name: BigBird_Mask
+ bs:8 | seq:256 |  Torch Naive : 0.280 ms / iter
+ bs:8 | seq:256 |  Bind Kernel : 0.070 ms / iter
+ 
+bs:8 | h_num:12 | seq:512
+Testing Mask Name: BigBird_Mask
+ bs:8 | seq:512 |  Torch Naive : 0.337 ms / iter
+ bs:8 | seq:512 |  Bind Kernel : 0.069 ms / iter
+ 
+bs:8 | h_num:12 | seq:1024
+Testing Mask Name: BigBird_Mask
+ bs:8 | seq:1024 |  Torch Naive : 1.707 ms / iter
+ bs:8 | seq:1024 |  Bind Kernel : 0.076 ms / iter
+ 
+bs:8 | h_num:12 | seq:2048
+Testing Mask Name: BigBird_Mask
+ bs:8 | seq:2048 |  Torch Naive : 7.338 ms / iter
+ bs:8 | seq:2048 |  Bind Kernel : 0.160 ms / iter
+ 
+bs:8 | h_num:12 | seq:4096
+Testing Mask Name: BigBird_Mask
+ bs:8 | seq:4096 |  Torch Naive : 25.034 ms / iter
+ bs:8 | seq:4096 |  Bind Kernel : 0.334 ms / iter
+ 
+=== Testing batch_size: 16 ===
+bs:16 | h_num:12 | seq:128
+Testing Mask Name: BigBird_Mask
+ bs:16 | seq:128 |  Torch Naive : 0.282 ms / iter
+ bs:16 | seq:128 |  Bind Kernel : 0.072 ms / iter
+ 
+bs:16 | h_num:12 | seq:256
+Testing Mask Name: BigBird_Mask
+ bs:16 | seq:256 |  Torch Naive : 0.287 ms / iter
+ bs:16 | seq:256 |  Bind Kernel : 0.069 ms / iter
+ 
+bs:16 | h_num:12 | seq:512
+Testing Mask Name: BigBird_Mask
+ bs:16 | seq:512 |  Torch Naive : 0.921 ms / iter
+ bs:16 | seq:512 |  Bind Kernel : 0.070 ms / iter
+ 
+bs:16 | h_num:12 | seq:1024
+Testing Mask Name: BigBird_Mask
+ bs:16 | seq:1024 |  Torch Naive : 3.382 ms / iter
+ bs:16 | seq:1024 |  Bind Kernel : 0.137 ms / iter
+ 
+bs:16 | h_num:12 | seq:2048
+Testing Mask Name: BigBird_Mask
+ bs:16 | seq:2048 |  Torch Naive : 14.620 ms / iter
+ bs:16 | seq:2048 |  Bind Kernel : 0.275 ms / iter
+ 
+bs:16 | h_num:12 | seq:4096
+Testing Mask Name: BigBird_Mask
+ bs:16 | seq:4096 |  Torch Naive : 50.094 ms / iter
+ bs:16 | seq:4096 |  Bind Kernel : 0.618 ms / iter
+ 
+
+Benchmark end at: Sun Jul 13 08:49:39 UTC 2025
+Total test duration: 201 seconds

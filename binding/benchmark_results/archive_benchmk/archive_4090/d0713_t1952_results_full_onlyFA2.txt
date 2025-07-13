@@ -1,0 +1,7 @@
+bs:8 | h_num:12 | seq:128
+Testing Mask Name: Full_Mask
+ bs:8 | seq:128 |  FlashAttn2: 0.077 ms / iter
+ 
+
+Benchmark end at: Sun Jul 13 19:52:12 CST 2025
+Total test duration: 12 seconds

@@ -1,0 +1,25 @@
+=== Testing batch_size: 1 ===
+bs:1 | h_num:12 | seq:128
+Testing Mask Name: BigBird_Mask
+ bs:1 | seq:128 |  Torch Naive : 0.223 ms / iter
+ bs:1 | seq:128 |  Bind Kernel : 0.070 ms / iter
+ 
+bs:1 | h_num:12 | seq:256
+Testing Mask Name: BigBird_Mask
+ bs:1 | seq:256 |  Torch Naive : 0.223 ms / iter
+ bs:1 | seq:256 |  Bind Kernel : 0.070 ms / iter
+ 
+=== Testing batch_size: 8 ===
+bs:8 | h_num:12 | seq:128
+Testing Mask Name: BigBird_Mask
+ bs:8 | seq:128 |  Torch Naive : 0.290 ms / iter
+ bs:8 | seq:128 |  Bind Kernel : 0.073 ms / iter
+ 
+bs:8 | h_num:12 | seq:256
+Testing Mask Name: BigBird_Mask
+ bs:8 | seq:256 |  Torch Naive : 0.285 ms / iter
+ bs:8 | seq:256 |  Bind Kernel : 0.069 ms / iter
+ 
+
+Benchmark end at: Sun Jul 13 08:45:27 UTC 2025
+Total test duration: 25 seconds

@@ -1,0 +1,78 @@
+=== Testing batch_size: 1 ===
+bs:1 | h_num:12 | seq:128
+Testing Mask Name: Causal_Mask
+ bs:1 | seq:128 |  FlashAttn2: 0.076 ms / iter
+ 
+bs:1 | h_num:12 | seq:256
+Testing Mask Name: Causal_Mask
+ bs:1 | seq:256 |  FlashAttn2: 0.082 ms / iter
+ 
+bs:1 | h_num:12 | seq:512
+Testing Mask Name: Causal_Mask
+ bs:1 | seq:512 |  FlashAttn2: 0.083 ms / iter
+ 
+bs:1 | h_num:12 | seq:1024
+Testing Mask Name: Causal_Mask
+ bs:1 | seq:1024 |  FlashAttn2: 0.107 ms / iter
+ 
+bs:1 | h_num:12 | seq:2048
+Testing Mask Name: Causal_Mask
+ bs:1 | seq:2048 |  FlashAttn2: 0.090 ms / iter
+ 
+bs:1 | h_num:12 | seq:4096
+Testing Mask Name: Causal_Mask
+ bs:1 | seq:4096 |  FlashAttn2: 0.248 ms / iter
+ 
+=== Testing batch_size: 8 ===
+bs:8 | h_num:12 | seq:128
+Testing Mask Name: Causal_Mask
+ bs:8 | seq:128 |  FlashAttn2: 0.075 ms / iter
+ 
+bs:8 | h_num:12 | seq:256
+Testing Mask Name: Causal_Mask
+ bs:8 | seq:256 |  FlashAttn2: 0.074 ms / iter
+ 
+bs:8 | h_num:12 | seq:512
+Testing Mask Name: Causal_Mask
+ bs:8 | seq:512 |  FlashAttn2: 0.078 ms / iter
+ 
+bs:8 | h_num:12 | seq:1024
+Testing Mask Name: Causal_Mask
+ bs:8 | seq:1024 |  FlashAttn2: 0.116 ms / iter
+ 
+bs:8 | h_num:12 | seq:2048
+Testing Mask Name: Causal_Mask
+ bs:8 | seq:2048 |  FlashAttn2: 0.404 ms / iter
+ 
+bs:8 | h_num:12 | seq:4096
+Testing Mask Name: Causal_Mask
+ bs:8 | seq:4096 |  FlashAttn2: 1.471 ms / iter
+ 
+=== Testing batch_size: 16 ===
+bs:16 | h_num:12 | seq:128
+Testing Mask Name: Causal_Mask
+ bs:16 | seq:128 |  FlashAttn2: 0.078 ms / iter
+ 
+bs:16 | h_num:12 | seq:256
+Testing Mask Name: Causal_Mask
+ bs:16 | seq:256 |  FlashAttn2: 0.088 ms / iter
+ 
+bs:16 | h_num:12 | seq:512
+Testing Mask Name: Causal_Mask
+ bs:16 | seq:512 |  FlashAttn2: 0.078 ms / iter
+ 
+bs:16 | h_num:12 | seq:1024
+Testing Mask Name: Causal_Mask
+ bs:16 | seq:1024 |  FlashAttn2: 0.216 ms / iter
+ 
+bs:16 | h_num:12 | seq:2048
+Testing Mask Name: Causal_Mask
+ bs:16 | seq:2048 |  FlashAttn2: 0.761 ms / iter
+ 
+bs:16 | h_num:12 | seq:4096
+Testing Mask Name: Causal_Mask
+ bs:16 | seq:4096 |  FlashAttn2: 2.835 ms / iter
+ 
+
+Benchmark end at: Sun Jul 13 20:03:37 CST 2025
+Total test duration: 149 seconds
