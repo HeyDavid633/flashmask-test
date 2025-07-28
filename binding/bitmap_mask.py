@@ -328,7 +328,7 @@ if __name__ == "__main__":
     print("part_col_idx:", part_col_idx)
     
     print("part_bitmap_mask:\n", inner_bitmaps)
-    print_tile_structure(inner_bitmaps.cpu(), outer_shape = (BLOCK_M, BLOCK_N))  # 确保转移到CPU
+    print_tile_structure(inner_bitmaps.cpu(), outer_shape = (BLOCK_M, BLOCK_N))  
     
     print("load_row_ptr:", load_row_ptr)
     print("load_col_idx:", load_col_idx)
