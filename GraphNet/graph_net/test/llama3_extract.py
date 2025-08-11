@@ -1,20 +1,23 @@
 # 
 # https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct
-# 
+# https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct
+#
 # https://huggingface.co/settings/gated-repos
 #
 import sys
-sys.path.append("/flashmask-test/GraphNet")
+sys.path.append("/daiwenhao/flashmask-test/GraphNet")
 
 import torch
 from transformers import AutoModel, AutoTokenizer # Hugging Face 模型和分词器
 import graph_net.torch 
 import os
-from torchviz import make_dot # apt-get install graphviz
+from torchviz import make_dot # apt-get install graphviz | 
 from prettytable import PrettyTable 
+os.environ["CUDA_VISIBLE_DEVICES"] = "7"
 
 def get_model_name():
-    return "meta-llama/Meta-Llama-3-8B-Instruct"   
+    return "meta-llama/Llama-3.1-8B-Instruct"   
+
 
 def create_model():
     model = AutoModel.from_pretrained(get_model_name())  # 加载预训练模型
