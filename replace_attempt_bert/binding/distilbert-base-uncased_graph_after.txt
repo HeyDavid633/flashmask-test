@@ -1,0 +1,293 @@
+graph():
+    %embeddings_word_embeddings_weight : [num_users=1] = get_attr[target=embeddings.word_embeddings.weight]
+    %embeddings_position_embeddings_weight : [num_users=1] = get_attr[target=embeddings.position_embeddings.weight]
+    %embeddings_layer_norm_weight : [num_users=1] = get_attr[target=embeddings.LayerNorm.weight]
+    %embeddings_layer_norm_bias : [num_users=1] = get_attr[target=embeddings.LayerNorm.bias]
+    %transformer_layer_0_attention_q_lin_weight : [num_users=1] = get_attr[target=transformer.layer.0.attention.q_lin.weight]
+    %transformer_layer_0_attention_q_lin_bias : [num_users=1] = get_attr[target=transformer.layer.0.attention.q_lin.bias]
+    %transformer_layer_0_attention_k_lin_weight : [num_users=1] = get_attr[target=transformer.layer.0.attention.k_lin.weight]
+    %transformer_layer_0_attention_k_lin_bias : [num_users=1] = get_attr[target=transformer.layer.0.attention.k_lin.bias]
+    %transformer_layer_0_attention_v_lin_weight : [num_users=1] = get_attr[target=transformer.layer.0.attention.v_lin.weight]
+    %transformer_layer_0_attention_v_lin_bias : [num_users=1] = get_attr[target=transformer.layer.0.attention.v_lin.bias]
+    %transformer_layer_0_attention_out_lin_weight : [num_users=1] = get_attr[target=transformer.layer.0.attention.out_lin.weight]
+    %transformer_layer_0_attention_out_lin_bias : [num_users=1] = get_attr[target=transformer.layer.0.attention.out_lin.bias]
+    %transformer_layer_0_sa_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.0.sa_layer_norm.weight]
+    %transformer_layer_0_sa_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.0.sa_layer_norm.bias]
+    %transformer_layer_0_ffn_lin1_weight : [num_users=1] = get_attr[target=transformer.layer.0.ffn.lin1.weight]
+    %transformer_layer_0_ffn_lin1_bias : [num_users=1] = get_attr[target=transformer.layer.0.ffn.lin1.bias]
+    %transformer_layer_0_ffn_lin2_weight : [num_users=1] = get_attr[target=transformer.layer.0.ffn.lin2.weight]
+    %transformer_layer_0_ffn_lin2_bias : [num_users=1] = get_attr[target=transformer.layer.0.ffn.lin2.bias]
+    %transformer_layer_0_output_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.0.output_layer_norm.weight]
+    %transformer_layer_0_output_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.0.output_layer_norm.bias]
+    %transformer_layer_1_attention_q_lin_weight : [num_users=1] = get_attr[target=transformer.layer.1.attention.q_lin.weight]
+    %transformer_layer_1_attention_q_lin_bias : [num_users=1] = get_attr[target=transformer.layer.1.attention.q_lin.bias]
+    %transformer_layer_1_attention_k_lin_weight : [num_users=1] = get_attr[target=transformer.layer.1.attention.k_lin.weight]
+    %transformer_layer_1_attention_k_lin_bias : [num_users=1] = get_attr[target=transformer.layer.1.attention.k_lin.bias]
+    %transformer_layer_1_attention_v_lin_weight : [num_users=1] = get_attr[target=transformer.layer.1.attention.v_lin.weight]
+    %transformer_layer_1_attention_v_lin_bias : [num_users=1] = get_attr[target=transformer.layer.1.attention.v_lin.bias]
+    %transformer_layer_1_attention_out_lin_weight : [num_users=1] = get_attr[target=transformer.layer.1.attention.out_lin.weight]
+    %transformer_layer_1_attention_out_lin_bias : [num_users=1] = get_attr[target=transformer.layer.1.attention.out_lin.bias]
+    %transformer_layer_1_sa_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.1.sa_layer_norm.weight]
+    %transformer_layer_1_sa_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.1.sa_layer_norm.bias]
+    %transformer_layer_1_ffn_lin1_weight : [num_users=1] = get_attr[target=transformer.layer.1.ffn.lin1.weight]
+    %transformer_layer_1_ffn_lin1_bias : [num_users=1] = get_attr[target=transformer.layer.1.ffn.lin1.bias]
+    %transformer_layer_1_ffn_lin2_weight : [num_users=1] = get_attr[target=transformer.layer.1.ffn.lin2.weight]
+    %transformer_layer_1_ffn_lin2_bias : [num_users=1] = get_attr[target=transformer.layer.1.ffn.lin2.bias]
+    %transformer_layer_1_output_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.1.output_layer_norm.weight]
+    %transformer_layer_1_output_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.1.output_layer_norm.bias]
+    %transformer_layer_2_attention_q_lin_weight : [num_users=1] = get_attr[target=transformer.layer.2.attention.q_lin.weight]
+    %transformer_layer_2_attention_q_lin_bias : [num_users=1] = get_attr[target=transformer.layer.2.attention.q_lin.bias]
+    %transformer_layer_2_attention_k_lin_weight : [num_users=1] = get_attr[target=transformer.layer.2.attention.k_lin.weight]
+    %transformer_layer_2_attention_k_lin_bias : [num_users=1] = get_attr[target=transformer.layer.2.attention.k_lin.bias]
+    %transformer_layer_2_attention_v_lin_weight : [num_users=1] = get_attr[target=transformer.layer.2.attention.v_lin.weight]
+    %transformer_layer_2_attention_v_lin_bias : [num_users=1] = get_attr[target=transformer.layer.2.attention.v_lin.bias]
+    %transformer_layer_2_attention_out_lin_weight : [num_users=1] = get_attr[target=transformer.layer.2.attention.out_lin.weight]
+    %transformer_layer_2_attention_out_lin_bias : [num_users=1] = get_attr[target=transformer.layer.2.attention.out_lin.bias]
+    %transformer_layer_2_sa_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.2.sa_layer_norm.weight]
+    %transformer_layer_2_sa_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.2.sa_layer_norm.bias]
+    %transformer_layer_2_ffn_lin1_weight : [num_users=1] = get_attr[target=transformer.layer.2.ffn.lin1.weight]
+    %transformer_layer_2_ffn_lin1_bias : [num_users=1] = get_attr[target=transformer.layer.2.ffn.lin1.bias]
+    %transformer_layer_2_ffn_lin2_weight : [num_users=1] = get_attr[target=transformer.layer.2.ffn.lin2.weight]
+    %transformer_layer_2_ffn_lin2_bias : [num_users=1] = get_attr[target=transformer.layer.2.ffn.lin2.bias]
+    %transformer_layer_2_output_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.2.output_layer_norm.weight]
+    %transformer_layer_2_output_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.2.output_layer_norm.bias]
+    %transformer_layer_3_attention_q_lin_weight : [num_users=1] = get_attr[target=transformer.layer.3.attention.q_lin.weight]
+    %transformer_layer_3_attention_q_lin_bias : [num_users=1] = get_attr[target=transformer.layer.3.attention.q_lin.bias]
+    %transformer_layer_3_attention_k_lin_weight : [num_users=1] = get_attr[target=transformer.layer.3.attention.k_lin.weight]
+    %transformer_layer_3_attention_k_lin_bias : [num_users=1] = get_attr[target=transformer.layer.3.attention.k_lin.bias]
+    %transformer_layer_3_attention_v_lin_weight : [num_users=1] = get_attr[target=transformer.layer.3.attention.v_lin.weight]
+    %transformer_layer_3_attention_v_lin_bias : [num_users=1] = get_attr[target=transformer.layer.3.attention.v_lin.bias]
+    %transformer_layer_3_attention_out_lin_weight : [num_users=1] = get_attr[target=transformer.layer.3.attention.out_lin.weight]
+    %transformer_layer_3_attention_out_lin_bias : [num_users=1] = get_attr[target=transformer.layer.3.attention.out_lin.bias]
+    %transformer_layer_3_sa_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.3.sa_layer_norm.weight]
+    %transformer_layer_3_sa_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.3.sa_layer_norm.bias]
+    %transformer_layer_3_ffn_lin1_weight : [num_users=1] = get_attr[target=transformer.layer.3.ffn.lin1.weight]
+    %transformer_layer_3_ffn_lin1_bias : [num_users=1] = get_attr[target=transformer.layer.3.ffn.lin1.bias]
+    %transformer_layer_3_ffn_lin2_weight : [num_users=1] = get_attr[target=transformer.layer.3.ffn.lin2.weight]
+    %transformer_layer_3_ffn_lin2_bias : [num_users=1] = get_attr[target=transformer.layer.3.ffn.lin2.bias]
+    %transformer_layer_3_output_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.3.output_layer_norm.weight]
+    %transformer_layer_3_output_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.3.output_layer_norm.bias]
+    %transformer_layer_4_attention_q_lin_weight : [num_users=1] = get_attr[target=transformer.layer.4.attention.q_lin.weight]
+    %transformer_layer_4_attention_q_lin_bias : [num_users=1] = get_attr[target=transformer.layer.4.attention.q_lin.bias]
+    %transformer_layer_4_attention_k_lin_weight : [num_users=1] = get_attr[target=transformer.layer.4.attention.k_lin.weight]
+    %transformer_layer_4_attention_k_lin_bias : [num_users=1] = get_attr[target=transformer.layer.4.attention.k_lin.bias]
+    %transformer_layer_4_attention_v_lin_weight : [num_users=1] = get_attr[target=transformer.layer.4.attention.v_lin.weight]
+    %transformer_layer_4_attention_v_lin_bias : [num_users=1] = get_attr[target=transformer.layer.4.attention.v_lin.bias]
+    %transformer_layer_4_attention_out_lin_weight : [num_users=1] = get_attr[target=transformer.layer.4.attention.out_lin.weight]
+    %transformer_layer_4_attention_out_lin_bias : [num_users=1] = get_attr[target=transformer.layer.4.attention.out_lin.bias]
+    %transformer_layer_4_sa_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.4.sa_layer_norm.weight]
+    %transformer_layer_4_sa_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.4.sa_layer_norm.bias]
+    %transformer_layer_4_ffn_lin1_weight : [num_users=1] = get_attr[target=transformer.layer.4.ffn.lin1.weight]
+    %transformer_layer_4_ffn_lin1_bias : [num_users=1] = get_attr[target=transformer.layer.4.ffn.lin1.bias]
+    %transformer_layer_4_ffn_lin2_weight : [num_users=1] = get_attr[target=transformer.layer.4.ffn.lin2.weight]
+    %transformer_layer_4_ffn_lin2_bias : [num_users=1] = get_attr[target=transformer.layer.4.ffn.lin2.bias]
+    %transformer_layer_4_output_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.4.output_layer_norm.weight]
+    %transformer_layer_4_output_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.4.output_layer_norm.bias]
+    %transformer_layer_5_attention_q_lin_weight : [num_users=1] = get_attr[target=transformer.layer.5.attention.q_lin.weight]
+    %transformer_layer_5_attention_q_lin_bias : [num_users=1] = get_attr[target=transformer.layer.5.attention.q_lin.bias]
+    %transformer_layer_5_attention_k_lin_weight : [num_users=1] = get_attr[target=transformer.layer.5.attention.k_lin.weight]
+    %transformer_layer_5_attention_k_lin_bias : [num_users=1] = get_attr[target=transformer.layer.5.attention.k_lin.bias]
+    %transformer_layer_5_attention_v_lin_weight : [num_users=1] = get_attr[target=transformer.layer.5.attention.v_lin.weight]
+    %transformer_layer_5_attention_v_lin_bias : [num_users=1] = get_attr[target=transformer.layer.5.attention.v_lin.bias]
+    %transformer_layer_5_attention_out_lin_weight : [num_users=1] = get_attr[target=transformer.layer.5.attention.out_lin.weight]
+    %transformer_layer_5_attention_out_lin_bias : [num_users=1] = get_attr[target=transformer.layer.5.attention.out_lin.bias]
+    %transformer_layer_5_sa_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.5.sa_layer_norm.weight]
+    %transformer_layer_5_sa_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.5.sa_layer_norm.bias]
+    %transformer_layer_5_ffn_lin1_weight : [num_users=1] = get_attr[target=transformer.layer.5.ffn.lin1.weight]
+    %transformer_layer_5_ffn_lin1_bias : [num_users=1] = get_attr[target=transformer.layer.5.ffn.lin1.bias]
+    %transformer_layer_5_ffn_lin2_weight : [num_users=1] = get_attr[target=transformer.layer.5.ffn.lin2.weight]
+    %transformer_layer_5_ffn_lin2_bias : [num_users=1] = get_attr[target=transformer.layer.5.ffn.lin2.bias]
+    %transformer_layer_5_output_layer_norm_weight : [num_users=1] = get_attr[target=transformer.layer.5.output_layer_norm.weight]
+    %transformer_layer_5_output_layer_norm_bias : [num_users=1] = get_attr[target=transformer.layer.5.output_layer_norm.bias]
+    %embeddings_position_ids : [num_users=1] = get_attr[target=embeddings.position_ids]
+    %lifted_tensor_0 : [num_users=1] = get_attr[target=lifted_tensor_0]
+    %input_ids : [num_users=1] = placeholder[target=input_ids]
+    %attention_mask : [num_users=1] = placeholder[target=attention_mask]
+    %head_mask : [num_users=0] = placeholder[target=head_mask]
+    %embedding : [num_users=1] = call_function[target=torch.ops.aten.embedding.default](args = (%embeddings_word_embeddings_weight, %input_ids, 0), kwargs = {})
+    %slice_1 : [num_users=1] = call_function[target=torch.ops.aten.slice.Tensor](args = (%embeddings_position_ids, 0, 0, 9223372036854775807), kwargs = {})
+    %slice_2 : [num_users=1] = call_function[target=torch.ops.aten.slice.Tensor](args = (%slice_1, 1, 0, 128), kwargs = {})
+    %embedding_1 : [num_users=1] = call_function[target=torch.ops.aten.embedding.default](args = (%embeddings_position_embeddings_weight, %slice_2), kwargs = {})
+    %add : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%embedding, %embedding_1), kwargs = {})
+    %layer_norm : [num_users=1] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add, [768], %embeddings_layer_norm_weight, %embeddings_layer_norm_bias, 1e-12), kwargs = {})
+    %dropout : [num_users=4] = call_function[target=torch.ops.aten.dropout.default](args = (%layer_norm, 0.1, False), kwargs = {})
+    %slice_3 : [num_users=1] = call_function[target=torch.ops.aten.slice.Tensor](args = (%attention_mask, 0, 0, 9223372036854775807), kwargs = {})
+    %unsqueeze : [num_users=1] = call_function[target=torch.ops.aten.unsqueeze.default](args = (%slice_3, 1), kwargs = {})
+    %unsqueeze_1 : [num_users=1] = call_function[target=torch.ops.aten.unsqueeze.default](args = (%unsqueeze, 2), kwargs = {})
+    %slice_4 : [num_users=1] = call_function[target=torch.ops.aten.slice.Tensor](args = (%unsqueeze_1, 3, 0, 9223372036854775807), kwargs = {})
+    %expand : [num_users=1] = call_function[target=torch.ops.aten.expand.default](args = (%slice_4, [1, 1, 128, 128]), kwargs = {})
+    %to : [num_users=1] = call_function[target=torch.ops.aten.to.dtype](args = (%expand, torch.float16), kwargs = {})
+    %lift_fresh_copy : [num_users=1] = call_function[target=torch.ops.aten.lift_fresh_copy.default](args = (%lifted_tensor_0,), kwargs = {})
+    %detach_ : [num_users=1] = call_function[target=torch.ops.aten.detach_.default](args = (%lift_fresh_copy,), kwargs = {})
+    %sub : [num_users=2] = call_function[target=torch.ops.aten.sub.Tensor](args = (%detach_, %to), kwargs = {})
+    %to_1 : [num_users=1] = call_function[target=torch.ops.aten.to.dtype](args = (%sub, torch.bool), kwargs = {})
+    %masked_fill : [num_users=0] = call_function[target=torch.ops.aten.masked_fill.Scalar](args = (%sub, %to_1, -65504.0), kwargs = {})
+    %linear : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%dropout, %transformer_layer_0_attention_q_lin_weight, %transformer_layer_0_attention_q_lin_bias), kwargs = {})
+    %view : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear, [1, -1, 12, 64]), kwargs = {})
+    %transpose : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view, 1, 2), kwargs = {})
+    %linear_1 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%dropout, %transformer_layer_0_attention_k_lin_weight, %transformer_layer_0_attention_k_lin_bias), kwargs = {})
+    %view_1 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_1, [1, -1, 12, 64]), kwargs = {})
+    %transpose_1 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_1, 1, 2), kwargs = {})
+    %linear_2 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%dropout, %transformer_layer_0_attention_v_lin_weight, %transformer_layer_0_attention_v_lin_bias), kwargs = {})
+    %view_2 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_2, [1, -1, 12, 64]), kwargs = {})
+    %transpose_2 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_2, 1, 2), kwargs = {})
+    %full_row_ptr : [num_users=1] = get_attr[target=full_row_ptr]
+    %full_col_idx : [num_users=1] = get_attr[target=full_col_idx]
+    %part_row_ptr : [num_users=1] = get_attr[target=part_row_ptr]
+    %part_col_idx : [num_users=1] = get_attr[target=part_col_idx]
+    %inner_bitmaps : [num_users=1] = get_attr[target=inner_bitmaps]
+    %load_row_ptr : [num_users=1] = get_attr[target=load_row_ptr]
+    %load_col_idx : [num_users=1] = get_attr[target=load_col_idx]
+    %binding_attn_func : [num_users=1] = call_function[target=ops.package_op.binding_attn_func](args = (%transpose, %transpose_1, %transpose_2, %full_row_ptr, %full_col_idx, %part_row_ptr, %part_col_idx, %inner_bitmaps, %load_row_ptr, %load_col_idx, 0.0, False), kwargs = {})
+    %transpose_3 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%binding_attn_func, 1, 2), kwargs = {})
+    %view_3 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%transpose_3, [1, -1, 768]), kwargs = {})
+    %linear_3 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%view_3, %transformer_layer_0_attention_out_lin_weight, %transformer_layer_0_attention_out_lin_bias), kwargs = {})
+    %add_1 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%linear_3, %dropout), kwargs = {})
+    %layer_norm_1 : [num_users=2] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_1, [768], %transformer_layer_0_sa_layer_norm_weight, %transformer_layer_0_sa_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_4 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_1, %transformer_layer_0_ffn_lin1_weight, %transformer_layer_0_ffn_lin1_bias), kwargs = {})
+    %gelu : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%linear_4,), kwargs = {})
+    %linear_5 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%gelu, %transformer_layer_0_ffn_lin2_weight, %transformer_layer_0_ffn_lin2_bias), kwargs = {})
+    %dropout_1 : [num_users=1] = call_function[target=torch.ops.aten.dropout.default](args = (%linear_5, 0.1, False), kwargs = {})
+    %add_2 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%dropout_1, %layer_norm_1), kwargs = {})
+    %layer_norm_2 : [num_users=4] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_2, [768], %transformer_layer_0_output_layer_norm_weight, %transformer_layer_0_output_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_6 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_2, %transformer_layer_1_attention_q_lin_weight, %transformer_layer_1_attention_q_lin_bias), kwargs = {})
+    %view_4 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_6, [1, -1, 12, 64]), kwargs = {})
+    %transpose_4 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_4, 1, 2), kwargs = {})
+    %linear_7 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_2, %transformer_layer_1_attention_k_lin_weight, %transformer_layer_1_attention_k_lin_bias), kwargs = {})
+    %view_5 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_7, [1, -1, 12, 64]), kwargs = {})
+    %transpose_5 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_5, 1, 2), kwargs = {})
+    %linear_8 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_2, %transformer_layer_1_attention_v_lin_weight, %transformer_layer_1_attention_v_lin_bias), kwargs = {})
+    %view_6 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_8, [1, -1, 12, 64]), kwargs = {})
+    %transpose_6 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_6, 1, 2), kwargs = {})
+    %full_row_ptr_1 : [num_users=1] = get_attr[target=full_row_ptr]
+    %full_col_idx_1 : [num_users=1] = get_attr[target=full_col_idx]
+    %part_row_ptr_1 : [num_users=1] = get_attr[target=part_row_ptr]
+    %part_col_idx_1 : [num_users=1] = get_attr[target=part_col_idx]
+    %inner_bitmaps_1 : [num_users=1] = get_attr[target=inner_bitmaps]
+    %load_row_ptr_1 : [num_users=1] = get_attr[target=load_row_ptr]
+    %load_col_idx_1 : [num_users=1] = get_attr[target=load_col_idx]
+    %binding_attn_func_1 : [num_users=1] = call_function[target=ops.package_op.binding_attn_func](args = (%transpose_4, %transpose_5, %transpose_6, %full_row_ptr_1, %full_col_idx_1, %part_row_ptr_1, %part_col_idx_1, %inner_bitmaps_1, %load_row_ptr_1, %load_col_idx_1, 0.0, False), kwargs = {})
+    %transpose_7 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%binding_attn_func_1, 1, 2), kwargs = {})
+    %view_7 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%transpose_7, [1, -1, 768]), kwargs = {})
+    %linear_9 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%view_7, %transformer_layer_1_attention_out_lin_weight, %transformer_layer_1_attention_out_lin_bias), kwargs = {})
+    %add_3 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%linear_9, %layer_norm_2), kwargs = {})
+    %layer_norm_3 : [num_users=2] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_3, [768], %transformer_layer_1_sa_layer_norm_weight, %transformer_layer_1_sa_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_10 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_3, %transformer_layer_1_ffn_lin1_weight, %transformer_layer_1_ffn_lin1_bias), kwargs = {})
+    %gelu_1 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%linear_10,), kwargs = {})
+    %linear_11 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%gelu_1, %transformer_layer_1_ffn_lin2_weight, %transformer_layer_1_ffn_lin2_bias), kwargs = {})
+    %dropout_2 : [num_users=1] = call_function[target=torch.ops.aten.dropout.default](args = (%linear_11, 0.1, False), kwargs = {})
+    %add_4 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%dropout_2, %layer_norm_3), kwargs = {})
+    %layer_norm_4 : [num_users=4] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_4, [768], %transformer_layer_1_output_layer_norm_weight, %transformer_layer_1_output_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_12 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_4, %transformer_layer_2_attention_q_lin_weight, %transformer_layer_2_attention_q_lin_bias), kwargs = {})
+    %view_8 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_12, [1, -1, 12, 64]), kwargs = {})
+    %transpose_8 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_8, 1, 2), kwargs = {})
+    %linear_13 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_4, %transformer_layer_2_attention_k_lin_weight, %transformer_layer_2_attention_k_lin_bias), kwargs = {})
+    %view_9 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_13, [1, -1, 12, 64]), kwargs = {})
+    %transpose_9 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_9, 1, 2), kwargs = {})
+    %linear_14 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_4, %transformer_layer_2_attention_v_lin_weight, %transformer_layer_2_attention_v_lin_bias), kwargs = {})
+    %view_10 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_14, [1, -1, 12, 64]), kwargs = {})
+    %transpose_10 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_10, 1, 2), kwargs = {})
+    %full_row_ptr_2 : [num_users=1] = get_attr[target=full_row_ptr]
+    %full_col_idx_2 : [num_users=1] = get_attr[target=full_col_idx]
+    %part_row_ptr_2 : [num_users=1] = get_attr[target=part_row_ptr]
+    %part_col_idx_2 : [num_users=1] = get_attr[target=part_col_idx]
+    %inner_bitmaps_2 : [num_users=1] = get_attr[target=inner_bitmaps]
+    %load_row_ptr_2 : [num_users=1] = get_attr[target=load_row_ptr]
+    %load_col_idx_2 : [num_users=1] = get_attr[target=load_col_idx]
+    %binding_attn_func_2 : [num_users=1] = call_function[target=ops.package_op.binding_attn_func](args = (%transpose_8, %transpose_9, %transpose_10, %full_row_ptr_2, %full_col_idx_2, %part_row_ptr_2, %part_col_idx_2, %inner_bitmaps_2, %load_row_ptr_2, %load_col_idx_2, 0.0, False), kwargs = {})
+    %transpose_11 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%binding_attn_func_2, 1, 2), kwargs = {})
+    %view_11 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%transpose_11, [1, -1, 768]), kwargs = {})
+    %linear_15 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%view_11, %transformer_layer_2_attention_out_lin_weight, %transformer_layer_2_attention_out_lin_bias), kwargs = {})
+    %add_5 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%linear_15, %layer_norm_4), kwargs = {})
+    %layer_norm_5 : [num_users=2] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_5, [768], %transformer_layer_2_sa_layer_norm_weight, %transformer_layer_2_sa_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_16 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_5, %transformer_layer_2_ffn_lin1_weight, %transformer_layer_2_ffn_lin1_bias), kwargs = {})
+    %gelu_2 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%linear_16,), kwargs = {})
+    %linear_17 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%gelu_2, %transformer_layer_2_ffn_lin2_weight, %transformer_layer_2_ffn_lin2_bias), kwargs = {})
+    %dropout_3 : [num_users=1] = call_function[target=torch.ops.aten.dropout.default](args = (%linear_17, 0.1, False), kwargs = {})
+    %add_6 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%dropout_3, %layer_norm_5), kwargs = {})
+    %layer_norm_6 : [num_users=4] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_6, [768], %transformer_layer_2_output_layer_norm_weight, %transformer_layer_2_output_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_18 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_6, %transformer_layer_3_attention_q_lin_weight, %transformer_layer_3_attention_q_lin_bias), kwargs = {})
+    %view_12 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_18, [1, -1, 12, 64]), kwargs = {})
+    %transpose_12 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_12, 1, 2), kwargs = {})
+    %linear_19 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_6, %transformer_layer_3_attention_k_lin_weight, %transformer_layer_3_attention_k_lin_bias), kwargs = {})
+    %view_13 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_19, [1, -1, 12, 64]), kwargs = {})
+    %transpose_13 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_13, 1, 2), kwargs = {})
+    %linear_20 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_6, %transformer_layer_3_attention_v_lin_weight, %transformer_layer_3_attention_v_lin_bias), kwargs = {})
+    %view_14 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_20, [1, -1, 12, 64]), kwargs = {})
+    %transpose_14 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_14, 1, 2), kwargs = {})
+    %full_row_ptr_3 : [num_users=1] = get_attr[target=full_row_ptr]
+    %full_col_idx_3 : [num_users=1] = get_attr[target=full_col_idx]
+    %part_row_ptr_3 : [num_users=1] = get_attr[target=part_row_ptr]
+    %part_col_idx_3 : [num_users=1] = get_attr[target=part_col_idx]
+    %inner_bitmaps_3 : [num_users=1] = get_attr[target=inner_bitmaps]
+    %load_row_ptr_3 : [num_users=1] = get_attr[target=load_row_ptr]
+    %load_col_idx_3 : [num_users=1] = get_attr[target=load_col_idx]
+    %binding_attn_func_3 : [num_users=1] = call_function[target=ops.package_op.binding_attn_func](args = (%transpose_12, %transpose_13, %transpose_14, %full_row_ptr_3, %full_col_idx_3, %part_row_ptr_3, %part_col_idx_3, %inner_bitmaps_3, %load_row_ptr_3, %load_col_idx_3, 0.0, False), kwargs = {})
+    %transpose_15 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%binding_attn_func_3, 1, 2), kwargs = {})
+    %view_15 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%transpose_15, [1, -1, 768]), kwargs = {})
+    %linear_21 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%view_15, %transformer_layer_3_attention_out_lin_weight, %transformer_layer_3_attention_out_lin_bias), kwargs = {})
+    %add_7 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%linear_21, %layer_norm_6), kwargs = {})
+    %layer_norm_7 : [num_users=2] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_7, [768], %transformer_layer_3_sa_layer_norm_weight, %transformer_layer_3_sa_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_22 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_7, %transformer_layer_3_ffn_lin1_weight, %transformer_layer_3_ffn_lin1_bias), kwargs = {})
+    %gelu_3 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%linear_22,), kwargs = {})
+    %linear_23 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%gelu_3, %transformer_layer_3_ffn_lin2_weight, %transformer_layer_3_ffn_lin2_bias), kwargs = {})
+    %dropout_4 : [num_users=1] = call_function[target=torch.ops.aten.dropout.default](args = (%linear_23, 0.1, False), kwargs = {})
+    %add_8 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%dropout_4, %layer_norm_7), kwargs = {})
+    %layer_norm_8 : [num_users=4] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_8, [768], %transformer_layer_3_output_layer_norm_weight, %transformer_layer_3_output_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_24 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_8, %transformer_layer_4_attention_q_lin_weight, %transformer_layer_4_attention_q_lin_bias), kwargs = {})
+    %view_16 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_24, [1, -1, 12, 64]), kwargs = {})
+    %transpose_16 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_16, 1, 2), kwargs = {})
+    %linear_25 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_8, %transformer_layer_4_attention_k_lin_weight, %transformer_layer_4_attention_k_lin_bias), kwargs = {})
+    %view_17 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_25, [1, -1, 12, 64]), kwargs = {})
+    %transpose_17 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_17, 1, 2), kwargs = {})
+    %linear_26 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_8, %transformer_layer_4_attention_v_lin_weight, %transformer_layer_4_attention_v_lin_bias), kwargs = {})
+    %view_18 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_26, [1, -1, 12, 64]), kwargs = {})
+    %transpose_18 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_18, 1, 2), kwargs = {})
+    %full_row_ptr_4 : [num_users=1] = get_attr[target=full_row_ptr]
+    %full_col_idx_4 : [num_users=1] = get_attr[target=full_col_idx]
+    %part_row_ptr_4 : [num_users=1] = get_attr[target=part_row_ptr]
+    %part_col_idx_4 : [num_users=1] = get_attr[target=part_col_idx]
+    %inner_bitmaps_4 : [num_users=1] = get_attr[target=inner_bitmaps]
+    %load_row_ptr_4 : [num_users=1] = get_attr[target=load_row_ptr]
+    %load_col_idx_4 : [num_users=1] = get_attr[target=load_col_idx]
+    %binding_attn_func_4 : [num_users=1] = call_function[target=ops.package_op.binding_attn_func](args = (%transpose_16, %transpose_17, %transpose_18, %full_row_ptr_4, %full_col_idx_4, %part_row_ptr_4, %part_col_idx_4, %inner_bitmaps_4, %load_row_ptr_4, %load_col_idx_4, 0.0, False), kwargs = {})
+    %transpose_19 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%binding_attn_func_4, 1, 2), kwargs = {})
+    %view_19 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%transpose_19, [1, -1, 768]), kwargs = {})
+    %linear_27 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%view_19, %transformer_layer_4_attention_out_lin_weight, %transformer_layer_4_attention_out_lin_bias), kwargs = {})
+    %add_9 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%linear_27, %layer_norm_8), kwargs = {})
+    %layer_norm_9 : [num_users=2] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_9, [768], %transformer_layer_4_sa_layer_norm_weight, %transformer_layer_4_sa_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_28 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_9, %transformer_layer_4_ffn_lin1_weight, %transformer_layer_4_ffn_lin1_bias), kwargs = {})
+    %gelu_4 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%linear_28,), kwargs = {})
+    %linear_29 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%gelu_4, %transformer_layer_4_ffn_lin2_weight, %transformer_layer_4_ffn_lin2_bias), kwargs = {})
+    %dropout_5 : [num_users=1] = call_function[target=torch.ops.aten.dropout.default](args = (%linear_29, 0.1, False), kwargs = {})
+    %add_10 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%dropout_5, %layer_norm_9), kwargs = {})
+    %layer_norm_10 : [num_users=4] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_10, [768], %transformer_layer_4_output_layer_norm_weight, %transformer_layer_4_output_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_30 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_10, %transformer_layer_5_attention_q_lin_weight, %transformer_layer_5_attention_q_lin_bias), kwargs = {})
+    %view_20 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_30, [1, -1, 12, 64]), kwargs = {})
+    %transpose_20 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_20, 1, 2), kwargs = {})
+    %linear_31 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_10, %transformer_layer_5_attention_k_lin_weight, %transformer_layer_5_attention_k_lin_bias), kwargs = {})
+    %view_21 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_31, [1, -1, 12, 64]), kwargs = {})
+    %transpose_21 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_21, 1, 2), kwargs = {})
+    %linear_32 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_10, %transformer_layer_5_attention_v_lin_weight, %transformer_layer_5_attention_v_lin_bias), kwargs = {})
+    %view_22 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%linear_32, [1, -1, 12, 64]), kwargs = {})
+    %transpose_22 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%view_22, 1, 2), kwargs = {})
+    %full_row_ptr_5 : [num_users=1] = get_attr[target=full_row_ptr]
+    %full_col_idx_5 : [num_users=1] = get_attr[target=full_col_idx]
+    %part_row_ptr_5 : [num_users=1] = get_attr[target=part_row_ptr]
+    %part_col_idx_5 : [num_users=1] = get_attr[target=part_col_idx]
+    %inner_bitmaps_5 : [num_users=1] = get_attr[target=inner_bitmaps]
+    %load_row_ptr_5 : [num_users=1] = get_attr[target=load_row_ptr]
+    %load_col_idx_5 : [num_users=1] = get_attr[target=load_col_idx]
+    %binding_attn_func_5 : [num_users=1] = call_function[target=ops.package_op.binding_attn_func](args = (%transpose_20, %transpose_21, %transpose_22, %full_row_ptr_5, %full_col_idx_5, %part_row_ptr_5, %part_col_idx_5, %inner_bitmaps_5, %load_row_ptr_5, %load_col_idx_5, 0.0, False), kwargs = {})
+    %transpose_23 : [num_users=1] = call_function[target=torch.ops.aten.transpose.int](args = (%binding_attn_func_5, 1, 2), kwargs = {})
+    %view_23 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%transpose_23, [1, -1, 768]), kwargs = {})
+    %linear_33 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%view_23, %transformer_layer_5_attention_out_lin_weight, %transformer_layer_5_attention_out_lin_bias), kwargs = {})
+    %add_11 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%linear_33, %layer_norm_10), kwargs = {})
+    %layer_norm_11 : [num_users=2] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_11, [768], %transformer_layer_5_sa_layer_norm_weight, %transformer_layer_5_sa_layer_norm_bias, 1e-12), kwargs = {})
+    %linear_34 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%layer_norm_11, %transformer_layer_5_ffn_lin1_weight, %transformer_layer_5_ffn_lin1_bias), kwargs = {})
+    %gelu_5 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%linear_34,), kwargs = {})
+    %linear_35 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%gelu_5, %transformer_layer_5_ffn_lin2_weight, %transformer_layer_5_ffn_lin2_bias), kwargs = {})
+    %dropout_6 : [num_users=1] = call_function[target=torch.ops.aten.dropout.default](args = (%linear_35, 0.1, False), kwargs = {})
+    %add_12 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%dropout_6, %layer_norm_11), kwargs = {})
+    %layer_norm_12 : [num_users=1] = call_function[target=torch.ops.aten.layer_norm.default](args = (%add_12, [768], %transformer_layer_5_output_layer_norm_weight, %transformer_layer_5_output_layer_norm_bias, 1e-12), kwargs = {})
+    return (layer_norm_12,)
