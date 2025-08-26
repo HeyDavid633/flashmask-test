@@ -1,6 +1,6 @@
 # STOF
 
-This folder contains the system prototype of STOF (pap899) at SC '25, titled "STOF: Optimizing Sparse Transformer via Flexible Masking and Operator Fusion on GPU", including Figure 10-11, Figure 12, Figure 13, Figure 14 and Table 4.
+This folder contains the system prototype of STOF (...) at PPoPP '26, titled "STOF: Optimizing Sparse Transformer via Flexible Masking and Operator Fusion on GPU", including Figure 10-11, Figure 12, Figure 13, Figure 14 and Table 4.
 
 ## Abstract
 

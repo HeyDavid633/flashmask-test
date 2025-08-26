@@ -1,8 +1,9 @@
-# fusion-SC25
+# PPoPP25-Fusion Memo
 
 ## 对比对象
-+ 可立即部署 PyTorch Naive、Torch.compile、TVM
-+ 待部署 FasterTransformer、TVM、MCFuser、Ansor、Welder
++ 可立即部署 PyTorch Naive、Torch.compile、
++ Attn 对比：+ ByteTransformer、MCFuser、FlashAttention2
++ E2E 对比：+ ByteTransformer、MCFuser、Chimera、Bolt
 
 ## 端到端测试模型
 |        Model             |  L   |  H   |  A   | W |
@@ -14,6 +15,7 @@
 |    T5【encoder+decoder】   |  12  | 768  |  12  |    64     |
 |    llama3.1-8B【Encoder】  |  32  | 4096 |  32  |    64     |
 |    llama3.1-70B【Decoder】 |  32  | 8192 |  32  |    64     |
+|    Vit-Huge【Encoder】     |  32  | ? |  32  |    64     |
 
 
 ## 算子批量测试尺寸
