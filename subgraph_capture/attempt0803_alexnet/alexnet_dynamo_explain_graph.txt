@@ -1,0 +1,11 @@
+
+==================================================
+Running Inference
+==================================================
+Input shape: torch.Size([1, 3, 224, 224])
+
+Inference finished.
+Output shape: torch.Size([1, 1000])
+Output class prediction: 735
+
+Compilation (Graph break) details:

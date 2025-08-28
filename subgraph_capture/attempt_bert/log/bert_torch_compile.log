@@ -1,0 +1,24 @@
+/usr/local/lib/python3.10/dist-packages/torch/_dynamo/pgo.py:450: UserWarning: dynamo_pgo force disabled by torch._inductor.config.force_disable_caches
+  warn_once(
+W0806 11:24:24.109000 144396 torch/_inductor/debug.py:435] [0/0] model__0_forward_1 debug trace: /daiwenhao/dwh_subgraph_capture/attempt_bert/torch_compile_debug/run_2025_08_06_11_24_15_846770-pid_144396/torchinductor/model__0_forward_1.0
+
+==================================================
+Model Architecture Information
+==================================================
++---------------------------+-------------------------+
+| Key                       | Value                   |
++---------------------------+-------------------------+
+| Model Name                | distilbert-base-uncased |
+| Batch Size                | 1                       |
+| Sequence Length           | 128                     |
+| Hidden Dimension          | 768                     |
+| Number of Layers          | 6                       |
+| Number of Attention Heads | 12                      |
+| Intermediate Size (FFN)   | 3072                    |
+| Vocab Size                | 30522                   |
+| Max Position Embeddings   | 512                     |
++---------------------------+-------------------------+
+==================================================
+
+Running FP16 inference with seqlen=128...
+Inference finished. Output shape: torch.Size([1, 128, 768])

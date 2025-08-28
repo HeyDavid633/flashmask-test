@@ -1,0 +1,47 @@
+/usr/local/lib/python3.10/dist-packages/torch/_dynamo/pgo.py:450: UserWarning: dynamo_pgo force disabled by torch._inductor.config.force_disable_caches
+  warn_once(
+V0803 17:52:22.532000 24189 torch/_inductor/scheduler.py:2372] [0/0] [__fusion] ===== attempting fusion (1/10): 25 nodes =====
+V0803 17:52:22.532000 24189 torch/_inductor/scheduler.py:2665] [0/0] [__fusion] fuse_nodes_once, candidates:
+V0803 17:52:22.533000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op0'), Pointwise(['[1, 3, 224, 224]', 'origins=OrderedSet([convolution])'])
+V0803 17:52:22.533000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op1'), Pointwise(['[64, 3, 11, 11]', 'origins=OrderedSet([convolution])'])
+V0803 17:52:22.533000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   ExternKernelSchedulerNode(name='op2')
+V0803 17:52:22.533000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op3'), Pointwise(['[1, 64, 55, 55]', 'origins=OrderedSet([relu, convolution])'])
+V0803 17:52:22.533000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op4'), Pointwise(['[1, 64, 27, 27]', 'origins=OrderedSet([relu, convolution, _low_memory_max_pool2d_with_offsets])'])
+V0803 17:52:22.533000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op5'), Pointwise(['[192, 64, 5, 5]', 'origins=OrderedSet([convolution_1])'])
+V0803 17:52:22.534000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   ExternKernelSchedulerNode(name='op6')
+V0803 17:52:22.534000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op7'), Pointwise(['[1, 192, 27, 27]', 'origins=OrderedSet([relu_1, convolution_1])'])
+V0803 17:52:22.534000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op8'), Pointwise(['[1, 192, 13, 13]', 'origins=OrderedSet([_low_memory_max_pool2d_with_offsets_1, relu_1, convolution_1])'])
+V0803 17:52:22.534000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op9'), Pointwise(['[384, 192, 3, 3]', 'origins=OrderedSet([convolution_2])'])
+V0803 17:52:22.534000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   ExternKernelSchedulerNode(name='op10')
+V0803 17:52:22.535000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op11'), Pointwise(['[1, 384, 13, 13]', 'origins=OrderedSet([convolution_2, relu_2])'])
+V0803 17:52:22.535000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op12'), Pointwise(['[256, 384, 3, 3]', 'origins=OrderedSet([convolution_2, convolution_3, relu_2])'])
+V0803 17:52:22.535000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   ExternKernelSchedulerNode(name='op13')
+V0803 17:52:22.535000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op14'), Pointwise(['[1, 256, 13, 13]', 'origins=OrderedSet([convolution_2, convolution_3, relu_3, relu_2])'])
+V0803 17:52:22.535000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op15'), Pointwise(['[256, 256, 3, 3]', 'origins=OrderedSet([convolution_4, convolution_3, relu_2, convolution_2, relu_3])'])
+V0803 17:52:22.535000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   ExternKernelSchedulerNode(name='op16')
+V0803 17:52:22.536000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op17'), Pointwise(['[1, 256, 13, 13]', 'origins=OrderedSet([convolution_4, convolution_3, relu_4, relu_2, convolution_2, relu_3])'])
+V0803 17:52:22.536000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op18'), Pointwise(['[1, 256, 6, 6]', 'origins=OrderedSet([convolution_4, convolution_3, _low_memory_max_pool2d_with_offsets_2, relu_4, relu_2, convolution_2, relu_3])'])
+V0803 17:52:22.536000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op19'), Pointwise(['[1, 256, 6, 6]', 'origins=OrderedSet([_adaptive_avg_pool2d])'])
+V0803 17:52:22.536000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   ExternKernelSchedulerNode(name='op20')
+V0803 17:52:22.536000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op21'), Pointwise(['[1, 4096]', 'origins=OrderedSet([relu_5, add_tensor_1])'])
+V0803 17:52:22.536000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   ExternKernelSchedulerNode(name='op22')
+V0803 17:52:22.537000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   SchedulerNode(name='op23'), Pointwise(['[1, 4096]', 'origins=OrderedSet([add_tensor, relu_6])'])
+V0803 17:52:22.537000 24189 torch/_inductor/scheduler.py:2667] [0/0] [__fusion]   ExternKernelSchedulerNode(name='op24')
+V0803 17:52:22.537000 24189 torch/_inductor/scheduler.py:774] [0/0] [__fusion] cannot fuse op3 with op4: no shared data
+V0803 17:52:22.538000 24189 torch/_inductor/scheduler.py:774] [0/0] [__fusion] cannot fuse op7 with op8: no shared data
+V0803 17:52:22.538000 24189 torch/_inductor/scheduler.py:774] [0/0] [__fusion] cannot fuse op17 with op18: no shared data
+V0803 17:52:22.538000 24189 torch/_inductor/scheduler.py:774] [0/0] [__fusion] cannot fuse op18 with op19: no shared data
+V0803 17:52:22.538000 24189 torch/_inductor/scheduler.py:2793] [0/0] [__fusion] found 0 possible fusions
+V0803 17:52:22.539000 24189 torch/_inductor/scheduler.py:2379] [0/0] [__fusion] completed fusion round (1/10): fused 25 nodes into 25 nodes
+V0803 17:52:22.539000 24189 torch/_inductor/scheduler.py:2379] [0/0] [__fusion] 
+V0803 17:52:22.539000 24189 torch/_inductor/scheduler.py:2386] [0/0] [__fusion] ===== fusion complete (1 iterations) =====
+W0803 17:52:24.309000 24189 torch/_inductor/debug.py:435] [0/0] model__0_inference_0 debug trace: /daiwenhao/dwh_subgraph_capture/attempt0803_alexnet/torch_compile_debug/run_2025_08_03_17_52_20_557175-pid_24189/torchinductor/model__0_inference_0.0
+
+==================================================
+Running Inference
+==================================================
+Input shape: torch.Size([1, 3, 224, 224])
+
+Inference finished.
+Output shape: torch.Size([1, 1000])
+Output class prediction: 735

@@ -1,0 +1,87 @@
+
+==================================================
+Model Architecture
+==================================================
+
+2. Detailed Layer Information:
+============================================================================================================================================
+Layer (type:depth-idx)                   Input Shape               Output Shape              Param #                   Trainable
+============================================================================================================================================
+AlexNet                                  [1, 3, 224, 224]          [1, 1000]                 --                        True
+├─Sequential: 1-1                        [1, 3, 224, 224]          [1, 256, 6, 6]            --                        True
+│    └─Conv2d: 2-1                       [1, 3, 224, 224]          [1, 64, 55, 55]           23,296                    True
+│    └─ReLU: 2-2                         [1, 64, 55, 55]           [1, 64, 55, 55]           --                        --
+│    └─MaxPool2d: 2-3                    [1, 64, 55, 55]           [1, 64, 27, 27]           --                        --
+│    └─Conv2d: 2-4                       [1, 64, 27, 27]           [1, 192, 27, 27]          307,392                   True
+│    └─ReLU: 2-5                         [1, 192, 27, 27]          [1, 192, 27, 27]          --                        --
+│    └─MaxPool2d: 2-6                    [1, 192, 27, 27]          [1, 192, 13, 13]          --                        --
+│    └─Conv2d: 2-7                       [1, 192, 13, 13]          [1, 384, 13, 13]          663,936                   True
+│    └─ReLU: 2-8                         [1, 384, 13, 13]          [1, 384, 13, 13]          --                        --
+│    └─Conv2d: 2-9                       [1, 384, 13, 13]          [1, 256, 13, 13]          884,992                   True
+│    └─ReLU: 2-10                        [1, 256, 13, 13]          [1, 256, 13, 13]          --                        --
+│    └─Conv2d: 2-11                      [1, 256, 13, 13]          [1, 256, 13, 13]          590,080                   True
+│    └─ReLU: 2-12                        [1, 256, 13, 13]          [1, 256, 13, 13]          --                        --
+│    └─MaxPool2d: 2-13                   [1, 256, 13, 13]          [1, 256, 6, 6]            --                        --
+├─AdaptiveAvgPool2d: 1-2                 [1, 256, 6, 6]            [1, 256, 6, 6]            --                        --
+├─Sequential: 1-3                        [1, 9216]                 [1, 1000]                 --                        True
+│    └─Dropout: 2-14                     [1, 9216]                 [1, 9216]                 --                        --
+│    └─Linear: 2-15                      [1, 9216]                 [1, 4096]                 37,752,832                True
+│    └─ReLU: 2-16                        [1, 4096]                 [1, 4096]                 --                        --
+│    └─Dropout: 2-17                     [1, 4096]                 [1, 4096]                 --                        --
+│    └─Linear: 2-18                      [1, 4096]                 [1, 4096]                 16,781,312                True
+│    └─ReLU: 2-19                        [1, 4096]                 [1, 4096]                 --                        --
+│    └─Linear: 2-20                      [1, 4096]                 [1, 1000]                 4,097,000                 True
+============================================================================================================================================
+Total params: 61,100,840
+Trainable params: 61,100,840
+Non-trainable params: 0
+Total mult-adds (M): 714.68
+============================================================================================================================================
+Input size (MB): 0.60
+Forward/backward pass size (MB): 3.95
+Params size (MB): 244.40
+Estimated Total Size (MB): 248.96
+============================================================================================================================================
+opcode         name                 target                            args                                                                kwargs
+-------------  -------------------  --------------------------------  ------------------------------------------------------------------  --------
+get_attr       features_0_weight    features.0.weight                 ()                                                                  {}
+get_attr       features_0_bias      features.0.bias                   ()                                                                  {}
+get_attr       features_3_weight    features.3.weight                 ()                                                                  {}
+get_attr       features_3_bias      features.3.bias                   ()                                                                  {}
+get_attr       features_6_weight    features.6.weight                 ()                                                                  {}
+get_attr       features_6_bias      features.6.bias                   ()                                                                  {}
+get_attr       features_8_weight    features.8.weight                 ()                                                                  {}
+get_attr       features_8_bias      features.8.bias                   ()                                                                  {}
+get_attr       features_10_weight   features.10.weight                ()                                                                  {}
+get_attr       features_10_bias     features.10.bias                  ()                                                                  {}
+get_attr       classifier_1_weight  classifier.1.weight               ()                                                                  {}
+get_attr       classifier_1_bias    classifier.1.bias                 ()                                                                  {}
+get_attr       classifier_4_weight  classifier.4.weight               ()                                                                  {}
+get_attr       classifier_4_bias    classifier.4.bias                 ()                                                                  {}
+get_attr       classifier_6_weight  classifier.6.weight               ()                                                                  {}
+get_attr       classifier_6_bias    classifier.6.bias                 ()                                                                  {}
+placeholder    x                    x                                 ()                                                                  {}
+call_function  conv2d               aten.conv2d.default               (x, features_0_weight, features_0_bias, [4, 4], [2, 2])             {}
+call_function  relu_                aten.relu_.default                (conv2d,)                                                           {}
+call_function  max_pool2d           aten.max_pool2d.default           (relu_, [3, 3], [2, 2])                                             {}
+call_function  conv2d_1             aten.conv2d.default               (max_pool2d, features_3_weight, features_3_bias, [1, 1], [2, 2])    {}
+call_function  relu__1              aten.relu_.default                (conv2d_1,)                                                         {}
+call_function  max_pool2d_1         aten.max_pool2d.default           (relu__1, [3, 3], [2, 2])                                           {}
+call_function  conv2d_2             aten.conv2d.default               (max_pool2d_1, features_6_weight, features_6_bias, [1, 1], [1, 1])  {}
+call_function  relu__2              aten.relu_.default                (conv2d_2,)                                                         {}
+call_function  conv2d_3             aten.conv2d.default               (relu__2, features_8_weight, features_8_bias, [1, 1], [1, 1])       {}
+call_function  relu__3              aten.relu_.default                (conv2d_3,)                                                         {}
+call_function  conv2d_4             aten.conv2d.default               (relu__3, features_10_weight, features_10_bias, [1, 1], [1, 1])     {}
+call_function  relu__4              aten.relu_.default                (conv2d_4,)                                                         {}
+call_function  max_pool2d_2         aten.max_pool2d.default           (relu__4, [3, 3], [2, 2])                                           {}
+call_function  adaptive_avg_pool2d  aten.adaptive_avg_pool2d.default  (max_pool2d_2, [6, 6])                                              {}
+call_function  flatten              aten.flatten.using_ints           (adaptive_avg_pool2d, 1)                                            {}
+call_function  dropout              aten.dropout.default              (flatten, 0.5, False)                                               {}
+call_function  linear               aten.linear.default               (dropout, classifier_1_weight, classifier_1_bias)                   {}
+call_function  relu__5              aten.relu_.default                (linear,)                                                           {}
+call_function  dropout_1            aten.dropout.default              (relu__5, 0.5, False)                                               {}
+call_function  linear_1             aten.linear.default               (dropout_1, classifier_4_weight, classifier_4_bias)                 {}
+call_function  relu__6              aten.relu_.default                (linear_1,)                                                         {}
+call_function  linear_2             aten.linear.default               (relu__6, classifier_6_weight, classifier_6_bias)                   {}
+output         output               output                            ((linear_2,),)                                                      {}
+3
