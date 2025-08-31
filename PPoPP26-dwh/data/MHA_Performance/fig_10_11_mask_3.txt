@@ -1,0 +1,110 @@
+Script started on 2025-08-28 02:57:59+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="287" LINES="17"]
+ PyTorch version: 2.7.0+cu126
+ CUDA version 	: 12.6
+ GPU cuda:(0) 	: NVIDIA GeForce RTX 4090 
+ --------------------------------------------------
+ [Benchmark] Attention unified benchmark for BigBird_Mask
+ bs:1 | h_num:12 | seq:128  |  FlashAttn2  : 0.098 ms / iter
+ bs:1 | h_num:12 | seq:128  |  Torch Naive : 0.255 ms / iter
+ bs:1 | h_num:12 | seq:128  |   FlexAttn   : 0.187 ms / iter
+ bs:1 | h_num:12 | seq:128  |  ByteTrans   : 0.139 ms / iter
+ bs:1 | h_num:12 | seq:128  |  Our Kernel  : 0.104 ms / iter
+
+ bs:1 | h_num:12 | seq:256  |  FlashAttn2  : 0.124 ms / iter
+ bs:1 | h_num:12 | seq:256  |  Torch Naive : 0.316 ms / iter
+ bs:1 | h_num:12 | seq:256  |   FlexAttn   : 0.190 ms / iter
+ bs:1 | h_num:12 | seq:256  |  ByteTrans   : 0.142 ms / iter
+ bs:1 | h_num:12 | seq:256  |  Our Kernel  : 0.113 ms / iter
+
+ bs:1 | h_num:12 | seq:512  |  FlashAttn2  : 0.120 ms / iter
+ bs:1 | h_num:12 | seq:512  |  Torch Naive : 0.278 ms / iter
+ bs:1 | h_num:12 | seq:512  |   FlexAttn   : 0.184 ms / iter
+ bs:1 | h_num:12 | seq:512  |  ByteTrans   : 0.211 ms / iter
+ bs:1 | h_num:12 | seq:512  |  Our Kernel  : 0.120 ms / iter
+
+ bs:1 | h_num:12 | seq:1024  |  FlashAttn2  : 0.171 ms / iter
+ bs:1 | h_num:12 | seq:1024  |  Torch Naive : 0.381 ms / iter
+ bs:1 | h_num:12 | seq:1024  |   FlexAttn   : 0.221 ms / iter
+ bs:1 | h_num:12 | seq:1024  |  ByteTrans   : 0.340 ms / iter
+ bs:1 | h_num:12 | seq:1024  |  Our Kernel  : 0.227 ms / iter
+
+ bs:1 | h_num:12 | seq:2048  |  FlashAttn2  : 0.216 ms / iter
+ bs:1 | h_num:12 | seq:2048  |  Torch Naive : 0.988 ms / iter
+ bs:1 | h_num:12 | seq:2048  |   FlexAttn   : 0.312 ms / iter
+ bs:1 | h_num:12 | seq:2048  |  Our Kernel  : 0.454 ms / iter
+
+ bs:1 | h_num:12 | seq:4096  |  FlashAttn2  : 0.453 ms / iter
+ bs:1 | h_num:12 | seq:4096  |  Torch Naive : 3.338 ms / iter
+ bs:1 | h_num:12 | seq:4096  |   FlexAttn   : 0.482 ms / iter
+ bs:1 | h_num:12 | seq:4096  |  Our Kernel  : 0.620 ms / iter
+
+ bs:8 | h_num:12 | seq:128  |  FlashAttn2  : 0.098 ms / iter
+ bs:8 | h_num:12 | seq:128  |  Torch Naive : 0.366 ms / iter
+ bs:8 | h_num:12 | seq:128  |   FlexAttn   : 0.184 ms / iter
+ bs:8 | h_num:12 | seq:128  |  ByteTrans   : 0.292 ms / iter
+ bs:8 | h_num:12 | seq:128  |  Our Kernel  : 0.112 ms / iter
+
+ bs:8 | h_num:12 | seq:256  |  FlashAttn2  : 0.110 ms / iter
+ bs:8 | h_num:12 | seq:256  |  Torch Naive : 0.413 ms / iter
+ bs:8 | h_num:12 | seq:256  |   FlexAttn   : 0.181 ms / iter
+ bs:8 | h_num:12 | seq:256  |  ByteTrans   : 0.141 ms / iter
+ bs:8 | h_num:12 | seq:256  |  Our Kernel  : 0.126 ms / iter
+
+ bs:8 | h_num:12 | seq:512  |  FlashAttn2  : 0.145 ms / iter
+ bs:8 | h_num:12 | seq:512  |  Torch Naive : 0.680 ms / iter
+ bs:8 | h_num:12 | seq:512  |   FlexAttn   : 0.240 ms / iter
+ bs:8 | h_num:12 | seq:512  |  ByteTrans   : 0.497 ms / iter
+ bs:8 | h_num:12 | seq:512  |  Our Kernel  : 0.218 ms / iter
+
+ bs:8 | h_num:12 | seq:1024  |  FlashAttn2  : 0.278 ms / iter
+ bs:8 | h_num:12 | seq:1024  |  Torch Naive : 2.059 ms / iter
+ bs:8 | h_num:12 | seq:1024  |   FlexAttn   : 0.370 ms / iter
+ bs:8 | h_num:12 | seq:1024  |  ByteTrans   : 1.266 ms / iter
+ bs:8 | h_num:12 | seq:1024  |  Our Kernel  : 0.518 ms / iter
+
+ bs:8 | h_num:12 | seq:2048  |  FlashAttn2  : 0.793 ms / iter
+ bs:8 | h_num:12 | seq:2048  |  Torch Naive : 6.727 ms / iter
+ bs:8 | h_num:12 | seq:2048  |   FlexAttn   : 0.733 ms / iter
+ bs:8 | h_num:12 | seq:2048  |  Our Kernel  : 0.608 ms / iter
+
+ bs:8 | h_num:12 | seq:4096  |  FlashAttn2  : 2.846 ms / iter
+ bs:8 | h_num:12 | seq:4096  |  Torch Naive : 25.446 ms / iter
+ bs:8 | h_num:12 | seq:4096  |   FlexAttn   : 2.004 ms / iter
+ bs:8 | h_num:12 | seq:4096  |  Our Kernel  : 1.136 ms / iter
+
+ bs:16 | h_num:12 | seq:128  |  FlashAttn2  : 0.099 ms / iter
+ bs:16 | h_num:12 | seq:128  |  Torch Naive : 0.386 ms / iter
+ bs:16 | h_num:12 | seq:128  |   FlexAttn   : 0.172 ms / iter
+ bs:16 | h_num:12 | seq:128  |  ByteTrans   : 0.126 ms / iter
+ bs:16 | h_num:12 | seq:128  |  Our Kernel  : 0.104 ms / iter
+
+ bs:16 | h_num:12 | seq:256  |  FlashAttn2  : 0.119 ms / iter
+ bs:16 | h_num:12 | seq:256  |  Torch Naive : 0.488 ms / iter
+ bs:16 | h_num:12 | seq:256  |   FlexAttn   : 0.192 ms / iter
+ bs:16 | h_num:12 | seq:256  |  ByteTrans   : 0.173 ms / iter
+ bs:16 | h_num:12 | seq:256  |  Our Kernel  : 0.160 ms / iter
+
+ bs:16 | h_num:12 | seq:512  |  FlashAttn2  : 0.184 ms / iter
+ bs:16 | h_num:12 | seq:512  |  Torch Naive : 1.266 ms / iter
+ bs:16 | h_num:12 | seq:512  |   FlexAttn   : 0.272 ms / iter
+ bs:16 | h_num:12 | seq:512  |  ByteTrans   : 0.755 ms / iter
+ bs:16 | h_num:12 | seq:512  |  Our Kernel  : 0.277 ms / iter
+
+ bs:16 | h_num:12 | seq:1024  |  FlashAttn2  : 0.451 ms / iter
+ bs:16 | h_num:12 | seq:1024  |  Torch Naive : 3.730 ms / iter
+ bs:16 | h_num:12 | seq:1024  |   FlexAttn   : 0.514 ms / iter
+ bs:16 | h_num:12 | seq:1024  |  ByteTrans   : 2.367 ms / iter
+ bs:16 | h_num:12 | seq:1024  |  Our Kernel  : 0.497 ms / iter
+
+ bs:16 | h_num:12 | seq:2048  |  FlashAttn2  : 1.479 ms / iter
+ bs:16 | h_num:12 | seq:2048  |  Torch Naive : 13.084 ms / iter
+ bs:16 | h_num:12 | seq:2048  |   FlexAttn   : 1.240 ms / iter
+ bs:16 | h_num:12 | seq:2048  |  Our Kernel  : 0.940 ms / iter
+
+ bs:16 | h_num:12 | seq:4096  |  FlashAttn2  : 5.549 ms / iter
+ bs:16 | h_num:12 | seq:4096  |  Torch Naive : 50.536 ms / iter
+ bs:16 | h_num:12 | seq:4096  |   FlexAttn   : 3.712 ms / iter
+ bs:16 | h_num:12 | seq:4096  |  Our Kernel  : 1.800 ms / iter
+
+
+Script done on 2025-08-28 03:04:37+00:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,456 @@
+Script started on 2025-08-27 06:44:47+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_small
+e2e bert_small | bs:1 | seq:128  |  Torch Native    : 3.753 ms / iter
+
+Script done on 2025-08-27 06:45:01+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:45:01+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_small
+e2e bert_small | bs:1 | seq:128  |  Torch Compile   : 3.761 ms / iter
+
+Script done on 2025-08-27 06:45:18+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:45:18+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_small
+e2e bert_small | bs:1 | seq:128  |  ByteTransformer : 2.559 ms / iter
+
+Script done on 2025-08-27 06:45:33+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:45:33+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_small
+e2e bert_small | bs:1 | seq:128  |  STOF            : 2.695 ms / iter
+
+
+
+
+
+
+
+Script done on 2025-08-27 06:45:49+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:45:49+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_base
+e2e bert_base | bs:1 | seq:128  |  Torch Native    : 7.670 ms / iter
+
+Script done on 2025-08-27 06:46:06+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:46:06+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_base
+e2e bert_base | bs:1 | seq:128  |  Torch Compile   : 7.898 ms / iter
+
+Script done on 2025-08-27 06:46:22+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:46:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_base
+e2e bert_base | bs:1 | seq:128  |  ByteTransformer : 5.247 ms / iter
+
+Script done on 2025-08-27 06:46:39+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:46:39+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 263, in bert_fwd_std
+    hidden_states = torch.matmul(hidden_states, attr_output_kernel[layer]) + attr_output_bias[layer]
+RuntimeError: CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle)`
+
+Script done on 2025-08-27 06:46:57+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:46:57+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_large
+e2e bert_large | bs:1 | seq:128  |  Torch Native    : 15.072 ms / iter
+
+Script done on 2025-08-27 06:47:18+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:47:18+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_large
+e2e bert_large | bs:1 | seq:128  |  Torch Compile   : 15.196 ms / iter
+
+Script done on 2025-08-27 06:47:39+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:47:39+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_large
+e2e bert_large | bs:1 | seq:128  |  ByteTransformer : 9.977 ms / iter
+
+Script done on 2025-08-27 06:48:01+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:48:01+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_large
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 263, in bert_fwd_std
+    hidden_states = torch.matmul(hidden_states, attr_output_kernel[layer]) + attr_output_bias[layer]
+RuntimeError: CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle)`
+
+Script done on 2025-08-27 06:48:22+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:48:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+gpt
+e2e gpt | bs:1 | seq:128  |  Torch Native    : 9.203 ms / iter
+
+Script done on 2025-08-27 06:48:38+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:48:38+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+gpt
+e2e gpt | bs:1 | seq:128  |  Torch Compile   : 9.017 ms / iter
+
+Script done on 2025-08-27 06:48:55+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:48:55+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+gpt
+e2e gpt | bs:1 | seq:128  |  ByteTransformer : 6.572 ms / iter
+
+Script done on 2025-08-27 06:49:12+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:49:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+gpt
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 342, in gpt_base_fwd_std
+    hidden_states = torch.matmul(hidden_states, attr_output_kernel[layer])
+RuntimeError: CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle)`
+
+Script done on 2025-08-27 06:49:29+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:49:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+t5
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1036, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 498, in T5_base_fwd_std
+    decoder_hidden_states = torch.matmul(decoder_hidden_states, crattr_output_kernel_2[layer])
+UnboundLocalError: local variable 'decoder_hidden_states' referenced before assignment
+
+Script done on 2025-08-27 06:49:47+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:49:47+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+t5
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1059, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 498, in T5_base_fwd_std
+    decoder_hidden_states = torch.matmul(decoder_hidden_states, crattr_output_kernel_2[layer])
+UnboundLocalError: local variable 'decoder_hidden_states' referenced before assignment
+
+Script done on 2025-08-27 06:50:03+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:50:03+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+t5
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1084, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 498, in T5_base_fwd_std
+    decoder_hidden_states = torch.matmul(decoder_hidden_states, crattr_output_kernel_2[layer])
+UnboundLocalError: local variable 'decoder_hidden_states' referenced before assignment
+
+Script done on 2025-08-27 06:50:21+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:50:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+t5
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 422, in T5_base_fwd_std
+    encoder_hidden_states = F.layer_norm(encoder_hidden_states, (hidden_dim, ), weight=attr_output_layernorm_gamma[layer], bias=attr_output_layernorm_beta[layer])
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/functional.py", line 2905, in layer_norm
+    return torch.layer_norm(
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Script done on 2025-08-27 06:50:38+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:50:38+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  Torch Native    : 2.015 ms / iter
+
+Script done on 2025-08-27 06:50:57+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:50:57+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  Torch Compile   : 2.100 ms / iter
+
+Script done on 2025-08-27 06:51:14+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:51:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  ByteTransformer : 1.886 ms / iter
+
+Script done on 2025-08-27 06:51:31+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:51:31+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+llama_small
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 601, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 576, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-27 06:51:50+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:51:50+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+llama_base
+e2e llama_base | bs:1 | seq:128  |  Torch Native    : 2.031 ms / iter
+
+Script done on 2025-08-27 06:52:19+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:52:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+llama_base
+e2e llama_base | bs:1 | seq:128  |  Torch Compile   : 2.070 ms / iter
+
+Script done on 2025-08-27 06:52:47+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:52:47+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+llama_base
+e2e llama_base | bs:1 | seq:128  |  ByteTransformer : 1.915 ms / iter
+
+Script done on 2025-08-27 06:53:16+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:53:16+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+llama_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 601, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 576, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-27 06:53:45+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:53:45+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1034, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 747, in vit_base_fwd_std
+    self_outputs = (attn_output, attn_weights) 
+NameError: name 'attn_output' is not defined. Did you mean: 'layer_output'?
+
+Script done on 2025-08-27 06:54:02+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:54:02+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1057, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 747, in vit_base_fwd_std
+    self_outputs = (attn_output, attn_weights) 
+NameError: name 'attn_output' is not defined. Did you mean: 'layer_output'?
+
+Script done on 2025-08-27 06:54:20+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:54:20+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1082, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 729, in vit_base_fwd_std
+    h = result.view(batch_size, seq_len, head_num, head_size).contiguous()
+RuntimeError: shape '[1, 65, 12, 64]' is invalid for input of size 98304
+
+Script done on 2025-08-27 06:54:37+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:54:37+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1147, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 736, in vit_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 576, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: FlashAttention only support fp16 and bf16 data type
+
+Script done on 2025-08-27 06:54:55+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:54:55+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_small
+e2e bert_small | bs:8 | seq:512  |  Torch Native    : 4.060 ms / iter
+
+Script done on 2025-08-27 06:55:13+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:55:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_small
+e2e bert_small | bs:8 | seq:512  |  Torch Compile   : 4.191 ms / iter
+
+Script done on 2025-08-27 06:55:31+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:55:31+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_small
+e2e bert_small | bs:8 | seq:512  |  ByteTransformer : 2.771 ms / iter
+
+Script done on 2025-08-27 06:55:48+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:55:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_small
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 272, in bert_fwd_std
+    hidden_states = torch.matmul(hidden_states, output_kernel[layer]) + output_bias[layer]  
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Script done on 2025-08-27 06:56:05+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:56:05+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_base
+e2e bert_base | bs:8 | seq:512  |  Torch Native    : 9.319 ms / iter
+
+Script done on 2025-08-27 06:56:24+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:56:24+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_base
+e2e bert_base | bs:8 | seq:512  |  Torch Compile   : 9.349 ms / iter
+
+Script done on 2025-08-27 06:56:44+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:56:44+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_base
+e2e bert_base | bs:8 | seq:512  |  ByteTransformer : 9.133 ms / iter
+
+Script done on 2025-08-27 06:57:03+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:57:03+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 263, in bert_fwd_std
+    hidden_states = torch.matmul(hidden_states, attr_output_kernel[layer]) + attr_output_bias[layer]
+RuntimeError: CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle)`
+
+Script done on 2025-08-27 06:57:22+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:57:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_large
+e2e bert_large | bs:8 | seq:512  |  Torch Native    : 30.583 ms / iter
+
+Script done on 2025-08-27 06:57:50+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:57:50+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_large
+e2e bert_large | bs:8 | seq:512  |  Torch Compile   : 30.580 ms / iter
+^X^C
+Script done on 2025-08-27 06:58:17+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:58:17+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_large
+e2e bert_large | bs:8 | seq:512  |  ByteTransformer : 26.806 ms / iter
+
+Script done on 2025-08-27 06:58:45+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-27 06:58:45+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+bert_large
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1149, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 263, in bert_fwd_std
+    hidden_states = torch.matmul(hidden_states, attr_output_kernel[layer]) + attr_output_bias[layer]
+RuntimeError: CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle)`
+^Z^Z^Z^Z^Z^Z^Z^Z^Z^Z
+Script done on 2025-08-27 06:59:09+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-27 06:59:09+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^Z^Z^Z^C^C^C^C
+Script done on 2025-08-27 06:59:11+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:11+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:11+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:11+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C
+Script done on 2025-08-27 06:59:12+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:12+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:12+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:13+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:13+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:13+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:13+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C^C^C^Cc
+Script done on 2025-08-27 06:59:14+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:14+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C^Cccc^C
+Script done on 2025-08-27 06:59:16+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:16+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+cccc^C^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 6, in <module>
+    import torch
+  File "/usr/local/lib/python3.10/dist-packages/torch/__init__.py", line 416, in <module>
+    from torch._C import *  # noqa: F403
+  File "<frozen importlib._bootstrap>", line 216, in _lock_unlock_module
+KeyboardInterrupt
+
+Script done on 2025-08-27 06:59:17+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:17+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^Ccccc^C^Cc
+Script done on 2025-08-27 06:59:18+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:18+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:18+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:18+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C^C^C^C^C^C^C
+Script done on 2025-08-27 06:59:20+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:20+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 6, in <module>
+    import torch
+  File "/usr/local/lib/python3.10/dist-packages/torch/__init__.py", line 416, in <module>
+    from torch._C import *  # noqa: F403
+  File "<frozen importlib._bootstrap>", line 216, in _lock_unlock_module
+KeyboardInterrupt
+
+Script done on 2025-08-27 06:59:20+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:20+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C^C^C^C
+Script done on 2025-08-27 06:59:21+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:22+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:22+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:22+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C^C^C^C^C
+Script done on 2025-08-27 06:59:23+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:23+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C
+Script done on 2025-08-27 06:59:23+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:23+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C^Cccc
+Script done on 2025-08-27 06:59:25+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+c^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 6, in <module>
+    import torch
+  File "/usr/local/lib/python3.10/dist-packages/torch/__init__.py", line 18, in <module>
+    import inspect
+  File "/usr/lib/python3.10/inspect.py", line 43, in <module>
+    import linecache
+  File "/usr/lib/python3.10/linecache.py", line 11, in <module>
+    import tokenize
+  File "/usr/lib/python3.10/tokenize.py", line 67, in <module>
+    Ignore = Whitespace + any(r'\\\r?\n' + Whitespace) + maybe(Comment)
+  File "/usr/lib/python3.10/tokenize.py", line 60, in any
+    def any(*choices): return group(*choices) + '*'
+KeyboardInterrupt
+
+Script done on 2025-08-27 06:59:25+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+cccc^C^C^C
+Script done on 2025-08-27 06:59:26+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:26+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+cccc^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 6, in <module>
+    import torch
+  File "/usr/local/lib/python3.10/dist-packages/torch/__init__.py", line 416, in <module>
+    from torch._C import *  # noqa: F403
+  File "<frozen importlib._bootstrap>", line 216, in _lock_unlock_module
+KeyboardInterrupt
+
+Script done on 2025-08-27 06:59:27+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:27+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^Cc 
+Script done on 2025-08-27 06:59:29+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-27 06:59:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/17" COLUMNS="274" LINES="24"]
+^C^C^C
+Script done on 2025-08-27 06:59:30+00:00 [COMMAND_EXIT_CODE="130"]

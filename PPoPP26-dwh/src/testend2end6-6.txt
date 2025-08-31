@@ -1,0 +1,93 @@
+Script started on 2025-08-30 03:06:46+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  Torch Native    : 52.327 ms / iter
+
+Script done on 2025-08-30 03:06:56+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 03:06:56+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  Torch Compile   : 56.126 ms / iter
+
+Script done on 2025-08-30 03:07:13+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 03:07:13+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  ByteTransformer : 54.600 ms / iter
+
+Script done on 2025-08-30 03:07:23+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 03:07:23+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  STOF            : 53.805 ms / iter
+
+
+
+
+
+
+
+Script done on 2025-08-30 03:07:34+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 03:07:34+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+e2e vit_base | bs:8 | seq:512  |  Torch Native    : 48.307 ms / iter
+
+Script done on 2025-08-30 03:07:49+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 03:07:49+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+e2e vit_base | bs:8 | seq:512  |  Torch Compile   : 47.616 ms / iter
+
+Script done on 2025-08-30 03:08:06+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 03:08:06+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+[ERROR][exec] unsupport seq_len!
+
+Script done on 2025-08-30 03:08:16+00:00 [COMMAND_EXIT_CODE="255"]
+Script started on 2025-08-30 03:08:16+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+e2e vit_base | bs:8 | seq:512  |  STOF            : 47.990 ms / iter
+
+
+
+
+
+
+
+Script done on 2025-08-30 03:08:28+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 03:08:28+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storagevit(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 381, in get_OuterTile_storagevit
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 1.96 GiB is free. Process 45821 has 21.57 GiB memory in use. Of the allocated memory 17.52 GiB is allocated by PyTorch, and 3.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-30 03:09:09+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 03:09:09+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storagevit(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 381, in get_OuterTile_storagevit
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 1.96 GiB is free. Process 46647 has 21.57 GiB memory in use. Of the allocated memory 17.52 GiB is allocated by PyTorch, and 3.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-30 03:10:02+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 03:10:02+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+ByteTransformer unsupported for seq_len > 1024
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storagevit(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 381, in get_OuterTile_storagevit
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 1.96 GiB is free. Process 47745 has 21.57 GiB memory in use. Of the allocated memory 17.52 GiB is allocated by PyTorch, and 3.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-30 03:10:46+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 03:10:46+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="16"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storagevit(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 381, in get_OuterTile_storagevit
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 1.96 GiB is free. Process 48700 has 21.57 GiB memory in use. Of the allocated memory 17.52 GiB is allocated by PyTorch, and 3.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-30 03:11:27+00:00 [COMMAND_EXIT_CODE="1"]

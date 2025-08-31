@@ -1,0 +1,4291 @@
+Script started on 2025-08-28 12:06:40+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:1 | seq:128  |  STOF            : 2.680 ms / iter
+
+Script done on 2025-08-28 12:06:55+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:06:55+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+e2e bert_base | bs:1 | seq:128  |  STOF            : 5.217 ms / iter
+
+Script done on 2025-08-28 12:07:12+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:07:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+e2e bert_large | bs:1 | seq:128  |  STOF            : 10.618 ms / iter
+
+Script done on 2025-08-28 12:07:32+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:07:32+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+e2e gpt | bs:1 | seq:128  |  STOF            : 6.769 ms / iter
+
+Script done on 2025-08-28 12:07:48+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:07:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+t5
+e2e t5 | bs:1 | seq:128  |  STOF            : 15.313 ms / iter
+
+Script done on 2025-08-28 12:08:04+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:08:04+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1095, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 527, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-28 12:08:22+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:08:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1095, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 527, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-28 12:08:51+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:08:51+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1093, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 662, in vit_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: FlashAttention only support fp16 and bf16 data type
+
+Script done on 2025-08-28 12:09:08+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:09:08+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:8 | seq:512  |  STOF            : 2.613 ms / iter
+
+Script done on 2025-08-28 12:09:24+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:09:24+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+e2e bert_base | bs:8 | seq:512  |  STOF            : 6.080 ms / iter
+
+Script done on 2025-08-28 12:09:43+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:09:43+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+e2e bert_large | bs:8 | seq:512  |  STOF            : 18.543 ms / iter
+
+Script done on 2025-08-28 12:10:07+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:10:07+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+e2e gpt | bs:8 | seq:512  |  STOF            : 9.612 ms / iter
+
+Script done on 2025-08-28 12:10:26+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:10:26+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+t5
+e2e t5 | bs:8 | seq:512  |  STOF            : 16.099 ms / iter
+
+Script done on 2025-08-28 12:10:46+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:10:46+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1095, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 527, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-28 12:11:06+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:11:06+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1095, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 527, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-28 12:11:39+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:11:39+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 963, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 12:11:58+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:11:58+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:16 | seq:2048  |  STOF            : 13.747 ms / iter
+
+Script done on 2025-08-28 12:13:07+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:13:07+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+e2e bert_base | bs:16 | seq:2048  |  STOF            : 51.598 ms / iter
+
+Script done on 2025-08-28 12:14:25+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:14:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 951, in <module>
+    pixel_values = set_dtype(torch.empty(batch_size, num_channels, seq_len, seq_len).uniform_(-0.4, 0.4).cuda(), dtype)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/utils.py", line 27, in set_dtype
+    return ts.half()
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 40.69 MiB is free. Process 431668 has 23.49 GiB memory in use. Of the allocated memory 22.94 GiB is allocated by PyTorch, and 118.50 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:15:27+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:15:27+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+^Z^Z^Z^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 965, in <module>
+    if model_selection == "vit_base":
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+KeyboardInterrupt
+^C^CException ignored in atexit callback: <function shutdown_compile_workers at 0x7fe0c8d35360>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/async_compile.py", line 113, in shutdown_compile_workers
+    pool.shutdown()
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/compile_worker/subproc_pool.py", line 239, in shutdown
+    self.process.wait(300)
+  File "/usr/lib/python3.10/subprocess.py", line 1222, in wait
+    self._wait(timeout=sigint_timeout)
+  File "/usr/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+KeyboardInterrupt: 
+^C^C^C^C
+Script done on 2025-08-28 12:16:27+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:16:27+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C^C^C^C^C
+Script done on 2025-08-28 12:16:29+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:16:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C
+Script done on 2025-08-28 12:16:29+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:16:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C^C^C^C^C^C
+Script done on 2025-08-28 12:16:30+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:16:30+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C
+Script done on 2025-08-28 12:16:31+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:16:36+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:1 | seq:128  |  STOF            : 2.681 ms / iter
+
+Script done on 2025-08-28 12:16:53+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:16:53+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+e2e bert_base | bs:1 | seq:128  |  STOF            : 5.096 ms / iter
+
+Script done on 2025-08-28 12:17:10+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:17:10+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+e2e bert_large | bs:1 | seq:128  |  STOF            : 10.919 ms / iter
+
+Script done on 2025-08-28 12:17:30+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:17:30+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+e2e gpt | bs:1 | seq:128  |  STOF            : 6.958 ms / iter
+
+Script done on 2025-08-28 12:17:47+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:17:47+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+t5
+e2e t5 | bs:1 | seq:128  |  STOF            : 15.255 ms / iter
+
+Script done on 2025-08-28 12:18:03+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:18:03+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1098, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 530, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-28 12:18:23+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:18:23+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1098, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 530, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-28 12:18:52+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:18:52+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1096, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 665, in vit_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: FlashAttention only support fp16 and bf16 data type
+
+Script done on 2025-08-28 12:19:09+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:19:09+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:8 | seq:512  |  STOF            : 3.383 ms / iter
+
+Script done on 2025-08-28 12:19:25+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:19:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+e2e bert_base | bs:8 | seq:512  |  STOF            : 6.941 ms / iter
+
+Script done on 2025-08-28 12:19:45+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:19:45+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+e2e bert_large | bs:8 | seq:512  |  STOF            : 18.670 ms / iter
+
+Script done on 2025-08-28 12:20:10+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:20:10+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+e2e gpt | bs:8 | seq:512  |  STOF            : 7.886 ms / iter
+
+Script done on 2025-08-28 12:20:28+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:20:28+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+t5
+e2e t5 | bs:8 | seq:512  |  STOF            : 15.775 ms / iter
+
+Script done on 2025-08-28 12:20:48+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:20:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1098, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 530, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-28 12:21:09+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:21:09+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1098, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 530, in llama3_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: Only head_dim=64 is supported
+
+Script done on 2025-08-28 12:21:42+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:21:42+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 966, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 12:22:00+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:22:00+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:16 | seq:2048  |  STOF            : 13.825 ms / iter
+
+Script done on 2025-08-28 12:23:07+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:23:07+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+^[[A^[[B^[[B^[[Be2e bert_base | bs:16 | seq:2048  |  STOF            : 51.507 ms / iter
+
+Script done on 2025-08-28 12:24:27+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:24:27+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 954, in <module>
+    pixel_values = set_dtype(torch.empty(batch_size, num_channels, seq_len, seq_len).uniform_(-0.4, 0.4).cuda(), dtype)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/utils.py", line 27, in set_dtype
+    return ts.half()
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 40.69 MiB is free. Process 454501 has 23.49 GiB memory in use. Of the allocated memory 22.94 GiB is allocated by PyTorch, and 118.50 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:25:31+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:25:31+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 968, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line -1, in get_InnerTile_bitmap
+KeyboardInterrupt
+^C^CException ignored in atexit callback: <function shutdown_compile_workers at 0x7f42fe8e5360>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/async_compile.py", line 113, in shutdown_compile_workers
+    pool.shutdown()
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/compile_worker/subproc_pool.py", line 239, in shutdown
+    self.process.wait(300)
+  File "/usr/lib/python3.10/subprocess.py", line 1222, in wait
+    self._wait(timeout=sigint_timeout)
+  File "/usr/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+KeyboardInterrupt: 
+^C^C^C^C
+Script done on 2025-08-28 12:26:56+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:26:56+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C^C^C^C^C^C
+Script done on 2025-08-28 12:26:57+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:26:57+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C
+Script done on 2025-08-28 12:26:57+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:26:57+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C
+Script done on 2025-08-28 12:26:58+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:26:58+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C^C^C
+Script done on 2025-08-28 12:26:59+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 12:27:04+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:1 | seq:128  |  STOF            : 2.685 ms / iter
+
+Script done on 2025-08-28 12:27:19+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:27:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+e2e bert_base | bs:1 | seq:128  |  STOF            : 5.195 ms / iter
+
+Script done on 2025-08-28 12:27:36+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:27:36+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+e2e bert_large | bs:1 | seq:128  |  STOF            : 11.030 ms / iter
+
+Script done on 2025-08-28 12:27:56+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:27:56+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+e2e gpt | bs:1 | seq:128  |  STOF            : 7.081 ms / iter
+
+Script done on 2025-08-28 12:28:13+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:28:13+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+t5
+e2e t5 | bs:1 | seq:128  |  STOF            : 14.846 ms / iter
+
+Script done on 2025-08-28 12:28:29+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:28:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.846 ms / iter
+
+Script done on 2025-08-28 12:28:44+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:28:44+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+e2e llama_base | bs:1 | seq:128  |  STOF            : 1.920 ms / iter
+
+Script done on 2025-08-28 12:29:02+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:29:02+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1096, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 665, in vit_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: FlashAttention only support fp16 and bf16 data type
+
+Script done on 2025-08-28 12:29:19+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:29:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:8 | seq:512  |  STOF            : 2.593 ms / iter
+
+Script done on 2025-08-28 12:29:35+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:29:35+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+e2e bert_base | bs:8 | seq:512  |  STOF            : 6.064 ms / iter
+
+Script done on 2025-08-28 12:29:54+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:29:54+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+e2e bert_large | bs:8 | seq:512  |  STOF            : 18.691 ms / iter
+
+Script done on 2025-08-28 12:30:19+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:30:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+e2e gpt | bs:8 | seq:512  |  STOF            : 7.887 ms / iter
+
+Script done on 2025-08-28 12:30:38+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:30:38+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+t5
+e2e t5 | bs:8 | seq:512  |  STOF            : 20.174 ms / iter
+
+Script done on 2025-08-28 12:30:59+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:30:59+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:8 | seq:512  |  STOF            : 1.890 ms / iter
+
+Script done on 2025-08-28 12:31:17+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:31:17+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+e2e llama_base | bs:8 | seq:512  |  STOF            : 3.332 ms / iter
+
+Script done on 2025-08-28 12:31:38+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:31:38+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 967, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 12:31:57+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:31:57+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_small
+e2e bert_small | bs:16 | seq:2048  |  STOF            : 13.946 ms / iter
+
+Script done on 2025-08-28 12:33:06+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:33:06+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_base
+e2e bert_base | bs:16 | seq:2048  |  STOF            : 51.518 ms / iter
+
+Script done on 2025-08-28 12:34:26+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:34:26+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 955, in <module>
+    pixel_values = set_dtype(torch.empty(batch_size, num_channels, seq_len, seq_len).uniform_(-0.4, 0.4).cuda(), dtype)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/utils.py", line 27, in set_dtype
+    return ts.half()
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 40.69 MiB is free. Process 477386 has 23.49 GiB memory in use. Of the allocated memory 22.94 GiB is allocated by PyTorch, and 118.50 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:35:30+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:35:30+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+e2e gpt | bs:16 | seq:2048  |  STOF            : 92.204 ms / iter
+
+Script done on 2025-08-28 12:36:47+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:36:47+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+t5
+e2e t5 | bs:16 | seq:2048  |  STOF            : 135.195 ms / iter
+
+Script done on 2025-08-28 12:38:04+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:38:04+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:16 | seq:2048  |  STOF            : 13.290 ms / iter
+
+Script done on 2025-08-28 12:39:14+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:39:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1099, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 548, in llama3_base_fwd_std
+    variance = hidden_states.pow(2).mean(-1, keepdim=True)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 512.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 402.69 MiB is free. Process 485559 has 23.14 GiB memory in use. Of the allocated memory 22.52 GiB is allocated by PyTorch, and 184.18 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:40:26+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:40:26+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 967, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 487756 has 20.63 GiB memory in use. Of the allocated memory 18.97 GiB is allocated by PyTorch, and 1.23 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:41:19+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:42:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+bert_large
+e2e bert_large | bs:16 | seq:2048  |  STOF            : 6.763 ms / iter
+
+Script done on 2025-08-28 12:43:31+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:43:31+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+gpt
+e2e gpt | bs:16 | seq:2048  |  STOF            : 7.791 ms / iter
+
+Script done on 2025-08-28 12:44:36+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:44:36+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+t5
+e2e t5 | bs:16 | seq:2048  |  STOF            : 12.194 ms / iter
+
+Script done on 2025-08-28 12:45:58+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:45:58+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:16 | seq:2048  |  STOF            : 13.312 ms / iter
+
+Script done on 2025-08-28 12:47:21+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:47:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1092, in <module>
+    inference_model(mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 548, in llama3_base_fwd_std
+    variance = hidden_states.pow(2).mean(-1, keepdim=True)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 512.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 402.69 MiB is free. Process 500593 has 23.14 GiB memory in use. Of the allocated memory 22.52 GiB is allocated by PyTorch, and 184.18 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:48:34+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:48:34+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 960, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 502833 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:49:20+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:49:52+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_base
+e2e llama_base | bs:16 | seq:1024  |  STOF            : 13.295 ms / iter
+
+Script done on 2025-08-28 12:50:30+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 12:50:30+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 960, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 12:50:52+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:51:02+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^[[A\\\       vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1090, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 666, in vit_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: FlashAttention only support fp16 and bf16 data type
+
+Script done on 2025-08-28 12:51:15+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:51:15+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 960, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 12:51:31+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:51:31+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 960, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 509899 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:52:15+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:52:59+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+mask shape: torch.Size([0])
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1091, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 667, in vit_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: FlashAttention only support fp16 and bf16 data type
+
+Script done on 2025-08-28 12:53:13+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:53:13+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 961, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 12:53:30+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 12:53:30+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 961, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 514384 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 12:54:15+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:06:57+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+mask shape: torch.uint64
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1091, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 667, in vit_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: FlashAttention only support fp16 and bf16 data type
+
+Script done on 2025-08-28 13:07:11+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:07:11+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 961, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:07:28+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:07:28+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 961, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 535511 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 13:08:12+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:08:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1094, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 695, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Float and Half
+
+Script done on 2025-08-28 13:08:33+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:08:33+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 964, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:08:49+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:08:49+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 902, in <module>
+    mask = generate_bigbird_mask(attr_mask, globalwidth=32, bandwidth=32, fill_rate=fill_rate, is_cauasl=is_causal).cuda()
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 116, in generate_bigbird_mask
+    bigbird_mask[batch, start_x + random_x, start_y + random_y] = 1
+KeyboardInterrupt
+^C^C^C^C
+Script done on 2025-08-28 13:09:10+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:09:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1095, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 670, in vit_base_fwd_std
+    inner_bitmaps=inner_bitmaps.half()
+UnboundLocalError: local variable 'inner_bitmaps' referenced before assignment
+
+Script done on 2025-08-28 13:09:28+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:09:28+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 965, in <module>
+    compiled_flex_attention = torch.compile(flex_attention, mode="default", dynamic=False)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+^Z^Z^Z^Z^CTraceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/compile_worker/__main__.py", line 10, in <module>
+    from torch._inductor.async_compile import pre_fork_setup
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/async_compile.py", line 17, in <module>
+    from torch._dynamo.device_interface import get_registered_device_interfaces
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/__init__.py", line 53, in <module>
+    from .polyfills import loader as _  # usort: skip # noqa: F401
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/polyfills/loader.py", line 25, in <module>
+    POLYFILLED_MODULES: tuple["ModuleType", ...] = tuple(
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/polyfills/loader.py", line 26, in <genexpr>
+    importlib.import_module(f".{submodule}", package=polyfills.__name__)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/polyfills/builtins.py", line 31, in <module>
+    def all(iterable: Iterable[object], /) -> bool:
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/decorators.py", line 427, in wrapper
+    rule_map: dict[Any, type[VariableTracker]] = get_torch_obj_rule_map()
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/trace_rules.py", line 2870, in get_torch_obj_rule_map
+    obj = load_object(k)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/trace_rules.py", line 2901, in load_object
+    val = _load_obj_from_str(x[0])
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/trace_rules.py", line 2885, in _load_obj_from_str
+    return getattr(importlib.import_module(module), obj_name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_higher_order_ops/map.py", line 6, in <module>
+    from torch._functorch.aot_autograd import AOTConfig, create_joint
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/aot_autograd.py", line 135, in <module>
+    from .partitioners import default_partition
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/partitioners.py", line 37, in <module>
+    from ._activation_checkpointing.graph_info_provider import GraphInfoProvider
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_activation_checkpointing/graph_info_provider.py", line 3, in <module>
+    import networkx as nx
+  File "/usr/local/lib/python3.10/dist-packages/networkx/__init__.py", line 19, in <module>
+^X    from networkx import utils
+  File "/usr/local/lib/python3.10/dist-packages/networkx/utils/__init__.py", line 7, in <module>
+    from networkx.utils.backends import *
+  File "/usr/local/lib/python3.10/dist-packages/networkx/utils/backends.py", line 259, in <module>
+    backend_info = _get_backends("networkx.backend_info", load_and_call=True)
+  File "/usr/local/lib/python3.10/dist-packages/networkx/utils/backends.py", line 234, in _get_backends
+    items = entry_points(group=group)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 1021, in entry_points
+    return SelectableGroups.load(eps).select(**params)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 459, in load
+    ordered = sorted(eps, key=by_group)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 1019, in <genexpr>
+    dist.entry_points for dist in unique(distributions())
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 631, in entry_points
+    return EntryPoints._from_text_for(self.read_text('entry_points.txt'), self)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 927, in read_text
+    return self._path.joinpath(filename).read_text(encoding='utf-8')
+  File "/usr/lib/python3.10/pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/usr/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+  File "/usr/lib/python3.10/codecs.py", line 309, in __init__
+    def __init__(self, errors='strict'):
+KeyboardInterrupt
+^CException ignored in atexit callback: <function shutdown_compile_workers at 0x7f94d8131360>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/async_compile.py", line 113, in shutdown_compile_workers
+    pool.shutdown()
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/compile_worker/subproc_pool.py", line 239, in shutdown
+    self.process.wait(300)
+  File "/usr/lib/python3.10/subprocess.py", line 1222, in wait
+    self._wait(timeout=sigint_timeout)
+  File "/usr/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+KeyboardInterrupt: 
+^C^C^C
+Script done on 2025-08-28 13:09:43+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:09:43+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C^C^C^C^C^C
+Script done on 2025-08-28 13:09:44+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:10:01+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.939 ms / iter
+
+Script done on 2025-08-28 13:10:15+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:10:15+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1099, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 674, in vit_base_fwd_std
+    inner_bitmaps=inner_bitmaps.half()
+UnboundLocalError: local variable 'inner_bitmaps' referenced before assignment
+
+Script done on 2025-08-28 13:10:30+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:10:30+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^Z^Z^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 29, in <module>
+    import tilelang
+  File "/root/tilelang/tilelang/__init__.py", line 59, in <module>
+    import tvm
+  File "/root/tilelang/tilelang/../3rdparty/tvm/python/tvm/__init__.py", line 55, in <module>
+    from . import tir
+  File "/root/tilelang/tilelang/../3rdparty/tvm/python/tvm/tir/__init__.py", line 95, in <module>
+    from .schedule import StmtSRef, BlockScope, ScheduleState, Schedule, ScheduleError
+  File "/root/tilelang/tilelang/../3rdparty/tvm/python/tvm/tir/schedule/__init__.py", line 22, in <module>
+    from .schedule import BlockRV, ExprRV, LoopRV, Schedule, ScheduleError
+  File "/root/tilelang/tilelang/../3rdparty/tvm/python/tvm/tir/schedule/schedule.py", line 30, in <module>
+    from .state import ScheduleState, StmtSRef, _parse_debug_mask, _parse_mod
+  File "/root/tilelang/tilelang/../3rdparty/tvm/python/tvm/tir/schedule/state.py", line 34, in <module>
+    class ScheduleDebugMask(IntEnum):
+  File "/usr/lib/python3.10/enum.py", line 215, in __new__
+    enum_class = super().__new__(metacls, cls, bases, classdict, **kwds)
+KeyboardInterrupt
+^C
+Script done on 2025-08-28 13:10:35+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:10:35+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C^C^C^C^C
+Script done on 2025-08-28 13:10:36+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:10:36+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^C
+Script done on 2025-08-28 13:10:37+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:10:37+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 907, in <module>
+    vit_mask = generate_bigbird_mask(vit_attr_mask, globalwidth=32, bandwidth=32, fill_rate=fill_rate, is_cauasl=is_causal).cuda()
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 99, in generate_bigbird_mask
+    bigbird_mask[batch, i, start:end] = 1
+KeyboardInterrupt
+^C^C^C^C
+Script done on 2025-08-28 13:10:55+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:11:03+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.897 ms / iter
+
+Script done on 2025-08-28 13:11:18+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:11:18+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1099, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 670, in vit_base_fwd_std
+    print(f"mask shape: {inner_bitmaps.dtype}")
+UnboundLocalError: local variable 'inner_bitmaps' referenced before assignment
+
+Script done on 2025-08-28 13:11:34+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:14:15+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.893 ms / iter
+
+Script done on 2025-08-28 13:14:29+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:14:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+torch.Size([1, 65, 768])
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 678, in vit_base_fwd_std
+    print(f"mask shape: {inner_bitmaps.dtype}")
+UnboundLocalError: local variable 'inner_bitmaps' referenced before assignment
+
+Script done on 2025-08-28 13:14:43+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:15:49+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.841 ms / iter
+
+Script done on 2025-08-28 13:16:04+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:16:04+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1104, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 631, in vit_base_fwd_std
+    q1 = transpose_for_scores(q, head_num, head_size)  
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/utils.py", line 33, in transpose_for_scores
+    x = x.view(new_x_shape)
+RuntimeError: shape '[1, 65, 12, 64]' is invalid for input of size 16640
+
+Script done on 2025-08-28 13:16:19+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:18:45+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+e2e llama_small | bs:1 | seq:128  |  STOF            : 2.006 ms / iter
+
+Script done on 2025-08-28 13:19:00+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:19:00+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1104, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 631, in vit_base_fwd_std
+    q1 = transpose_for_scores(q, head_num, head_size)  
+UnboundLocalError: local variable 'q' referenced before assignment
+
+Script done on 2025-08-28 13:19:15+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:19:43+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+e2e llama_small | bs:1 | seq:128  |  STOF            : 2.373 ms / iter
+
+Script done on 2025-08-28 13:19:58+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:19:58+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1104, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 675, in vit_base_fwd_std
+    print(f"mask shape: {inner_bitmaps.dtype}")
+UnboundLocalError: local variable 'inner_bitmaps' referenced before assignment
+
+Script done on 2025-08-28 13:20:13+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:20:28+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+q shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+k shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+v shape: torch.Size([1, 128, 32, 64]), dtype: torch.float16
+mask shape: torch.uint64
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.887 ms / iter
+
+Script done on 2025-08-28 13:20:42+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:20:42+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1104, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 679, in vit_base_fwd_std
+    inner_bitmaps=inner_bitmaps.half()
+UnboundLocalError: local variable 'inner_bitmaps' referenced before assignment
+
+Script done on 2025-08-28 13:20:58+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:21:08+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.844 ms / iter
+
+Script done on 2025-08-28 13:21:24+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:21:24+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float32
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1104, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 705, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Float and Half
+
+Script done on 2025-08-28 13:21:38+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:22:01+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.873 ms / iter
+
+Script done on 2025-08-28 13:22:14+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:22:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1105, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 706, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Float and Half
+
+Script done on 2025-08-28 13:22:29+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:25:45+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.877 ms / iter
+
+Script done on 2025-08-28 13:26:01+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:26:01+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1105, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 706, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Float and Half
+
+Script done on 2025-08-28 13:26:15+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:27:52+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.897 ms / iter
+
+Script done on 2025-08-28 13:28:06+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:28:06+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1106, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 711, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Half and Float
+
+Script done on 2025-08-28 13:28:22+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:29:23+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.858 ms / iter
+
+Script done on 2025-08-28 13:29:38+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:29:38+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float16
+torch.float32
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 708, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Float and Half
+
+Script done on 2025-08-28 13:29:53+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:30:11+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.864 ms / iter
+
+Script done on 2025-08-28 13:30:25+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:30:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float16
+torch.float16
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 712, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Half and Float
+
+Script done on 2025-08-28 13:30:41+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:31:00+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.845 ms / iter
+
+Script done on 2025-08-28 13:31:15+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:31:15+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float16
+torch.float16
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 712, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Half and Float
+
+Script done on 2025-08-28 13:31:30+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:32:07+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.859 ms / iter
+
+Script done on 2025-08-28 13:32:22+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:32:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 687, in vit_base_fwd_std
+    attn_output = h.view(new_context_layer_shape).float32()
+AttributeError: 'Tensor' object has no attribute 'float32'. Did you mean: 'float'?
+
+Script done on 2025-08-28 13:32:37+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:32:40+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  STOF            : 1.832 ms / iter
+
+Script done on 2025-08-28 13:32:55+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:32:55+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+torch.float32
+torch.float32
+e2e vit_base | bs:1 | seq:128  |  STOF            : 54.623 ms / iter
+
+Script done on 2025-08-28 13:33:09+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:34:06+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+q shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+k shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+v shape: torch.Size([1, 65, 12, 64]), dtype: torch.float16
+e2e vit_base | bs:1 | seq:128  |  STOF            : 47.107 ms / iter
+
+Script done on 2025-08-28 13:34:21+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:34:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:34:37+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:34:37+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 596571 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 13:35:23+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:38:23+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 681, in vit_base_fwd_std
+    h = binding_attn_func(q, k, v,
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 125, in binding_attn_func
+    return BindingAttnFunc.apply(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 90, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _binding_attn_forward(
+  File "/root/fusion-SC25/SC25-STOF-AD/src/ops/package_op.py", line 53, in _binding_attn_forward
+    out, softmax_lse, S_dmask, rng_state = binding_attn.forward(
+RuntimeError: FlashAttention only support fp16 and bf16 data type
+
+Script done on 2025-08-28 13:38:36+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:38:36+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:38:53+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:38:53+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 603917 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 13:39:39+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:39:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 599, in vit_base_fwd_std
+    embeddings = projection(pixel_values.to(torch.half)).flatten(2).transpose(1, 2)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py", line 554, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py", line 549, in _conv_forward
+    return F.conv2d(
+RuntimeError: Input type (c10::Half) and bias type (float) should be the same
+
+Script done on 2025-08-28 13:40:03+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:40:03+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:40:19+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:40:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 607617 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 13:41:05+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:41:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  STOF            : 55.651 ms / iter
+
+Script done on 2025-08-28 13:41:37+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:41:37+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:41:53+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:41:53+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 611383 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 13:42:39+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:42:44+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 708, in vit_base_fwd_std
+    layer_output = dense(layer_output)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Float and Half
+
+Script done on 2025-08-28 13:42:58+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:42:58+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:43:15+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:43:15+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+^CTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 6, in <module>
+    import torch
+  File "/usr/local/lib/python3.10/dist-packages/torch/__init__.py", line 409, in <module>
+    from torch._C import *  # noqa: F403
+  File "<frozen importlib._bootstrap>", line 216, in _lock_unlock_module
+KeyboardInterrupt
+
+Script done on 2025-08-28 13:43:17+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:43:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  STOF            : 53.901 ms / iter
+
+Script done on 2025-08-28 13:43:39+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:43:39+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:43:55+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:43:55+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 617092 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 13:44:40+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:45:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  STOF            : 51.354 ms / iter
+
+Script done on 2025-08-28 13:45:42+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:46:00+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  STOF            : 54.882 ms / iter
+
+Script done on 2025-08-28 13:46:14+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:46:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:46:30+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:46:30+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 623074 has 20.63 GiB memory in use. Of the allocated memory 17.08 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 13:47:15+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:51:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1107, in <module>
+    inference_model(vit_mask)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 693, in vit_base_fwd_std
+    dense = nn.Linear(head_size * head_num, head_size * head_num).to(device=device).to(attn_output.dtype)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+RuntimeError: CUDA error: an illegal memory access was encountered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Script done on 2025-08-28 13:51:58+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:51:58+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:52:09+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:52:09+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+^C^C^C^C^C^C^C^C^C^C^C^C^ZTraceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 965, in <module>
+    pixel_values = set_dtype(torch.empty(batch_size, num_channels, seq_len, seq_len).uniform_(-0.4, 0.4).cuda(), dtype)
+KeyboardInterrupt
+^Z^C^Z^Z^X
+Script done on 2025-08-28 13:53:15+00:00 [COMMAND_EXIT_CODE="130"]
+Script started on 2025-08-28 13:53:18+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  STOF            : 54.260 ms / iter
+
+Script done on 2025-08-28 13:53:28+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-28 13:53:28+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 329, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 276, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-28 13:53:41+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-28 13:53:41+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="308" LINES="23"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 977, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 293, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.90 GiB is free. Process 635228 has 20.63 GiB memory in use. Of the allocated memory 16.89 GiB is allocated by PyTorch, and 3.30 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-28 13:54:21+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 02:05:34+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="299" LINES="31"]
+/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py:174: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cuda is not avaliable !
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 799, in <module>
+    gpu_name = torch.cuda.get_device_name()
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 544, in get_device_name
+    return get_device_properties(device).name
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 576, in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 372, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero.
+
+Script done on 2025-08-30 02:06:16+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 02:06:16+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="299" LINES="31"]
+/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py:174: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cuda is not avaliable !
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 799, in <module>
+    gpu_name = torch.cuda.get_device_name()
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 544, in get_device_name
+    return get_device_properties(device).name
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 576, in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 372, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero.
+
+Script done on 2025-08-30 02:06:57+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 02:06:57+00:00 [TERM="xterm-256color" TTY="/dev/pts/19" COLUMNS="299" LINES="31"]
+/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py:174: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cuda is not avaliable !
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 799, in <module>
+    gpu_name = torch.cuda.get_device_name()
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 544, in get_device_name
+    return get_device_properties(device).name
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 576, in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 372, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero.
+
+Script done on 2025-08-30 02:07:31+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 02:40:32+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="31"]
+ vit_base
+torch.Size([1, 65, 65])
+
+Script done on 2025-08-30 02:41:20+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 02:41:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="31"]
+vit_base
+torch.Size([8, 1025, 1025])
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 335, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 281, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-30 02:41:32+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 02:41:32+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="31"]
+vit_base
+torch.Size([16, 16385, 16385])
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 299, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 1.96 GiB is free. Process 8227 has 21.57 GiB memory in use. Of the allocated memory 17.52 GiB is allocated by PyTorch, and 3.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-30 02:42:13+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 02:46:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="31"]
+vit_base
+torch.Size([1, 65, 65])
+e2e vit_base | bs:1 | seq:128  |  Torch Native    : 53.789 ms / iter
+
+Script done on 2025-08-30 02:46:37+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 02:46:37+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="31"]
+vit_base
+torch.Size([8, 1025, 1025])
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+8 inner_height
+8 inner_width
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 337, in get_OuterTile_storage
+    inner_bitmaps = get_InnerTile_bitmap(outer_tile.cpu().numpy())
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 283, in get_InnerTile_bitmap
+    if inner_tile[bi, bj] != 0:
+IndexError: index 1 is out of bounds for axis 1 with size 1
+
+Script done on 2025-08-30 02:46:49+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 02:46:49+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="299" LINES="31"]
+vit_base
+torch.Size([16, 16385, 16385])
+Traceback (most recent call last):
+  File "/root/fusion-SC25/SC25-STOF-AD/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/SC25-STOF-AD/src/util/masks.py", line 301, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 1.96 GiB is free. Process 13292 has 21.57 GiB memory in use. Of the allocated memory 17.52 GiB is allocated by PyTorch, and 3.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-30 02:47:30+00:00 [COMMAND_EXIT_CODE="1"]
