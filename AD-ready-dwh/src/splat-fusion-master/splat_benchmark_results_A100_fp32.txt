@@ -1,0 +1,23 @@
+=== SPLAT FlashAttention 性能测试结果 ===
+测试时间: Wed Nov 19 08:33:04 UTC 2025
+==========================================
+Batch Size | Seq Length | Time (ms/iter)
+-----------|------------|----------------
+Attn | bs: 1 | seq: 128 | SPLAT  : 21.576 ms / iter
+Attn | bs: 1 | seq: 256 | SPLAT  : 21.594 ms / iter
+Attn | bs: 1 | seq: 512 | SPLAT  : 16.408 ms / iter
+Attn | bs: 1 | seq:1024 | SPLAT  : 11.666 ms / iter
+Attn | bs: 1 | seq:2048 | SPLAT  : 15.571 ms / iter
+Attn | bs: 1 | seq:4096 | SPLAT  : 16.695 ms / iter
+Attn | bs: 8 | seq: 128 | SPLAT  : 17.182 ms / iter
+Attn | bs: 8 | seq: 256 | SPLAT  : 3.141 ms / iter
+Attn | bs: 8 | seq: 512 | SPLAT  : 17.758 ms / iter
+Attn | bs: 8 | seq:1024 | SPLAT  : 17.407 ms / iter
+Attn | bs: 8 | seq:2048 | SPLAT  : 19.357 ms / iter
+Attn | bs: 8 | seq:4096 | SPLAT  : 728.318 ms / iter
+Attn | bs:16 | seq: 128 | SPLAT  : 1.590 ms / iter
+Attn | bs:16 | seq: 256 | SPLAT  : 5.963 ms / iter
+Attn | bs:16 | seq: 512 | SPLAT  : 23.143 ms / iter
+Attn | bs:16 | seq:1024 | SPLAT  : 91.470 ms / iter
+Attn | bs:16 | seq:2048 | SPLAT  : 367.021 ms / iter
+Attn | bs:16 | seq:4096 | SPLAT  : 1448.155 ms / iter

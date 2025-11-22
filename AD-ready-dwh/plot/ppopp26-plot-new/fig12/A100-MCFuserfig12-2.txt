@@ -1,0 +1,240 @@
+Script started on 2025-08-30 08:18:40+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=1                 --seq_len=128                 --model=llama_small                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  MCFuser : 1.348 ms / iter
+
+Script done on 2025-08-30 08:18:51+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 08:18:51+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=1                 --seq_len=128                 --model=llama_base                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+llama_base
+e2e llama_base | bs:1 | seq:128  |  MCFuser : 1.362 ms / iter
+
+Script done on 2025-08-30 08:19:02+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-30 08:19:02+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=1                 --seq_len=128                 --model=vit_base                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+vit_base
+Out of Memory on 4090
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/triton/language/core.py", line 35, in wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/language/core.py", line 1547, in dot
+    return semantic.dot(input, other, acc, input_precision, max_num_imprecise_acc, out_dtype, _builder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/language/semantic.py", line 1358, in dot
+    assert_dtypes_valid(lhs.dtype, rhs.dtype, builder.options)
+  File "/usr/local/lib/python3.12/dist-packages/triton/language/semantic.py", line 1331, in assert_dtypes_valid
+    assert lhs_dtype == rhs_dtype, f"First input ({lhs_dtype}) and second input ({rhs_dtype}) must have the same dtype!"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: First input (fp16) and second input (fp32) must have the same dtype!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 1129, in <module>
+    inference_model(mask)
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 727, in vit_base_fwd_std
+    _, h = mcfuser_attn(q1, k1, v1, vit_mask, batch_size, head_num, seq_len, head_size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/denghaodong/rmf/end2end/src/MCFuser/ct_mcfuser_maskA100.py", line 744, in mcfuser_attn
+    main_kernel18[(4,32,128)](T,K,mask,Q,V)
+  File "/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py", line 326, in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py", line 643, in run
+    kernel = self.compile(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py", line 281, in compile
+    module = src.make_ir(options, codegen_fns, context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py", line 113, in make_ir
+    return ast_to_ttir(self.fn, self, context=context, options=options, codegen_fns=codegen_fns)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+triton.compiler.errors.CompilationError: at 31:45:
+        mask_1_data = tl.load(mask_1 + offset * 201326592 + offset_1 * 16777216 + offset_9[:,None] * 4096 + offset_10[None,:] * 1) # mask_1_data -> ['offset', 'offset_1', 'offset_9', 'offset_10'] + ax_5_0
+        offset_13 = ax_5_0 * 128 + tl.arange(0, 128) * 1 # offset_13 -> ['ax_5_0'] + ax_5_0
+        v_1_data = tl.load(v_1 + offset * 3145728 + offset_1 * 262144 + offset_13[:,None] * 64 + offset_12[None,:] * 1) # v_1_data -> ['offset', 'offset_1', 'offset_13', 'offset_12'] + ax_5_0
+        T_einsum_1_data = tl.zeros([128, 128], dtype=tl.float32) # T_einsum_1_data -> ['ax_5_0'] + ax_5_0
+        for ax_6_0 in range(0, 4): # ax_6_0 -> ['ax_5_0'] + ax_5_0
+            offset_8 = ax_6_0 * 16 + tl.arange(0, 16) * 1 # offset_8 -> ['ax_6_0'] + ax_6_0
+            q_1_data = tl.load(q_1 + offset * 3145728 + offset_1 * 262144 + offset_6[:,None] * 64 + offset_8[None,:] * 1) # q_1_data -> ['offset', 'offset_1', 'offset_6', 'offset_8'] + ax_6_0
+            k_1_data = tl.load(k_1 + offset * 3145728 + offset_1 * 262144 + offset_7[:,None] * 64 + offset_8[None,:] * 1) # k_1_data -> ['offset', 'offset_1', 'offset_7', 'offset_8'] + ax_6_0
+            T_einsum_1_data = (T_einsum_1_data + tl.dot(q_1_data, k_1_data.T)) # T_einsum_1_data_1 -> ['k_1_data', 'q_1_data', 'T_einsum_1_data'] + ax_6_0
+        compute_1_data = tl.exp(((T_einsum_1_data * 0.125) + mask_1_data)) # compute_1_data -> ['mask_1_data', 'T_einsum_1_data'] + ax_5_0
+        compute_red_1_data = (compute_red_1_data + tl.reshape(tl.sum(compute_1_data, axis=1), compute_red_1_data.shape)) # compute_red_1_data_1 -> ['compute_red_1_data', 'compute_1_data'] + ax_5_0
+        T_einsum_2_data = (T_einsum_2_data + tl.dot(compute_1_data.to(tl.float16), v_1_data)) # T_einsum_2_data_1 -> ['T_einsum_2_data', 'v_1_data', 'compute_1_data'] + ax_5_0
+                                             ^
+
+Script done on 2025-08-30 08:19:12+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 08:19:12+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=8                 --seq_len=512                 --model=llama_small                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+llama_small
+Traceback (most recent call last):
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 1129, in <module>
+    inference_model(mask)
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 593, in llama3_base_fwd_std
+    hidden_states = act_fn(hidden_states) * hidden_states
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/activation.py", line 432, in forward
+    return F.silu(input, inplace=self.inplace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/functional.py", line 2380, in silu
+    return torch._C._nn.silu(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: an illegal memory access was encountered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Script done on 2025-08-30 08:19:24+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 08:19:24+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=8                 --seq_len=512                 --model=llama_base                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+llama_base
+Traceback (most recent call last):
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 1129, in <module>
+    inference_model(mask)
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 593, in llama3_base_fwd_std
+    hidden_states = act_fn(hidden_states) * hidden_states
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/activation.py", line 432, in forward
+    return F.silu(input, inplace=self.inplace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/functional.py", line 2380, in silu
+    return torch._C._nn.silu(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: an illegal memory access was encountered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Script done on 2025-08-30 08:19:37+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 08:19:37+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=8                 --seq_len=512                 --model=vit_base                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+vit_base
+Out of Memory on 4090
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/triton/language/core.py", line 35, in wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/language/core.py", line 1547, in dot
+    return semantic.dot(input, other, acc, input_precision, max_num_imprecise_acc, out_dtype, _builder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/language/semantic.py", line 1358, in dot
+    assert_dtypes_valid(lhs.dtype, rhs.dtype, builder.options)
+  File "/usr/local/lib/python3.12/dist-packages/triton/language/semantic.py", line 1331, in assert_dtypes_valid
+    assert lhs_dtype == rhs_dtype, f"First input ({lhs_dtype}) and second input ({rhs_dtype}) must have the same dtype!"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: First input (fp16) and second input (fp32) must have the same dtype!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 1129, in <module>
+    inference_model(mask)
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 727, in vit_base_fwd_std
+    _, h = mcfuser_attn(q1, k1, v1, vit_mask, batch_size, head_num, seq_len, head_size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/denghaodong/rmf/end2end/src/MCFuser/ct_mcfuser_maskA100.py", line 744, in mcfuser_attn
+    main_kernel18[(4,32,128)](T,K,mask,Q,V)
+  File "/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py", line 326, in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py", line 643, in run
+    kernel = self.compile(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py", line 281, in compile
+    module = src.make_ir(options, codegen_fns, context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py", line 113, in make_ir
+    return ast_to_ttir(self.fn, self, context=context, options=options, codegen_fns=codegen_fns)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+triton.compiler.errors.CompilationError: at 31:45:
+        mask_1_data = tl.load(mask_1 + offset * 201326592 + offset_1 * 16777216 + offset_9[:,None] * 4096 + offset_10[None,:] * 1) # mask_1_data -> ['offset', 'offset_1', 'offset_9', 'offset_10'] + ax_5_0
+        offset_13 = ax_5_0 * 128 + tl.arange(0, 128) * 1 # offset_13 -> ['ax_5_0'] + ax_5_0
+        v_1_data = tl.load(v_1 + offset * 3145728 + offset_1 * 262144 + offset_13[:,None] * 64 + offset_12[None,:] * 1) # v_1_data -> ['offset', 'offset_1', 'offset_13', 'offset_12'] + ax_5_0
+        T_einsum_1_data = tl.zeros([128, 128], dtype=tl.float32) # T_einsum_1_data -> ['ax_5_0'] + ax_5_0
+        for ax_6_0 in range(0, 4): # ax_6_0 -> ['ax_5_0'] + ax_5_0
+            offset_8 = ax_6_0 * 16 + tl.arange(0, 16) * 1 # offset_8 -> ['ax_6_0'] + ax_6_0
+            q_1_data = tl.load(q_1 + offset * 3145728 + offset_1 * 262144 + offset_6[:,None] * 64 + offset_8[None,:] * 1) # q_1_data -> ['offset', 'offset_1', 'offset_6', 'offset_8'] + ax_6_0
+            k_1_data = tl.load(k_1 + offset * 3145728 + offset_1 * 262144 + offset_7[:,None] * 64 + offset_8[None,:] * 1) # k_1_data -> ['offset', 'offset_1', 'offset_7', 'offset_8'] + ax_6_0
+            T_einsum_1_data = (T_einsum_1_data + tl.dot(q_1_data, k_1_data.T)) # T_einsum_1_data_1 -> ['k_1_data', 'q_1_data', 'T_einsum_1_data'] + ax_6_0
+        compute_1_data = tl.exp(((T_einsum_1_data * 0.125) + mask_1_data)) # compute_1_data -> ['mask_1_data', 'T_einsum_1_data'] + ax_5_0
+        compute_red_1_data = (compute_red_1_data + tl.reshape(tl.sum(compute_1_data, axis=1), compute_red_1_data.shape)) # compute_red_1_data_1 -> ['compute_red_1_data', 'compute_1_data'] + ax_5_0
+        T_einsum_2_data = (T_einsum_2_data + tl.dot(compute_1_data.to(tl.float16), v_1_data)) # T_einsum_2_data_1 -> ['T_einsum_2_data', 'v_1_data', 'compute_1_data'] + ax_5_0
+                                             ^
+
+Script done on 2025-08-30 08:19:48+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 08:19:49+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=16                 --seq_len=2048                 --model=llama_small                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+llama_small
+Traceback (most recent call last):
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 1129, in <module>
+    inference_model(mask)
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 593, in llama3_base_fwd_std
+    hidden_states = act_fn(hidden_states) * hidden_states
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/activation.py", line 432, in forward
+    return F.silu(input, inplace=self.inplace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/functional.py", line 2380, in silu
+    return torch._C._nn.silu(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: an illegal memory access was encountered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Script done on 2025-08-30 08:20:07+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 08:20:07+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=16                 --seq_len=2048                 --model=llama_base                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+llama_base
+Traceback (most recent call last):
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 1129, in <module>
+    inference_model(mask)
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 593, in llama3_base_fwd_std
+    hidden_states = act_fn(hidden_states) * hidden_states
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/activation.py", line 432, in forward
+    return F.silu(input, inplace=self.inplace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/functional.py", line 2380, in silu
+    return torch._C._nn.silu(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: an illegal memory access was encountered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Script done on 2025-08-30 08:20:29+00:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2025-08-30 08:20:29+00:00 [COMMAND="python benchmk_end2end.py                 --batch_size=16                 --seq_len=2048                 --model=vit_base                 --method=MCFuser" TERM="xterm-256color" TTY="/dev/pts/118" COLUMNS="121" LINES="88"]
+vit_base
+Traceback (most recent call last):
+  File "/denghaodong/rmf/end2end/src/benchmk_end2end.py", line 1048, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storage(vit_mask, BLOCK_M, BLOCK_N)
+                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/denghaodong/rmf/end2end/src/util/masks.py", line 299, in get_OuterTile_storage
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 32.01 GiB. GPU 0 has a total capacity of 39.50 GiB of which 13.87 GiB is free. Process 151578 has 25.62 GiB memory in use. Of the allocated memory 21.52 GiB is allocated by PyTorch, and 3.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-30 08:21:18+00:00 [COMMAND_EXIT_CODE="1"]

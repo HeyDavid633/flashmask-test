@@ -1,0 +1,125 @@
+Script started on 2025-08-31 07:28:01+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_small
+e2e bert_small | bs:1 | seq:128  |  Torch Native    : 0.387 ms / iter
+
+Script done on 2025-08-31 07:28:12+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:28:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_base
+e2e bert_base | bs:1 | seq:128  |  Torch Native    : 0.388 ms / iter
+
+Script done on 2025-08-31 07:28:24+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:28:24+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_large
+e2e bert_large | bs:1 | seq:128  |  Torch Native    : 0.380 ms / iter
+
+Script done on 2025-08-31 07:28:34+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:28:34+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+gpt
+e2e gpt | bs:1 | seq:128  |  Torch Native    : 0.490 ms / iter
+
+Script done on 2025-08-31 07:28:45+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:28:45+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+t5
+e2e t5 | bs:1 | seq:128  |  Torch Native    : 1.159 ms / iter
+
+Script done on 2025-08-31 07:28:56+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:28:56+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+llama_small
+e2e llama_small | bs:1 | seq:128  |  Torch Native    : 1.840 ms / iter
+
+Script done on 2025-08-31 07:29:07+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:29:07+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+llama_base
+e2e llama_base | bs:1 | seq:128  |  Torch Native    : 1.717 ms / iter
+
+Script done on 2025-08-31 07:29:19+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:29:19+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+vit_base
+e2e vit_base | bs:1 | seq:128  |  Torch Native    : 56.758 ms / iter
+
+Script done on 2025-08-31 07:29:31+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:29:31+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_small
+e2e bert_small | bs:8 | seq:512  |  Torch Native    : 0.373 ms / iter
+
+Script done on 2025-08-31 07:29:45+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:29:45+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_base
+e2e bert_base | bs:8 | seq:512  |  Torch Native    : 0.493 ms / iter
+
+Script done on 2025-08-31 07:30:00+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:30:00+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_large
+e2e bert_large | bs:8 | seq:512  |  Torch Native    : 0.768 ms / iter
+
+Script done on 2025-08-31 07:30:14+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:30:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+gpt
+e2e gpt | bs:8 | seq:512  |  Torch Native    : 0.645 ms / iter
+
+Script done on 2025-08-31 07:30:29+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:30:29+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+t5
+e2e t5 | bs:8 | seq:512  |  Torch Native    : 1.533 ms / iter
+
+Script done on 2025-08-31 07:30:43+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:30:43+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+llama_small
+e2e llama_small | bs:8 | seq:512  |  Torch Native    : 1.785 ms / iter
+
+Script done on 2025-08-31 07:30:56+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:30:56+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+llama_base
+e2e llama_base | bs:8 | seq:512  |  Torch Native    : 3.186 ms / iter
+
+Script done on 2025-08-31 07:31:12+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:31:12+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+vit_base
+e2e vit_base | bs:8 | seq:512  |  Torch Native    : 47.627 ms / iter
+
+Script done on 2025-08-31 07:31:26+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:31:26+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_small
+e2e bert_small | bs:16 | seq:2048  |  Torch Native    : 2.188 ms / iter
+
+Script done on 2025-08-31 07:32:05+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:32:05+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_base
+e2e bert_base | bs:16 | seq:2048  |  Torch Native    : 4.130 ms / iter
+
+Script done on 2025-08-31 07:32:43+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:32:43+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+bert_large
+e2e bert_large | bs:16 | seq:2048  |  Torch Native    : 6.457 ms / iter
+
+Script done on 2025-08-31 07:33:22+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:33:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+gpt
+e2e gpt | bs:16 | seq:2048  |  Torch Native    : 7.477 ms / iter
+
+Script done on 2025-08-31 07:34:01+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:34:01+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+t5
+e2e t5 | bs:16 | seq:2048  |  Torch Native    : 11.742 ms / iter
+
+Script done on 2025-08-31 07:34:42+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:34:42+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+llama_small
+e2e llama_small | bs:16 | seq:2048  |  Torch Native    : 12.733 ms / iter
+
+Script done on 2025-08-31 07:35:20+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:35:20+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+llama_base
+e2e llama_base | bs:16 | seq:2048  |  Torch Native    : 25.248 ms / iter
+
+Script done on 2025-08-31 07:36:03+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2025-08-31 07:36:03+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="297" LINES="16"]
+vit_base
+Traceback (most recent call last):
+  File "/root/fusion-SC25/PPoPP26-AD/src/benchmk_end2end.py", line 1054, in <module>
+    nnz, full_row_ptr, full_col_idx, part_row_ptr, part_col_idx, load_row_ptr, load_col_idx, inner_bitmaps = get_OuterTile_storagevit(vit_mask, BLOCK_M, BLOCK_N)
+  File "/root/fusion-SC25/PPoPP26-AD/src/util/masks.py", line 381, in get_OuterTile_storagevit
+    nnz = torch.count_nonzero(Mask) / total_elements * 100  
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.54 GiB of which 1.96 GiB is free. Process 1432009 has 21.57 GiB memory in use. Of the allocated memory 17.52 GiB is allocated by PyTorch, and 3.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Script done on 2025-08-31 07:36:43+00:00 [COMMAND_EXIT_CODE="1"]
